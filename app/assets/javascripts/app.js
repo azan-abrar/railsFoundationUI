@@ -1,49 +1,39 @@
-//ngRestAngular
 
 var app = angular.module("confizHRM", ['ngSanitize']);
 
 app.config(function($routeProvider) {
+
+  // LoginController Routes
 
   $routeProvider.when('/login', {
     templateUrl: 'templates/login.html',
     controller: 'LoginController'
   });
 
+  // EmployeesController Routes
+
   $routeProvider.when('/employees', {
     templateUrl: 'templates/employees.html',
-    controller: 'EmployeesController',
-    resolve: {
-      employees: function(EmployeeService) {
-        return EmployeeService.get();
-      }
-    }
-  });
-  
-  $routeProvider.when('/employee/new', {
-    templateUrl: 'templates/employees/new.html',
-  });
-  
-  $routeProvider.when('/employee/:employeeID/edit', {
-    templateUrl: 'templates/employees/edit.html',
-    controller: 'EmployeesController',
-    resolve: {
-      employees: function(EmployeeService) {
-        return EmployeeService.getEmployee();
-      }
-    }
+    controller: 'EmployeesController'
   });
 
   $routeProvider.when('/employee/:employeeID', {
     templateUrl: 'templates/employees/show.html',
-    controller: 'EmployeesController',
-    resolve: {
-      employees: function(EmployeeService) {
-        return EmployeeService.getEmployee();
-      }
-    }
+    controller: 'EmployeesController'
   });
 
-  $routeProvider.otherwise({redirectTo: '/login'});
+  $routeProvider.when('/employee/new', {
+    templateUrl: 'templates/employees/new.html',
+  });
+
+  $routeProvider.when('/employee/:employeeID/edit', {
+    templateUrl: 'templates/employees/edit.html',
+    controller: 'EmployeesController'
+  });
+
+  // Redirect to index page of employees in case of route does no match
+
+  $routeProvider.otherwise({redirectTo: '/employees'});
 
 });
 

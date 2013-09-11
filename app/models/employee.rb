@@ -5,7 +5,7 @@ class Employee < ActiveRecord::Base
   has_many :previous_jobs
   belongs_to :job
   
-  validates :first_name, :last_name, :phone_1, :permanent_address, :presence => true
+  validates :first_name, :last_name, :phone_1, :permanent_address, :email, :presence => true
   
   def full_name
     "#{self.first_name}#{" #{self.middle_name}"} #{self.last_name}"
@@ -16,20 +16,31 @@ class Employee < ActiveRecord::Base
     employees = []
     20.times do |t|
       emps.each do |emp|
-        employees << {
-          :full_name => emp.full_name,
-          :email => emp.email,
-          :dob => emp.dob,
-          :is_married => (emp.is_married ? "Yes" : "No"),
-          :join_date => emp.join_date.to_date,
-          :permanent_address => emp.permanent_address,
-          :phone_1 => emp.phone_1,
-          :id => emp.id,
-          :resume => emp.resume_path
-        }
+        employees << emp.employee_hash
       end
     end
     return employees.flatten
+  end
+  
+  def employee_hash
+    {
+      :full_name => self.full_name,
+      :first_name => self.first_name,
+      :middle_name => self.middle_name,
+      :last_name => self.last_name,
+      :email => self.email,
+      :dob => self.dob,
+      :is_married => (self.is_married ? "Yes" : "No"),
+      :join_date => self.join_date.to_date,
+      :permanent_address => self.permanent_address,
+      :secondary_address => (self.secondary_address.blank? ? "N/A" : self.secondary_address),
+      :phone_1 => self.phone_1,
+      :phone_2 => (self.phone_2.blank? ? "N/A" : self.phone_2),
+      :id => self.id,
+      :resume => self.resume_path,
+      :job => self.job.title,
+      :job_status => self.job_status.blank? ? "Active" : "In-active"
+    }
   end
   
   def resume_path 

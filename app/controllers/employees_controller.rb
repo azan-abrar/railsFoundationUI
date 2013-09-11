@@ -1,49 +1,35 @@
 class EmployeesController < ApplicationController
-  # GET /employees
-  # GET /employees.json
+
   def index
     @employees = Employee.get_employees
     render json: @employees, status: 200 and return
   end
 
-  # GET /employees/1
-  # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-    render json: @employee, status: 200 and return
+    render json: @employee.employee_hash, status: 200 and return
   end
 
-  # GET /employees/new
-  # GET /employees/new.json
   def new
     @employee = Employee.new
     render json: @employee, status: 200 and return
   end
 
-  # GET /employees/1/edit
   def edit
     @employee = Employee.find(params[:id])
     render json: @employee, status: 200 and return
   end
 
-  # POST /employees
-  # POST /employees.json
   def create
+    debugger
     @employee = Employee.new(params[:employee])
-
-    respond_to do |format|
-      if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render json: @employee, status: :created, location: @employee }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
-      end
+    if @employee.save
+      render json: @employee, status: :created and return
+    else
+      render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
     end
   end
 
-  # PUT /employees/1
-  # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
 
@@ -58,8 +44,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # DELETE /employees/1
-  # DELETE /employees/1.json
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy

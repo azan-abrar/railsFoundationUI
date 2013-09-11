@@ -16,6 +16,7 @@
 //= require angular.min
 //= require app
 //= require_tree ./angular
+//= require parsley
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

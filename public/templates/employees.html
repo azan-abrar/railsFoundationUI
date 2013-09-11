@@ -1,4 +1,4 @@
-<div class="inner-container">
+<div class="inner-container" ng-init="employees()">
   <div class="header">
     <h3>
       Employees List
@@ -11,6 +11,7 @@
     <tr>
       <th>Full Name</th>
       <th>Email</th>
+      <th>Job Designation</th>
       <th>Resume</th>
       <th>Date of Birth</th>
       <th>Is married</th>
@@ -23,6 +24,7 @@
     <tr ng-repeat="employee in employees">
       <td>{{ employee.full_name }}</td>
       <td>{{ employee.email }}</td>
+      <td>{{ employee.job }}</td>
       <td><a href="{{ employee.resume }}">View</a></td>
       <td>{{ employee.dob }}</td>
       <td>{{ employee.is_married }}</td>
