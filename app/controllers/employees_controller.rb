@@ -21,7 +21,6 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    debugger
     @employee = Employee.new(params[:employee])
     if @employee.save
       render json: @employee, status: :created and return

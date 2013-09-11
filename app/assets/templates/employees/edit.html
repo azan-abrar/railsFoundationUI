@@ -1,35 +1,35 @@
-<div class="inner-container">
-  <h1 class="subheader">Edit Employee {{ employees.first_name }}</h1>
-  <form accept-charset="UTF-8" action="/employees" class="new_employee" id="new_employee" method="put">
+<div class="inner-container" ng-init="getEmployee()">
+  <h1 class="subheader">Edit Employee {{ employee.first_name }}</h1>
+  <form accept-charset="UTF-8" action="/employee" class="new_employee" id="new_employee" method="put">
     <div class="row">
       <div class="large-6 columns">
         <div class="field">
           <label for="employee_first_name">First name</label><br>
-          <input id="employee_first_name" name="employee[first_name]" size="30" type="text" value="{{ employees.first_name }}">
+          <input id="employee_first_name" name="employee[first_name]" size="30" type="text" value="{{ employee.first_name }}">
         </div>
         <div class="field">
           <label for="employee_middle_name">Middle name</label><br>
-          <input id="employee_middle_name" name="employee[middle_name]" size="30" type="text" value="{{ employees.middle_name }}">
+          <input id="employee_middle_name" name="employee[middle_name]" size="30" type="text" value="{{ employee.middle_name }}">
         </div>
         <div class="field">
           <label for="employee_last_name">Last name</label><br>
-          <input id="employee_last_name" name="employee[last_name]" size="30" type="text" value="{{ employees.last_name }}">
+          <input id="employee_last_name" name="employee[last_name]" size="30" type="text" value="{{ employee.last_name }}">
         </div>
         <div class="field">
           <label for="employee_email">Email</label><br>
-          <input id="employee_email" name="employee[email]" size="30" type="text" value="{{ employees.email }}">
+          <input id="employee_email" name="employee[email]" size="30" type="text" value="{{ employee.email }}">
         </div>
         <div class="field">
           <label for="employee_job_id">Job</label><br>
-          <input id="employee_job_id" name="employee[job_id]" type="number" value="{{ employees.job_id }}">
+          <input id="employee_job_id" name="employee[job_id]" type="number" value="{{ employee.job_id }}">
         </div>
         <div class="field">
           <label for="employee_job_status">Job status</label><br>
-          <input id="employee_job_status" name="employee[job_status]" size="30" type="text" value="{{ employees.job_status }}">
+          <input id="employee_job_status" name="employee[job_status]" size="30" type="text" value="{{ employee.job_status }}">
         </div>
         <div class="field">
           <label for="employee_resume">Resume</label><br>
-          <input id="employee_resume" name="employee[resume]" size="30" type="text" value="{{ employees.resume }}">
+          <input id="employee_resume" name="employee[resume]" size="30" type="text" value="{{ employee.resume }}">
         </div>
         <div class="field">
           <label for="employee_dob">Dob</label><br>
@@ -253,19 +253,19 @@
         </div>
         <div class="field">
           <label for="employee_permanent_address">Permanent address</label><br>
-          <input id="employee_permanent_address" name="employee[permanent_address]" size="30" type="text" value="{{ employees.permanent_address }}">
+          <input id="employee_permanent_address" name="employee[permanent_address]" size="30" type="text" value="{{ employee.permanent_address }}">
         </div>
         <div class="field">
           <label for="employee_secondary_address">Secondary address</label><br>
-          <input id="employee_secondary_address" name="employee[secondary_address]" size="30" type="text" value="{{ employees.secondary_address }}">
+          <input id="employee_secondary_address" name="employee[secondary_address]" size="30" type="text" value="{{ employee.secondary_address }}">
         </div>
         <div class="field">
           <label for="employee_phone_1">Phone 1</label><br>
-          <input id="employee_phone_1" name="employee[phone_1]" size="30" type="text" value="{{ employees.phone_1 }}">
+          <input id="employee_phone_1" name="employee[phone_1]" size="30" type="text" value="{{ employee.phone_1 }}">
         </div>
         <div class="field">
           <label for="employee_phone_2">Phone 2</label><br>
-          <input id="employee_phone_2" name="employee[phone_2]" size="30" type="text" value="{{ employees.phone_2 }}">
+          <input id="employee_phone_2" name="employee[phone_2]" size="30" type="text" value="{{ employee.phone_2 }}">
         </div>
         <div class="actions">
           <input name="commit" type="submit" class="button" value="Create Employee">

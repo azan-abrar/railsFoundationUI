@@ -1,12 +1,12 @@
 app.controller("EmployeesController", function($scope, $location, EmployeeService) {
   $scope.errorsAlert = false;
 
-  $scope.showEmployee = function() {
+  $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {
       $scope.employee = employee;
     });
   };
-
+  
   $scope.employees = function() {
     EmployeeService.get().success(function(employees) {
       $scope.employees = employees;
