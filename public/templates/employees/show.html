@@ -1,0 +1,81 @@
+<h1 class="subheader">
+  Employee Details
+  <span class="right">
+    <a href="#/employee/{{ employees.id }}/edit" class="button">Edit Employee</a>
+  </span>
+</h1>
+<div class="inner-container">
+  <div class="row">
+    <div class="large-6 radius columns">
+      <h3 class="subheader">Personal Details</h3>
+      <table>
+        <tr>
+          <td>First Name</td>
+          <td><strong>{{ employees.first_name }}</strong></td>
+        </tr>
+        <tr>
+          <td>Middle Name</td>
+          <td><strong>{{ employees.middle_name }}</strong></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><strong>{{ employees.last_name }}</strong></td>
+        </tr>
+        <tr>
+          <td>Date of Birth</td>
+          <td><strong>{{ employees.dob }}</strong></td>
+        </tr>
+        <tr>
+          <td>Is married</td>
+          <td><strong>{{ employees.is_married }}</strong></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><strong>{{ employees.email }}</strong></td>
+        </tr>
+        <tr>
+          <td>Permanent address</td>
+          <td><strong>{{ employees.permanent_address }}</strong></td>
+        </tr>
+        <tr>
+          <td>Phone Number</td>
+          <td><strong>{{ employees.phone_number }}</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="large-6 radius columns">
+      <h3 class="subheader">Professional Details</h3>
+      <table>
+        <tr>
+          <td>Job Designation</td>
+          <td><strong>{{ employees.job }}</strong></td>
+        </tr>
+        <tr>
+          <td>Job Status</td>
+          <td><strong>{{ employees.job_status }}</strong></td>
+        </tr>
+        <tr>
+          <td>Resume</td>
+          <td><strong>{{ employees.resume }}</strong></td>
+        </tr>
+        <tr>
+          <td>Join Date</td>
+          <td><strong>{{ employees.join_date }}</strong></td>
+        </tr>
+        <tr>
+          <td>Secondary Address</td>
+          <td><strong>{{ employees.secondary_address }}</strong></td>
+        </tr>
+        <tr>
+          <td>Phone 2</td>
+          <td><strong>{{ employees.phone_2 }}</strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <a href="#" class="button alert right">Delete Employee</a>
+</div>
