@@ -6,28 +6,28 @@ app.config(function($routeProvider) {
   // LoginController Routes
 
   $routeProvider.when('/login', {
-    templateUrl: 'templates/login.html',
+    templateUrl: '<%= asset_path("login.html") %>',
     controller: 'LoginController'
   });
 
   // EmployeesController Routes
 
   $routeProvider.when('/employees', {
-    templateUrl: 'templates/employees.html',
+    templateUrl: '<%= asset_path("employees.html") %>',
     controller: 'EmployeesController'
   });
 
   $routeProvider.when('/employee/:employeeID', {
-    templateUrl: 'templates/employees/show.html',
+    templateUrl: '<%= asset_path("employees/show.html") %>',
     controller: 'EmployeesController'
   });
 
   $routeProvider.when('/employee/new', {
-    templateUrl: 'templates/employees/new.html',
+    templateUrl: '<%= asset_path("employees/new.html") %>',
   });
 
   $routeProvider.when('/employee/:employeeID/edit', {
-    templateUrl: 'templates/employees/edit.html',
+    templateUrl: '<%= asset_path("employees/edit.html") %>',
     controller: 'EmployeesController'
   });
 
@@ -58,11 +58,4 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
   });
 
 });
-
-
-
-
-
-
-
 
