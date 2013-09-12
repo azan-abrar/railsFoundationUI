@@ -61,8 +61,13 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="large-6 large-offset-3">
+      <div class="row" ng-switch="showNavigationBar">
+        <div class="large-12"  ng-switch-when="true">
+          <div id="flash" class="alert-box alert" ng-show="flash">
+            {{ flash }}
+          </div>
+        </div>
+        <div class="large-6 large-offset-3"  ng-switch-when="false">
           <div id="flash" class="alert-box alert" ng-show="flash">
             {{ flash }}
           </div>

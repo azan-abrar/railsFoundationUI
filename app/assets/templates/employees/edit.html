@@ -32,12 +32,28 @@
           <input id="employee_email" placeholder='Email' required ng-model="employeeModel.email" size="30" type="email">
         </div>
       </div>
+
       <div class="row">
         <div class="large-4 columns">
+          <label for="employee_department_id">Department <span class='required'>*</span></label>
+          <select required ng-model="employeeModel.department_id" >
+            <option ng-repeat="obj in employeeConstants.departments" value="{{obj.value}}">{{obj.name}}</option>
+          </select>
+        </div>
+        <div class="large-4 columns">
           <label for="employee_designation">Job Designation <span class='required'>*</span></label>
-          <input id="employee_designation" placeholder='Job Designation' required ng-model="employeeModel.designation" type="text">
+          <select required ng-model="employeeModel.designation" >
+            <option ng-repeat="obj in employeeConstants.designations" value="{{obj.value}}">{{obj.name}}</option>
+          </select>
+        </div>
+        <div class="large-4 columns">
+          <label for="employee_designation">Job Status <span class='required'>*</span></label>
+          <select required ng-model="employeeModel.job_status" >
+            <option ng-repeat="obj in employeeConstants.job_status" value="{{obj.value}}">{{obj.name}}</option>
+          </select>
         </div>
       </div>
+
       <div class="row">
         <div class="large-4 columns">
           <label for="employee_dob">Dob</label>
@@ -61,28 +77,47 @@
           </select>
         </div>
       </div>
+
+      <fieldset>
+        <h4 class='subheader'>Permanent Address <span class='required'>*</span></h4>
+        <div class="row">
+          <div class="large-6 columns" style="padding-left: 0;">
+            <input id="employee_permanent_address" placeholder='Address' required ng-model="employeeModel.permanent_address" size="30" type="text">
+          </div>
+          <div class="large-3 columns">
+            <input id="employee_permanent_city" placeholder='City' required ng-model="employeeModel.permanent_city" size="30" type="text">
+          </div>
+          <div class="large-3 columns">
+            <input id="employee_permanent_postal_code" placeholder='Postal Code' required ng-model="employeeModel.permanent_postal_code" size="30" type="text">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <h4 class='subheader'>Secondary Address</h4>
+        <div class="row">
+          <div class="large-6 columns" style="padding-left: 0;">
+            <input id="employee_secondary_address" placeholder='Address' ng-model="employeeModel.secondary_address" size="30" type="text">
+          </div>
+          <div class="large-3 columns">
+            <input id="employee_secondary_city" placeholder='City' ng-model="employeeModel.secondary_city" size="30" type="text">
+          </div>
+          <div class="large-3 columns">
+            <input id="employee_secondary_postal_code" placeholder='Postal Code' ng-model="employeeModel.secondary_postal_code" size="30" type="text">
+          </div>
+        </div>
+      </fieldset>
+
       <div class="row">
         <div class="large-4 columns">
-          <label for="employee_permanent_address">Permanent Address <span class='required'>*</span></label>
-          <input id="employee_permanent_address" placeholder='Last Name' required ng-model="employeeModel.permanent_address" size="30" type="text">
+          <label for="employee_mobile_phone">Mobile Phone <span class='required'>*</span></label>
+          <input id="employee_mobile_phone" placeholder='Mobile Phone' required ng-model="employeeModel.mobile_phone" size="30" type="text">
         </div>
       </div>
       <div class="row">
         <div class="large-4 columns">
-          <label for="employee_secondary_address">Secondary Address</label>
-          <input id="employee_secondary_address" placeholder='Secondary Address' ng-model="employeeModel.secondary_address" size="30" type="text">
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-4 columns">
-          <label for="employee_phone_1">Mobile Phone <span class='required'>*</span></label>
-          <input id="employee_phone_1" placeholder='Mobile Phone' required ng-model="employeeModel.phone_1" size="30" type="text">
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-4 columns">
-          <label for="employee_phone_2">Home Phone <small>(Secondary)</small></label>
-          <input id="employee_phone_2" placeholder='Home Phone' ng-model="employeeModel.phone_2" size="30" type="text">
+          <label for="employee_home_phone">Home Phone <small>(Secondary)</small></label>
+          <input id="employee_home_phone" placeholder='Home Phone' ng-model="employeeModel.home_phone" size="30" type="text">
         </div>
       </div>
       <div class="row">

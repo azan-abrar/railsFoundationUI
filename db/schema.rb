@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911121119) do
+ActiveRecord::Schema.define(:version => 20130909101616) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -20,40 +20,48 @@ ActiveRecord::Schema.define(:version => 20130911121119) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "employees", :force => true do |t|
+    t.string   "uuid"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "email"
-    t.integer  "job_id"
+    t.string   "designation"
+    t.integer  "department_id"
     t.string   "job_status"
     t.string   "resume"
     t.date     "dob"
-    t.boolean  "is_married",        :default => false
+    t.boolean  "is_married",            :default => false
     t.datetime "join_date"
     t.string   "permanent_address"
+    t.string   "permanent_city"
+    t.string   "permanent_postal_code"
     t.string   "secondary_address"
-    t.string   "phone_1"
-    t.string   "phone_2"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.string   "designation"
+    t.string   "secondary_city"
+    t.string   "secondary_postal_code"
+    t.string   "mobile_phone"
+    t.string   "home_phone"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
-  create_table "jobs", :force => true do |t|
-    t.string   "title"
-    t.integer  "company_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "previous_jobs", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "employee_id"
-    t.string   "job_duration"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
+  add_index "employees", ["designation"], :name => "index_employees_on_designation"
+  add_index "employees", ["first_name"], :name => "index_employees_on_first_name"
+  add_index "employees", ["home_phone"], :name => "index_employees_on_home_phone"
+  add_index "employees", ["job_status"], :name => "index_employees_on_job_status"
+  add_index "employees", ["last_name"], :name => "index_employees_on_last_name"
+  add_index "employees", ["mobile_phone"], :name => "index_employees_on_mobile_phone"
+  add_index "employees", ["permanent_address"], :name => "index_employees_on_permanent_address"
+  add_index "employees", ["permanent_city"], :name => "index_employees_on_permanent_city"
+  add_index "employees", ["permanent_postal_code"], :name => "index_employees_on_permanent_postal_code"
+  add_index "employees", ["uuid"], :name => "index_employees_on_uuid", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false

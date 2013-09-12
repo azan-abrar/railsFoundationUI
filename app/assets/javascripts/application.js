@@ -24,12 +24,7 @@ $(function() {
   $(document).foundation();
   
   $(document).ready(function() {
-    $('.datepicker').fdatetimepicker()
-
-    $('#flash').on('click', function() {
-      $(this).fadeOut();
-    });
-
+    $('.datepicker').fdatetimepicker();
   });
 
 });

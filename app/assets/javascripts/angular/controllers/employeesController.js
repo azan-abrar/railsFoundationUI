@@ -3,11 +3,23 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
   $scope.searchField = "";
   $scope.employees = [];
   $scope.employeeLabel = "Add";
-  $scope.employeeModel = {first_name: "", middle_name: "", last_name: "", email: "", designation: "", job_status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", secondary_address: "", phone_1: "", phone_2: ""};
+  $scope.employeeConstants = {
+    designations: [{name: '- Select Designation -', value: ''}],
+    job_status: [{name: '- Select Job Status -', value: ''}],
+    departments: [{name: '- Select Department -', value: ''}]
+  }
+  $scope.employeeModel = {first_name: "", middle_name: "", last_name: "", email: "", designation: "", job_status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", permanent_city: "", permanent_postal_code: "", secondary_address: "", secondary_city: "", secondary_postal_code: "", mobile_phone: "", home_phone: "", department_id: "", department_name: ""};
 
   $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {
       $scope.employeeModel = employee;
+    }).error(function(response) {
+      $location.path('/employees');
+      setTimeout(function() {
+        $scope.$apply(function() {
+          FlashService.show(response.error);
+        });
+      }, 1000);
     });
   };
 
@@ -19,6 +31,26 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
         $scope.employeeLabel = "Edit";
       }
       $scope.employeeModel = employee;
+
+      EmployeeService.getEmployeeConstants().success(function(constantsArray) {
+        $scope.employeeConstants.designations = constantsArray.designations;
+        $scope.employeeConstants.job_status = constantsArray.job_status;
+        $scope.employeeConstants.departments = constantsArray.departments;
+
+//        $scope.employeeModel.designation = $scope.employeeConstants.designations[1];
+//        $scope.employeeModel.job_status = $scope.employeeConstants.job_status[1];
+//        $scope.employeeModel.department_id = $scope.employeeConstants.departments[2];
+
+      });
+
+    }).error(function(response) {
+      $location.path('/employees');
+      setTimeout(function() {
+        $scope.$apply(function() {
+          FlashService.show(response.error);
+        });
+      }, 1000);
+
     });
   };
 
@@ -26,7 +58,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
     EmployeeService.getEmployees().success(function(employees) {
       FlashService.clear();
       $scope.employees = employees;
-    }).error(function(response){
+    }).error(function(response) {
       FlashService.show(response.error);
     });
   };
@@ -43,7 +75,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
   };
 
   $scope.searchEmployees = function() {
-    if ( $location.path() !== "/employees" ) {
+    if ($location.path() !== "/employees") {
       $location.path('/employees');
     }
     $location.search('query', $scope.searchField);

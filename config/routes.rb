@@ -1,8 +1,8 @@
 ConfizHRM::Application.routes.draw do
   
-  resources :home, :path => "/", :only => [:index] do
-    
-  end
+  match "/employees/get_employee_constants" => "employees#get_employee_constants"
+  
+  resources :home, :path => "/", :only => [:index]
   
   resources :employees
 
