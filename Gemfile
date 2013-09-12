@@ -21,7 +21,6 @@ group :assets do
   
   gem 'compass-rails'
   gem 'foundation-icons-sass-rails'
-  gem 'foundation-datetimepicker-rails'
   gem 'zurb-foundation'
   gem "parsley-rails"
   gem 'jquery-rails'

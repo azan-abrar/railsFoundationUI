@@ -4,7 +4,6 @@
       <p ng-repeat="error in errors">
         {{ error }}
       </p>
-      <a href="" class="close">×</a>
     </div>
   </div>
 
@@ -56,25 +55,23 @@
 
       <div class="row">
         <div class="large-4 columns">
-          <label for="employee_dob">Dob</label>
-          <select id="employee_dob_1i" ng-model="employeeModel.dob">
-            <option value="2008">2008</option>
-          </select>
+          <label for="employee_dob">Date of Birth</label>
+          <input type="text" ng-model="employeeModel.dob" class="date-picker" data-date-format="yyyy-mm-dd">
         </div>
-      </div>
-
-      <div class="row">
         <div class="large-4 columns">
-          <label for="employee_is_married">Is married</label>
-          <input ng-model="employeeModel.is_married" type="hidden" value="0"><input id="employee_is_married" ng-model="employeeModel.is_married" type="checkbox" value="1">
+          <label>&nbsp;</label><br/>
+          <label for="employee_is_married">
+            <input ng-model="employeeModel.is_married" type="hidden" value="0"><input id="employee_is_married" ng-model="employeeModel.is_married" type="checkbox" value="1">
+            Is married
+          </label>
         </div>
+        <div class="large-4 columns"></div>
       </div>
+      
       <div class="row">
         <div class="large-4 columns">
           <label for="employee_join_date">Join date</label>
-          <select id="employee_join_date_1i" ng-model="employeeModel.join_date">
-            <option value="2008">2008</option>
-          </select>
+          <input type="text" ng-model="employeeModel.join_date" class="date-picker" data-date-format="yyyy-mm-dd">
         </div>
       </div>
 
@@ -128,3 +125,9 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.date-picker').fdatepicker();
+  });
+</script>

@@ -29,10 +29,8 @@ class Employee < ActiveRecord::Base
     query_string = params[:query].gsub("?query=", "") rescue ""
     emps = (!query_string.blank?) ? Employee.where("first_name like ?", "%#{query_string}%") : Employee.scoped
     employees = []
-    20.times do |t|
-      emps.each do |emp|
-        employees << emp.employee_hash
-      end
+    emps.each do |emp|
+      employees << emp.employee_hash
     end
     return employees.flatten
   end

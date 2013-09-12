@@ -59,7 +59,6 @@ GEM
     execjs (2.0.1)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    foundation-datetimepicker-rails (0.1.2)
     foundation-icons-sass-rails (3.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -161,7 +160,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   debugger
-  foundation-datetimepicker-rails
   foundation-icons-sass-rails
   foundation-will_paginate
   jquery-rails
