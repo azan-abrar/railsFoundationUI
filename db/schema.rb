@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909101621) do
+ActiveRecord::Schema.define(:version => 20130911121119) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(:version => 20130909101621) do
     t.string   "job_status"
     t.string   "resume"
     t.date     "dob"
-    t.boolean  "is_married"
+    t.boolean  "is_married",        :default => false
     t.datetime "join_date"
     t.string   "permanent_address"
     t.string   "secondary_address"
     t.string   "phone_1"
     t.string   "phone_2"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.string   "designation"
   end
 
   create_table "jobs", :force => true do |t|

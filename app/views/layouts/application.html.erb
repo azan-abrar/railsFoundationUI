@@ -29,14 +29,27 @@
         <ul class="title-area">
           <li class="name">
             <h1>
-              <a href="http://www.confiz.com">
+              <a href="#/employees">
                 <%= image_tag("/assets/confiz-logo.png") %> HRM
               </a>
             </h1>
           </li>
-          <li class="toggle-topbar"><a href="#"></a></li>
         </ul>
         <section class="top-bar-section">
+          <ul class="left">
+            <li ng-controller="EmployeesController">
+              <form>
+                <div class="row collapse">
+                  <div class="small-8 columns">
+                    <input type="text" placeholder="Search Here" ng-model="searchField">
+                  </div>
+                  <div class="small-4 columns">
+                    <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </ul>
           <ul class="right">
             <li class=""><a href="#">Employees</a></li>
             <li class="dark" ng-controller="LoginController">

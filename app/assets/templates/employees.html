@@ -1,4 +1,4 @@
-<div class="inner-container" ng-init="employees()">
+<div class="inner-container" ng-init="getEmployees()">
   <div class="header">
     <h3>
       Employees List
@@ -12,24 +12,16 @@
       <th>Full Name</th>
       <th>Email</th>
       <th>Job Designation</th>
-      <th>Resume</th>
-      <th>Date of Birth</th>
-      <th>Is married</th>
       <th>Join date</th>
-      <th>Permanent address</th>
-      <th>Phone Number</th>
+      <th>Mobile Number</th>
       <th colspan="2">Actions</th>
     </tr>
 
     <tr ng-repeat="employee in employees">
       <td>{{ employee.full_name }}</td>
       <td>{{ employee.email }}</td>
-      <td>{{ employee.job }}</td>
-      <td><a href="{{ employee.resume }}">View</a></td>
-      <td>{{ employee.dob }}</td>
-      <td>{{ employee.is_married }}</td>
+      <td>{{ employee.designation }}</td>
       <td>{{ employee.join_date }}</td>
-      <td>{{ employee.permanent_address }}</td>
       <td>{{ employee.phone_1 }}</td>
       <td><a href="#/employee/{{ employee.id }}">Show</a></td>
       <td><a href="#/employee/{{ employee.id }}/edit">Edit</a></td>

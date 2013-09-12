@@ -1,5 +1,5 @@
 
-var app = angular.module("confizHRM", ['ngSanitize']);
+var app = angular.module("confizHRM", ['ngSanitize', 'ngCookies']);
 
 app.config(function($routeProvider) {
 
@@ -14,16 +14,17 @@ app.config(function($routeProvider) {
 
   $routeProvider.when('/employees', {
     templateUrl: '<%= asset_path("employees.html") %>',
-    controller: 'EmployeesController'
+    controller: 'EmployeesController',
+    
+  });
+
+  $routeProvider.when('/employee/new', {
+    templateUrl: '<%= asset_path("employees/edit.html") %>',
   });
 
   $routeProvider.when('/employee/:employeeID', {
     templateUrl: '<%= asset_path("employees/show.html") %>',
     controller: 'EmployeesController'
-  });
-
-  $routeProvider.when('/employee/new', {
-    templateUrl: '<%= asset_path("employees/new.html") %>',
   });
 
   $routeProvider.when('/employee/:employeeID/edit', {

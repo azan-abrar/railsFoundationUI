@@ -16,11 +16,22 @@
 //= require angular.min
 //= require app
 //= require_tree ./angular
+//= require foundation-datetimepicker
 //= require parsley
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function() {
+  $(document).foundation();
+  
+  $(document).ready(function() {
+    $('.datepicker').fdatetimepicker()
 
-$('#flash').on('click', function() {
-  $(this).fadeOut();
+    $('#flash').on('click', function() {
+      $(this).fadeOut();
+    });
+
+  });
+
 });
+
+
