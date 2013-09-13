@@ -7,7 +7,7 @@ ConfizHRM::Application.routes.draw do
   resources :employees
 
 
-  resources :jobs
+  resources :departments
 
 
   resources :companies

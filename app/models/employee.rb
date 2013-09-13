@@ -66,7 +66,7 @@ class Employee < ActiveRecord::Base
       :home_phone => (self.home_phone rescue ""),
       :id => self.uuid,
       :department_name => (self.department.name rescue ""),
-      :department_id => (self.department_id rescue ""),
+      :department_id => (self.department.uuid rescue ""),
       :resume => self.resume_path,
       :designation => self.designation,
       :job_status => self.job_status

@@ -13,7 +13,6 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find_by_uuid(params[:id])
     render json: @employee.employee_hash, status: 200 and return
   end
 
@@ -23,7 +22,6 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Employee.find_by_uuid(params[:id])
     render json: @employee.employee_hash, status: 200 and return
   end
 
@@ -37,7 +35,6 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    @employee = Employee.find_by_uuid(params[:id])
     if @employee.update_attributes(params[:employee])
       render json: @employee.employee_hash, status: 200 and return
     else
@@ -46,7 +43,6 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    @employee = Employee.find_by_uuid(params[:id])
     @employee.delete!
     render json: {success: "Successfully deleted employee #{@employee.full_name}"}, status: 200 and return
   end

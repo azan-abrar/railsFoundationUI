@@ -21,11 +21,15 @@ ActiveRecord::Schema.define(:version => 20130909101616) do
   end
 
   create_table "departments", :force => true do |t|
+    t.string   "uuid"
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "is_deleted",  :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
+
+  add_index "departments", ["uuid"], :name => "index_departments_on_uuid", :unique => true
 
   create_table "employees", :force => true do |t|
     t.string   "uuid"
