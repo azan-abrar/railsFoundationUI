@@ -24,19 +24,17 @@ class CreateEmployees < ActiveRecord::Migration
       
       t.string :mobile_phone
       t.string :home_phone
+      t.boolean :is_deleted, :default => false
 
       t.timestamps
     end
     
     add_index :employees, :uuid, :unique => true
     add_index :employees, :designation
-    add_index :employees, :job_status
     add_index :employees, :first_name
+    add_index :employees, :middle_name
     add_index :employees, :last_name
-    add_index :employees, :permanent_address
-    add_index :employees, :permanent_city
-    add_index :employees, :permanent_postal_code
+    add_index :employees, :email
     add_index :employees, :mobile_phone
-    add_index :employees, :home_phone
   end
 end

@@ -4,11 +4,11 @@ class EmployeesController < ApplicationController
   before_filter :refine_employee_hash, :only => [:create, :update]
   
   def index
-    @employees = Employee.get_employees(params)
-    if @employees.blank?
+    @employees_hash, @employees = Employee.get_employees(params)
+    if @employees_hash.blank?
       render json: {error: "No records found."}.to_json, status: 500 and return
     else
-      render json: @employees, status: 200 and return
+      render partial: 'index', formats: [:json], layout: false, status: 200 and return
     end
   end
 
@@ -47,22 +47,18 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee = Employee.find_by_uuid(params[:id])
-    #@employee.destroy
-
-    respond_to do |format|
-      format.html { redirect_to employees_url }
-      format.json { head :no_content }
-    end
+    @employee.delete!
+    render json: {success: "Successfully deleted employee #{@employee.full_name}"}, status: 200 and return
   end
   
   def get_employee_constants
     employee_constants = {
       designations: [{name: '- Select Designation -', value: ''}],
       job_status: [{name: '- Select Job Status -', value: ''}],
-      departments: [{name: '- Select Department -', value: ''}]
+      department_ids: [{name: '- Select Department -', value: ''}]
     }
     Employee::DESIGNATION_ARRAY.each{|des| employee_constants[:designations] << {name: des, value: des} }
-    Department.all.each{|dep| employee_constants[:departments] << {name: dep.name, value: dep.id} }
+    Department.all.each{|dep| employee_constants[:department_ids] << {name: dep.name, value: dep.id} }
     Employee::JOB_STATUS_ARRAY.each{|job| employee_constants[:job_status] << {name: job, value: job} }
     render json: employee_constants.to_json, status: 200 and return
   end

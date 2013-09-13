@@ -35,21 +35,15 @@
       <div class="row">
         <div class="large-4 columns">
           <label for="employee_department_id">Department <span class='required'>*</span></label>
-          <select required ng-model="employeeModel.department_id" >
-            <option ng-repeat="obj in employeeConstants.departments" value="{{obj.value}}">{{obj.name}}</option>
-          </select>
+          <select ng-model="employeeModel.department_id" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.department_ids"></select>          
         </div>
         <div class="large-4 columns">
           <label for="employee_designation">Job Designation <span class='required'>*</span></label>
-          <select required ng-model="employeeModel.designation" >
-            <option ng-repeat="obj in employeeConstants.designations" value="{{obj.value}}">{{obj.name}}</option>
-          </select>
+          <select ng-model="employeeModel.designation" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.designations"></select>
         </div>
         <div class="large-4 columns">
-          <label for="employee_designation">Job Status <span class='required'>*</span></label>
-          <select required ng-model="employeeModel.job_status" >
-            <option ng-repeat="obj in employeeConstants.job_status" value="{{obj.value}}">{{obj.name}}</option>
-          </select>
+          <label for="employee_job_status">Job Status <span class='required'>*</span></label>
+          <select ng-model="employeeModel.job_status" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.job_status"></select>
         </div>
       </div>
 
@@ -67,7 +61,7 @@
         </div>
         <div class="large-4 columns"></div>
       </div>
-      
+
       <div class="row">
         <div class="large-4 columns">
           <label for="employee_join_date">Join date</label>

@@ -1,10 +1,23 @@
 app.factory("EmployeeService", function($http, $route, $location) {
   return {
     getEmployees: function() {
-      if (!$location.search()["query"]) {
-        return $http.get('/employees');
+      var queryParam = $location.search()["query"];
+      var pageParam = $location.search()["page"];
+      if ( !queryParam ) { 
+        queryParam = $route.current.params.query; 
+      }
+      if ( !pageParam ) { 
+        pageParam = $route.current.params.page; 
+      }
+      
+      if ( queryParam && pageParam ) {
+        return $http.get('/employees', {params: {query: queryParam, page: pageParam}});
+      } else if ( queryParam ) {
+        return $http.get('/employees', {params: {query: queryParam}});
+      } else if ( pageParam ) {
+        return $http.get('/employees', {params: {page: pageParam}});
       } else {
-        return $http.get('/employees', {params: {query: $location.search()["query"]}});
+        return $http.get('/employees');
       }
     },
     getEmployee: function() {
@@ -24,8 +37,8 @@ app.factory("EmployeeService", function($http, $route, $location) {
         return $http.put('/employees/' + $route.current.params.employeeID, {employee: employeeParams});
       }
     },
-    deleteEmployee: function() {
-      return $http.delete('/employees/' + $route.current.params.employeeID);
+    deleteEmployee: function(empId) {
+      return $http.delete('/employees/' + empId);
     },
     getEmployeeConstants: function() {
       return $http.get('/employees/get_employee_constants');

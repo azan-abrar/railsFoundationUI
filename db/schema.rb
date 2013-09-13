@@ -48,19 +48,17 @@ ActiveRecord::Schema.define(:version => 20130909101616) do
     t.string   "secondary_postal_code"
     t.string   "mobile_phone"
     t.string   "home_phone"
+    t.boolean  "is_deleted",            :default => false
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
   end
 
   add_index "employees", ["designation"], :name => "index_employees_on_designation"
+  add_index "employees", ["email"], :name => "index_employees_on_email"
   add_index "employees", ["first_name"], :name => "index_employees_on_first_name"
-  add_index "employees", ["home_phone"], :name => "index_employees_on_home_phone"
-  add_index "employees", ["job_status"], :name => "index_employees_on_job_status"
   add_index "employees", ["last_name"], :name => "index_employees_on_last_name"
+  add_index "employees", ["middle_name"], :name => "index_employees_on_middle_name"
   add_index "employees", ["mobile_phone"], :name => "index_employees_on_mobile_phone"
-  add_index "employees", ["permanent_address"], :name => "index_employees_on_permanent_address"
-  add_index "employees", ["permanent_city"], :name => "index_employees_on_permanent_city"
-  add_index "employees", ["permanent_postal_code"], :name => "index_employees_on_permanent_postal_code"
   add_index "employees", ["uuid"], :name => "index_employees_on_uuid", :unique => true
 
   create_table "users", :force => true do |t|

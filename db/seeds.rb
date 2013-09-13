@@ -15,16 +15,20 @@
   :name => "Engineering", :description => "This is Engineering Department"
 )
 
-@employee = Employee.find_or_create_by_first_name_and_last_name(
-  :first_name => "Admin", :last_name => "Dummy",
-  :email => "admin@example.com", :designation => Employee::DESIGNATION_ARRAY[0], 
-  :department_id => @dept.id, :job_status => Employee::JOB_STATUS_ARRAY[0],
-  :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - 2.years), 
-  :permanent_address => "Abc test-1", :permanent_city => "Lahore",
-  :permanent_postal_code => "54000", :mobile_phone => "03451234567"
-)
+100.times do |t|
+  @employee = Employee.find_or_create_by_first_name_and_last_name(
+    :first_name => "Admin#{(t+1)}", :last_name => "Dummy#{(t+1)}",
+    :email => "admin#{(t+1)}@example.com", :designation => Employee::DESIGNATION_ARRAY[rand(Employee::DESIGNATION_ARRAY.count)], 
+    :department_id => @dept.id, :job_status => Employee::JOB_STATUS_ARRAY[rand(Employee::JOB_STATUS_ARRAY.count)],
+    :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - (rand(5)).years), 
+    :permanent_address => "Abc test-1", :permanent_city => "Lahore",
+    :permanent_postal_code => "54000", :mobile_phone => "03451234567"
+  )
 
-@user = User.find_or_create_by_username_and_email(
-  :username => "admin", :email => "admin@example.com",
-  :password => "admin", :employee_id => @employee.id
-)
+  @user = User.find_or_create_by_username_and_email(
+    :username => "admin#{(t+1)}", :email => "admin#{(t+1)}@example.com",
+    :password => "admin#{(t+1)}", :employee_id => @employee.id
+  )
+  
+  puts "User #{@user.username} created."
+end
