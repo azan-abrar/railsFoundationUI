@@ -35,7 +35,6 @@ group :development do
   gem 'puma'
 end
 
-gem 'angularjs-rails-cdn'
 gem "sorcery"
 gem 'will_paginate', '~> 3.0'
 gem 'foundation-will_paginate'
