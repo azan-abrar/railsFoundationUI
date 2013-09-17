@@ -1309,6 +1309,8 @@ $top-nav-bg: #565656;
 $top-nav-fg: #ababab;
 
 body {
+  background: #e6e7e8 url(/assets/bg-body.png) repeat;
+  color: #626262;
   font-family: 'source sans pro', 'sans-serif';
 }
 
@@ -1427,7 +1429,7 @@ form {
   }
   
   fieldset { 
-    background: #dfdfdf; 
+    background: #efefef; 
   }
   
   label, h4 {
