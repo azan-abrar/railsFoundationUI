@@ -5,78 +5,78 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> 
 <html lang="en" ng-app="confizHRM"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
+<head>
+  <meta charset="utf-8" />
 
-    <!-- Uncomment to make IE8 render like IE7 -->
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+  <!-- Uncomment to make IE8 render like IE7 -->
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='/assets/favicon.ico' rel='shortcut icon' type='image/ico'/>
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='/assets/favicon.ico' rel='shortcut icon' type='image/ico'/>
 
-    <title><%= content_for?(:title) ? yield(:title) : "Confiz HRM" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "Confiz HRM" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
-    <%= csrf_meta_tags %>
-  </head>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/custom.modernizr" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+</head>
 
-  <body>
+<body>
 
-    <div ng-switch="showNavigationBar">
-      <nav class="top-bar hide-for-small" ng-switch-when="true">
-        <ul class="title-area">
-          <li class="name">
-            <h1>
-              <a href="#/employees">
-                <%= image_tag("/assets/confiz-logo.png") %> HRM
-              </a>
-            </h1>
+  <div ng-switch="showNavigationBar">
+    <nav class="top-bar hide-for-small" ng-switch-when="true">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="#/employees">
+              <%= image_tag("/assets/confiz-logo.png") %> HRM
+            </a>
+          </h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li ng-controller="EmployeesController">
+            <form>
+              <div class="row collapse">
+                <div class="small-8 columns">
+                  <input type="text" placeholder="Search Here" ng-model="searchField">
+                </div>
+                <div class="small-4 columns">
+                  <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>
+                </div>
+              </div>
+            </form>
           </li>
         </ul>
-        <section class="top-bar-section">
-          <ul class="left">
-            <li ng-controller="EmployeesController">
-              <form>
-                <div class="row collapse">
-                  <div class="small-8 columns">
-                    <input type="text" placeholder="Search Here" ng-model="searchField">
-                  </div>
-                  <div class="small-4 columns">
-                    <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>
-                  </div>
-                </div>
-              </form>
-            </li>
-          </ul>
-          <ul class="right">
-            <li class=""><a href="#/employees">Employees</a></li>
-            <li class=""><a href="#/departments">Departments</a></li>
-            <li class="dark" ng-controller="LoginController">
-              <a href="#" ng-click="logout()">Log Out</a>
-            </li>
-          </ul>
-        </section>
-      </nav>
-    </div>
+        <ul class="right">
+          <li class=""><a href="#/employees">Employees</a></li>
+          <li class=""><a href="#/departments">Departments</a></li>
+          <li class="dark" ng-controller="LoginController">
+            <a href="#" ng-click="logout()">Log Out</a>
+          </li>
+        </ul>
+      </section>
+    </nav>
+  </div>
 
-    <div class="container">
-      <div class="row" ng-switch="showNavigationBar">
-        <div class="large-12"  ng-switch-when="true">
-          <div id="flash" class="alert-box alert" ng-show="flash">
-            {{ flash }}
-          </div>
-        </div>
-        <div class="large-6 large-offset-3"  ng-switch-when="false">
-          <div id="flash" class="alert-box alert" ng-show="flash">
-            {{ flash }}
-          </div>
+  <div class="container">
+    <div class="row" ng-switch="showNavigationBar">
+      <div class="large-12"  ng-switch-when="true">
+        <div id="flash" class="alert-box alert" ng-show="flash">
+          {{ flash }}
         </div>
       </div>
-      <div id="view" ng-view></div>
+      <div class="large-6 large-offset-3"  ng-switch-when="false">
+        <div id="flash" class="alert-box alert" ng-show="flash">
+          {{ flash }}
+        </div>
+      </div>
     </div>
+    <div id="view" ng-view></div>
+  </div>
 
-    <%= javascript_include_tag "application" %>
-  </body>
+</body>
 </html>
