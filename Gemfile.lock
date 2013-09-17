@@ -32,7 +32,9 @@ GEM
       coffee-script (~> 2.2.0)
       rails
     angularjs-rails (1.0.8)
-    angularjs-rails-resource (0.2.2)
+    angularjs-rails-cdn (0.1.2)
+      angularjs-rails
+      railties (>= 3.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
@@ -159,8 +161,7 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails
-  angularjs-rails
-  angularjs-rails-resource (~> 0.2.0)
+  angularjs-rails-cdn
   coffee-rails (~> 3.2.1)
   compass-rails
   debugger
