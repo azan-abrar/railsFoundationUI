@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require angular.min
+//= require angularjs/rails/resource
 //= require app
 //= require_tree ./angular
 //= require foundation-datepicker
@@ -21,7 +22,7 @@
 //= require_tree .
 
 $(function() {
-  $(document).foundation();
+	$(document).foundation();
 });
 
 

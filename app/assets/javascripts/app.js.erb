@@ -15,12 +15,11 @@ app.config(function($routeProvider) {
   $routeProvider.when('/employees', {
     templateUrl: '<%= asset_path("employees.html") %>',
     controller: 'EmployeesController',
-    
   });
 
   $routeProvider.when('/employee/new', {
-    templateUrl: '<%= asset_path("employees/edit.html") %>',
-  });
+   templateUrl: '<%= asset_path("employees/edit.html") %>',
+ });
 
   $routeProvider.when('/employee/:employeeID', {
     templateUrl: '<%= asset_path("employees/show.html") %>',
