@@ -13,16 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require angular
 //= require angular.min
 //= require angularjs/rails/resource
 //= require app
-//= require_tree ./angular
+  //= require_tree ./angular
 //= require foundation-datepicker
 //= require parsley
 //= require_tree .
 
 $(function() {
-	$(document).foundation();
+  $(document).foundation();
 });
 
 
