@@ -9,11 +9,11 @@
 @company = Company.find_or_create_by_name(
   :name => "Confiz Solutions",
   :website => "http://www.confiz.com"
-)
+  )
 
 @dept = Department.find_or_create_by_name(
   :name => "Engineering", :description => "This is Engineering Department"
-)
+  )
 
 100.times do |t|
   @employee = Employee.find_or_create_by_first_name_and_last_name(
@@ -23,12 +23,15 @@
     :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - (rand(5)).years), 
     :permanent_address => "Abc test-1", :permanent_city => "Lahore",
     :permanent_postal_code => "54000", :mobile_phone => "03451234567"
-  )
+    )
 
-  @user = User.find_or_create_by_username_and_email(
-    :username => "admin#{(t+1)}", :email => "admin#{(t+1)}@example.com",
-    :password => "admin#{(t+1)}", :employee_id => @employee.uuid
-  )
+  if t == 0
+    @user = User.find_or_create_by_username_and_email(
+      :username => "admin", :email => "admin1@example.com",
+      :password => "admin", :employee_id => @employee.uuid
+      )
+    puts "User #{@user.username} created."
+  end
   
-  puts "User #{@user.username} created."
+  puts "Employee #{@employee.full_name} created."
 end
