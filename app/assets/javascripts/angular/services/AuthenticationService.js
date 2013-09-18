@@ -24,18 +24,16 @@ app.factory("AuthenticationService", function($http, $sanitize, SessionService, 
   return {
     login: function(credentials) {
       var login = $http.post("/sessions/signin", sanitizeCredentials(credentials));
-      login.success(cacheSession);
       login.success(FlashService.clear);
       login.error(loginError);
       return login;
     },
     logout: function() {
       var logout = $http.get("/sessions/signout");
-      logout.success(uncacheSession);
       return logout;
     },
     isLoggedIn: function() {
-      return SessionService.get('authenticated');
+      return $http.get("/sessions/is_logged_in");
     }
   };
 });

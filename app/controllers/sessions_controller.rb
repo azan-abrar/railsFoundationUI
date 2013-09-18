@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+
   def signin
     user = login(params[:username], params[:password])
     unless user.blank?
@@ -14,8 +14,12 @@ class SessionsController < ApplicationController
     render json: {:flash => "You are successfully logged out"}, status: 200 and return
   end
   
-  def login_session
-    
+  def is_logged_in
+    if current_user.blank?
+      render json: {}, status: 401 and return
+    else
+      render json: {}, status: 200 and return
+    end
   end
-  
+
 end

@@ -1,5 +1,5 @@
 
-var app = angular.module("confizHRM", ['ngSanitize', 'ngCookies']);
+var app = angular.module("confizHRM", ['ngSanitize', 'ngCookies', 'ui.utils']);
 
 app.config(function($routeProvider) {
 
@@ -60,23 +60,21 @@ app.config(function($routeProvider) {
 });
 
 app.run(function($rootScope, $location, AuthenticationService, FlashService, Navigation) {
-  var routesThatRequireAuth = ['/employees'];
-  var routesIfLogin = ['/login'];
+  var routesIfNotLogin = ['/login'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    if (_(routesThatRequireAuth).contains($location.path()) && !AuthenticationService.isLoggedIn()) {
-      $location.path('/login');
-      FlashService.show("Please log in to continue.");
-    } else if (_(routesIfLogin).contains($location.path()) && AuthenticationService.isLoggedIn()) {
-      $location.path('/employees');
-    }
-
-    if (_(routesIfLogin).contains($location.path())) {
+    AuthenticationService.isLoggedIn().error(function() {
       Navigation.hideNav();
-    } else {
+      if (!_(routesIfNotLogin).contains($location.path())) {
+        $location.path('/login');
+        FlashService.show("Please log in to continue.");
+      }
+    }).success(function() {
       Navigation.showNav();
-    }
-
+      if (_(routesIfNotLogin).contains($location.path())) {
+        $location.path('/employees');
+      }
+    });
   });
 
 });

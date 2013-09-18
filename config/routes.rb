@@ -16,8 +16,7 @@ ConfizHRM::Application.routes.draw do
     collection do
       post :signin
       get :signout
-      get :status
-      get :secrets
+      get :is_logged_in
     end
   end
 
