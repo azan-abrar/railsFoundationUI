@@ -42,7 +42,7 @@
             <form>
               <div class="row collapse">
                 <div class="small-8 columns">
-                  <input type="text" placeholder="Search Here" ng-model="searchField" ui-keypress="{13:'searchEmployees()'}">
+                  <input type="text" placeholder="Search Here" name="searchField" ng-model="searchField" ui-keydown="{13:'searchEmployees()'}">
                 </div>
                 <div class="small-4 columns">
                   <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>

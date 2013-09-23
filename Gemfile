@@ -27,6 +27,13 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem "factory_girl_rails", "~> 4.0"
+end
+
 group :development do
   gem 'debugger'
   
