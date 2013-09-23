@@ -12,7 +12,14 @@ describe 'home page', :js => true do
 		end
 		click_button 'Log In'
 		expect(page).to have_content 'Employees List'
-		sleep 5.seconds
+		sleep 2.seconds
+
+		within("#searchEmployees") do
+			fill_in 'searchField', :with => 'Engineer'
+		end
+		click_link 'Search'
+		sleep 2.seconds
+		
 	end
 
 end
