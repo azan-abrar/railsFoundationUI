@@ -33,14 +33,19 @@ ActiveRecord::Schema.define(:version => 20130909101616) do
 
   create_table "employees", :force => true do |t|
     t.string   "uuid"
+    t.string   "employee_id"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "email"
+    t.string   "gender"
     t.string   "designation"
     t.integer  "department_id"
     t.string   "job_status"
-    t.string   "resume"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
+    t.datetime "resume_updated_at"
     t.date     "dob"
     t.boolean  "is_married",            :default => false
     t.datetime "join_date"

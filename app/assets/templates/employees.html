@@ -7,24 +7,21 @@
       </span>
     </h3>
   </div>
-  <table>
+  <table class="employee-list">
     <tr>
-      <th>Full Name</th>
+      <th>Employee Name</th>
       <th>Email</th>
-      <th>Job Designation</th>
+      <th>Employee Designation</th>
       <th>Join date</th>
       <th>Mobile Number</th>
-      <th colspan="2">Actions</th>
     </tr>
 
     <tr ng-repeat="employee in employees">
-      <td>{{ employee.full_name }}</td>
+      <td><a href="#/employee/{{ employee.id }}">{{ employee.full_name }}</a></td>
       <td>{{ employee.email }}</td>
       <td>{{ employee.designation }}</td>
       <td>{{ employee.join_date }}</td>
       <td>{{ employee.mobile_phone }}</td>
-      <td><a href="#/employee/{{ employee.id }}">Show</a></td>
-      <td><a href="#/employee/{{ employee.id }}/edit">Edit</a></td>
     </tr>
 
   </table>

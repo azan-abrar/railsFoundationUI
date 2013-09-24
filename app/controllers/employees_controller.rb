@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  before_filter :get_employee, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_employee, :only => [:show, :edit, :update, :destroy, :upload_resume]
   before_filter :refine_employee_hash, :only => [:create, :update]
   
   def index
@@ -42,6 +42,14 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def upload_resume
+    if !params[:employee].blank? && !params[:employee][:resume].blank?
+      @employee.resume = params[:employee][:resume]
+      @employee.save
+    end
+    redirect_to "/#/employee/#{@employee.uuid}" and return
+  end
+
   def destroy
     @employee.delete!
     render json: {success: "Successfully deleted employee #{@employee.full_name}"}, status: 200 and return
@@ -49,11 +57,11 @@ class EmployeesController < ApplicationController
   
   def get_employee_constants
     employee_constants = {
-      designations: [{name: '- Select Designation -', value: ''}],
-      job_status: [{name: '- Select Job Status -', value: ''}],
-      department_ids: [{name: '- Select Department -', value: ''}]
+      genders: [],
+      job_status: [],
+      department_ids: []
     }
-    Employee::DESIGNATION_ARRAY.each{|des| employee_constants[:designations] << {name: des, value: des} }
+    Employee::GENDER_ARRAY.each{|des| employee_constants[:genders] << {name: des, value: des} }
     Department.all.each{|dep| employee_constants[:department_ids] << {name: dep.name, value: dep.id} }
     Employee::JOB_STATUS_ARRAY.each{|job| employee_constants[:job_status] << {name: job, value: job} }
     render json: employee_constants.to_json, status: 200 and return
@@ -62,7 +70,7 @@ class EmployeesController < ApplicationController
   private
   
   def get_employee
-    @employee = Employee.find_by_uuid(params[:id])
+    @employee = Employee.find_by_uuid(params[:id]) || Employee.find_by_employee_id(params[:id])
     render json: {error: "Employee not found."}, status: 400 and return if @employee.blank?
   end
   
@@ -70,6 +78,7 @@ class EmployeesController < ApplicationController
     params[:employee].delete(:id)
     params[:employee].delete(:full_name)
     params[:employee].delete(:department_name)
+    params[:employee].delete(:resume)
   end
   
 end

@@ -1,6 +1,6 @@
 <div ng-controller="EmployeesController">
   <div ng-switch="errorsAlert">
-    <div ng-switch-when="true" data-alert="" class="alert-box alert">
+    <div ng-switch-when="true" data-alert="" class="alert-box alert employee-form-errors">
       <p ng-repeat="error in errors">
         {{ error }}
       </p>
@@ -8,111 +8,159 @@
   </div>
 
   <div class="inner-container" ng-init="editEmployee()">
-    <h1 class="subheader">{{ employeeLabel }} Employee {{ employeeModel.first_name }}</h1>
-    <form ng-submit="update()">
+    <h1 class="subheader">{{ employeeLabel }} Employee</h1>
+    <form ng-submit="update()" enctype="multipart/form-data">
 
       <div class="row">
-        <div class="large-4 columns">
-          <label for="employee_first_name">First name <span class='required'>*</span></label>
+        <div class="large-6 columns">
+          <label for="employee_id">Employee ID <span class='required'>*</span></label>
+          <input id="employee_id" placeholder='Employee ID' required ng-model="employeeModel.employee_id" size="30" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="employee_first_name">First Name <span class='required'>*</span></label>
           <input id="employee_first_name" placeholder='First Name' required ng-model="employeeModel.first_name" size="30" type="text">
         </div>
-        <div class="large-4 columns">
-          <label for="employee_middle_name">Middle name</label>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="employee_middle_name">Middle Name <small>(optional)</small></label>
           <input id="employee_middle_name" placeholder='Middle Name' ng-model="employeeModel.middle_name" size="30" type="text">
         </div>
-        <div class="large-4 columns">
-          <label for="employee_last_name">Last name <span class='required'>*</span></label>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="employee_last_name">Last Name <span class='required'>*</span></label>
           <input id="employee_last_name" placeholder='Last Name' required ng-model="employeeModel.last_name" size="30" type="text">
         </div>
       </div>
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label for="employee_email">Email <span class='required'>*</span></label>
           <input id="employee_email" placeholder='Email' required ng-model="employeeModel.email" size="30" type="email">
         </div>
       </div>
 
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
+          <label for="employee_gender">Gender <span class='required'>*</span></label>
+          <select ng-model="employeeModel.gender" required ng-options="obj.value as obj.name for obj in employeeConstants.genders">
+            <option value="">- Select Gender -</option>
+          </select>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
           <label for="employee_department_id">Department <span class='required'>*</span></label>
-          <select ng-model="employeeModel.department_id" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.department_ids"></select>          
+          <select ng-model="employeeModel.department_id" required ng-options="obj.value as obj.name for obj in employeeConstants.department_ids">
+            <option value="">- Select Department -</option>
+          </select>          
         </div>
-        <div class="large-4 columns">
-          <label for="employee_designation">Job Designation <span class='required'>*</span></label>
-          <select ng-model="employeeModel.designation" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.designations"></select>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="employee_designation">Employee Designation <span class='required'>*</span></label>
+          <input id="employee_designation" placeholder='Employee Designation' required ng-model="employeeModel.designation" size="30" type="text">
         </div>
-        <div class="large-4 columns">
-          <label for="employee_job_status">Job Status <span class='required'>*</span></label>
-          <select ng-model="employeeModel.job_status" required ng-reguired ng-options="obj.value as obj.name for obj in employeeConstants.job_status"></select>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="employee_job_status">Employee Status <span class='required'>*</span></label>
+          <select ng-model="employeeModel.job_status" required ng-options="obj.value as obj.name for obj in employeeConstants.job_status">
+            <option value="">- Select Employee Status -</option>
+          </select>
         </div>
       </div>
 
       <div class="row">
-        <div class="large-4 columns">
-          <label for="employee_dob">Date of Birth</label>
-          <input type="text" ng-model="employeeModel.dob" class="date-picker" data-date-format="yyyy-mm-dd">
+        <div class="large-6 columns">
+          <label for="employee_dob">Date of Birth <small>(optional)</small></label>
+          <div class="row collapse">
+            <div class="small-1 large-1 columns">
+              <span class="prefix"><i class="fi-calendar medium"></i></span>
+            </div>
+            <div class="small-11 large-11 columns">
+              <input type="text" ng-model="employeeModel.dob" class="date-picker" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd">
+            </div>
+          </div>
         </div>
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label>&nbsp;</label><br/>
           <label for="employee_is_married">
             <input ng-model="employeeModel.is_married" type="hidden" value="0"><input id="employee_is_married" ng-model="employeeModel.is_married" type="checkbox" value="1">
             Is married
           </label>
         </div>
-        <div class="large-4 columns"></div>
       </div>
 
       <div class="row">
-        <div class="large-4 columns">
-          <label for="employee_join_date">Join date</label>
-          <input type="text" ng-model="employeeModel.join_date" class="date-picker" data-date-format="yyyy-mm-dd">
+        <div class="large-6 columns">
+          <label for="employee_join_date">Join Date <small>(optional)</small></label>
+          <div class="row collapse">
+            <div class="small-1 large-1 columns">
+              <span class="prefix"><i class="fi-calendar medium"></i></span>
+            </div>
+            <div class="small-11 large-11 columns">
+              <input type="text" ng-model="employeeModel.join_date" class="date-picker" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd">
+            </div>
+          </div>
+
         </div>
       </div>
 
       <fieldset>
         <h4 class='subheader'>Permanent Address <span class='required'>*</span></h4>
         <div class="row">
-          <div class="large-6 columns" style="padding-left: 0;">
+          <div class="large-12">
             <input id="employee_permanent_address" placeholder='Address' required ng-model="employeeModel.permanent_address" size="30" type="text">
           </div>
-          <div class="large-3 columns">
+        </div>
+        <div class="row">
+          <div class="large-6">
             <input id="employee_permanent_city" placeholder='City' required ng-model="employeeModel.permanent_city" size="30" type="text">
           </div>
-          <div class="large-3 columns">
+        </div>
+        <div class="row">
+          <div class="large-6">
             <input id="employee_permanent_postal_code" placeholder='Postal Code' required ng-model="employeeModel.permanent_postal_code" size="30" type="text">
           </div>
         </div>
       </fieldset>
 
       <fieldset>
-        <h4 class='subheader'>Secondary Address</h4>
+        <h4 class='subheader'>Secondary Address <small>(optional)</small></h4>
         <div class="row">
-          <div class="large-6 columns" style="padding-left: 0;">
+          <div class="large-12">
             <input id="employee_secondary_address" placeholder='Address' ng-model="employeeModel.secondary_address" size="30" type="text">
           </div>
-          <div class="large-3 columns">
+        </div>
+        <div class="row">
+          <div class="large-6">
             <input id="employee_secondary_city" placeholder='City' ng-model="employeeModel.secondary_city" size="30" type="text">
           </div>
-          <div class="large-3 columns">
+        </div>
+        <div class="row">
+          <div class="large-6">
             <input id="employee_secondary_postal_code" placeholder='Postal Code' ng-model="employeeModel.secondary_postal_code" size="30" type="text">
           </div>
         </div>
       </fieldset>
 
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label for="employee_mobile_phone">Mobile Phone <span class='required'>*</span></label>
           <input id="employee_mobile_phone" placeholder='Mobile Phone' required ng-model="employeeModel.mobile_phone" size="30" type="text">
         </div>
       </div>
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <label for="employee_home_phone">Home Phone <small>(Secondary)</small></label>
           <input id="employee_home_phone" placeholder='Home Phone' ng-model="employeeModel.home_phone" size="30" type="text">
         </div>
       </div>
       <div class="row">
-        <div class="large-4 columns">
+        <div class="large-6 columns">
           <input name="commit" type="submit" class="button" value="{{ employeeLabel }} Employee">
         </div>
       </div>

@@ -32,6 +32,8 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem "factory_girl_rails", "~> 4.0"
+  gem "capybara-webkit"
+
 end
 
 group :development do
@@ -43,6 +45,7 @@ group :development do
 end
 
 gem "sorcery"
+gem "paperclip", "~> 3.0"
 gem 'will_paginate', '~> 3.0'
 gem 'foundation-will_paginate'
 

@@ -1301,12 +1301,16 @@ $table-row-font-size: emCalc(16);
 // $topbar-sticky-class: ".sticky";
 
 @import 'foundation';
+@import 'foundation-icons';
 @import 'foundation-datepicker';
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
 $top-nav-bg: #565656;
 $top-nav-fg: #ababab;
+$gray: #888;
+$gray-dark: darken($gray, 10%);
+$gray-darker: darken($gray, 20%);
 
 body {
   background: #e6e7e8 url(/assets/bg-body.png) repeat;
@@ -1325,6 +1329,16 @@ h1 span, h2 span {
 h3 span {
   font-size: 14px;
   a.button { margin: 0; }
+}
+
+.large {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.medium {
+  font-size: 35px;
+  padding: 0 5px;
 }
 
 .top-bar {
@@ -1406,7 +1420,17 @@ h3 span {
   max-width: 100%;
 }
 
-table { width: 100%; }
+table { 
+  width: 100%; 
+  &.employee-list {
+    a { 
+      color: #222222; 
+      &:hover {
+        color: #555; 
+      }
+    }
+  }
+}
 
 .alert-box {
   &.alert {
@@ -1423,9 +1447,8 @@ table { width: 100%; }
 
 form {
   select {
-    height: 45px;
-    font-size: 16px;
-    padding: 0 5px;
+    font-size: 15px;
+    padding: 10px 5px;
   }
   
   fieldset { 
@@ -1439,6 +1462,29 @@ form {
   }
 }
 
+.reveal-modal {
+  padding: 0px;
+  z-index: 10005;
+  .modal-header {
+    padding: 5px 20px;
+    border-bottom: 1px solid lighten($gray, 40%);
+    margin-bottom: 15px;
+    h4, h3 {
+      color: $gray-darker;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+  .modal-body {
+    padding: 5px 20px;
+    min-height: 50px;
+  }
+  .modal-footer {
+    padding: 10px 20px;
+    background: lighten($gray, 40%);
+    .button { margin: 0; }
+  }
+}
 
 
 

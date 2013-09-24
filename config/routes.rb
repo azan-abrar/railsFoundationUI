@@ -4,7 +4,11 @@ ConfizHRM::Application.routes.draw do
   
   resources :home, :path => "/", :only => [:index]
   
-  resources :employees
+  resources :employees do
+    member do
+      post :upload_resume
+    end
+  end
 
 
   resources :departments

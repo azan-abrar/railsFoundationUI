@@ -1,6 +1,7 @@
 <h1 class="subheader" ng-init="getEmployee()">
-  Employee Details
+  {{ employeeModel.full_name }}
   <span class="right">
+    <a href="javascript:void(0);" onclick="$('.reveal-modal').foundation('reveal', 'open');" class="button success">Upload Resume</a> &nbsp;
     <a href="#/employee/{{ employeeModel.id }}/edit" class="button">Edit Employee</a>
   </span>
 </h1>
@@ -10,54 +11,20 @@
       <h3 class="subheader">Personal Details</h3>
       <table>
         <tr>
-          <td>UUID</td>
-          <td><strong>{{ employeeModel.id }}</strong></td>
-        </tr>
-        <tr>
-          <td>First Name</td>
-          <td><strong>{{ employeeModel.first_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>Middle Name</td>
-          <td><strong>{{ employeeModel.middle_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>Last Name</td>
-          <td><strong>{{ employeeModel.last_name }}</strong></td>
+          <td>Employee ID</td>
+          <td><strong>{{ employeeModel.employee_id }}</strong></td>
         </tr>
         <tr>
           <td>Date of Birth</td>
           <td><strong>{{ employeeModel.dob }}</strong></td>
         </tr>
         <tr>
-          <td>Is married</td>
-          <td><strong>{{ employeeModel.is_married }}</strong></td>
+          <td>Marital Status</td>
+          <td><strong>{{ employeeGender[employeeModel.is_married] }}</strong></td>
         </tr>
         <tr>
-          <td>Email</td>
-          <td><strong>{{ employeeModel.email }}</strong></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="large-6 radius columns">
-      <h3 class="subheader">Professional Details</h3>
-      <table>
-        <tr>
-          <td>Job Designation</td>
-          <td><strong>{{ employeeModel.designation }}</strong></td>
-        </tr>
-        <tr>
-          <td>Department</td>
-          <td><strong>{{ employeeModel.department_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>Job Status</td>
-          <td><strong>{{ employeeModel.job_status }}</strong></td>
-        </tr>
-        <tr>
-          <td>Join Date</td>
-          <td><strong>{{ employeeModel.join_date }}</strong></td>
+          <td>Gender</td>
+          <td><strong>{{ employeeModel.gender }}</strong></td>
         </tr>
         <tr>
           <td>Mobile Phone</td>
@@ -67,9 +34,35 @@
           <td>Home Phone</td>
           <td><strong>{{ employeeModel.home_phone }}</strong></td>
         </tr>
+      </table>
+    </div>
+
+    <div class="large-6 radius columns">
+      <h3 class="subheader">Professional Details</h3>
+      <table>
+        <tr>
+          <td>Email</td>
+          <td><strong>{{ employeeModel.email }}</strong></td>
+        </tr>
+        <tr>
+          <td>Employee Designation</td>
+          <td><strong>{{ employeeModel.designation }}</strong></td>
+        </tr>
+        <tr>
+          <td>Department</td>
+          <td><strong>{{ employeeModel.department_name }}</strong></td>
+        </tr>
+        <tr>
+          <td>Employee Status</td>
+          <td><strong>{{ employeeModel.job_status }}</strong></td>
+        </tr>
+        <tr>
+          <td>Join Date</td>
+          <td><strong>{{ employeeModel.join_date }}</strong></td>
+        </tr>
         <tr>
           <td>Resume</td>
-          <td><strong>{{ employeeModel.resume }}</strong></td>
+          <td><a href="{{ employeeModel.resume }}" target="_blank">View Resume</a></td>
         </tr>
       </table>
     </div>
@@ -117,4 +110,30 @@
 
 <div>
   <a href="javascript:void(0);" class="button alert right" ng-click="removeEmployee(employeeModel.id)">Delete Employee</a>
+</div>
+
+
+
+<div class="reveal-modal small">
+  <form action="/employees/{{ employeeModel.id }}/upload_resume" method="post" enctype="multipart/form-data">
+    <div class="modal-header">
+      <a class="close-reveal-modal">×</a>
+      <h3 class="nomargin">Upload Resume</h3>
+    </div>
+    <div class="modal-body">
+
+      <p>
+        <a href="{{ employeeModel.resume }}" target="_blank">{{ employeeModel.resume_name }}</a>
+      </p>
+
+      <div class="row">
+        <div class="large-6">
+          <input id="employee_resume" required name="employee[resume]" type="file">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="button small">Submit</button>
+    </div>
+  </form>
 </div>

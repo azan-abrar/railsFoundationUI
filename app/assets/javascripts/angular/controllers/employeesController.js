@@ -5,12 +5,13 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
   $scope.nextPage = 1;
   $scope.prevPage = 1;
   $scope.employeeLabel = "Add";
+  $scope.employeeGender = {false: "Single", true: "Married"};
   $scope.employeeConstants = {
-    designations: [{name: '- Select Designation -', value: ''}],
-    job_status: [{name: '- Select Job Status -', value: ''}],
-    department_ids: [{name: '- Select Department -', value: ''}]
+    genders: [],
+    job_status: [],
+    department_ids: []
   }
-  $scope.employeeModel = {first_name: "", middle_name: "", last_name: "", email: "", designation: "", job_status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", permanent_city: "", permanent_postal_code: "", secondary_address: "", secondary_city: "", secondary_postal_code: "", mobile_phone: "", home_phone: "", department_id: "", department_name: ""};
+  $scope.employeeModel = {gender: "", employee_id: "", full_name: "Employee Name", first_name: "", middle_name: "", last_name: "", email: "", designation: "", job_status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", permanent_city: "", permanent_postal_code: "", secondary_address: "", secondary_city: "", secondary_postal_code: "", mobile_phone: "", home_phone: "", department_id: "", department_name: "", resume_name: ""};
 
   $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {
@@ -35,7 +36,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
       $scope.employeeModel = employee;
 
       EmployeeService.getEmployeeConstants().success(function(constantsArray) {
-        $scope.employeeConstants.designations = constantsArray.designations;
+        $scope.employeeConstants.genders = constantsArray.genders;
         $scope.employeeConstants.job_status = constantsArray.job_status;
         $scope.employeeConstants.department_ids = constantsArray.department_ids;
       });
@@ -46,8 +47,8 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
         $scope.$apply(function() {
           FlashService.show(response.error);
         });
+        console.log('errors shown');
       }, 1000);
-
     });
   };
 
@@ -70,6 +71,9 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
     }).error(function(errors) {
       $scope.errors = errors;
       $scope.errorsAlert = true;
+      setTimeout(function() {
+        $(window).scrollTop($('.employee-form-errors').position().top);
+      }, 500);
     });
   };
 

@@ -2,14 +2,16 @@ class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
       t.string :uuid
+      t.string :employee_id
       t.string :first_name
       t.string :middle_name
       t.string :last_name
       t.string :email
+      t.string :gender
       t.string :designation
       t.belongs_to :department
       t.string :job_status
-      t.string :resume
+      t.attachment :resume
       t.date :dob
       t.boolean :is_married, :default => false
       t.datetime :join_date
