@@ -15,3 +15,5 @@
 /tmp
 nbproject/
 .gitignore~
+public/uploads
+public/assets

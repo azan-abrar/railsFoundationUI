@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
   end
   
   def signout
-    debugger
     logout
     render json: {:flash => "You are successfully logged out"}, status: 200 and return
   end
