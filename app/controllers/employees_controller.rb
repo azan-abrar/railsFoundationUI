@@ -26,19 +26,27 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    @employee = Employee.new(params[:employee])
-    if @employee.save
-      render json: @employee.employee_hash, status: :created and return
-    else
-      render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
+    begin
+      @employee = Employee.new(params[:employee])
+      if @employee.save
+        render json: @employee.employee_hash, status: :created and return
+      else
+        render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
+      end
+    rescue Exception=>e
+      render json: ["Something went wrong on server. Try after sometime or contact you administrator"].to_json, status: :unprocessable_entity and return
     end
   end
 
   def update
-    if @employee.update_attributes(params[:employee])
-      render json: @employee.employee_hash, status: 200 and return
-    else
-      render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
+    begin
+      if @employee.update_attributes(params[:employee])
+        render json: @employee.employee_hash, status: 200 and return
+      else
+        render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
+      end
+    rescue Exception=>e
+      render json: ["Something went wrong on server. Try after sometime or contact you administrator"].to_json, status: :unprocessable_entity and return
     end
   end
 
@@ -79,6 +87,13 @@ class EmployeesController < ApplicationController
     params[:employee].delete(:full_name)
     params[:employee].delete(:department_name)
     params[:employee].delete(:resume)
+    params[:employee].delete(:resume_name)
+    params[:employee].delete(:created_at)
+    params[:employee].delete(:resume_content_type)
+    params[:employee].delete(:resume_file_name)
+    params[:employee].delete(:resume_file_size)
+    params[:employee].delete(:resume_updated_at)
+    params[:employee].delete(:updated_at)
   end
   
 end

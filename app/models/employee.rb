@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
   attr_accessible :dob, :email, :first_name, :designation, :is_married, :job_status, 
   :join_date, :last_name, :middle_name, :permanent_address, :permanent_city, :permanent_postal_code, 
   :mobile_phone, :home_phone, :resume, :secondary_address, :secondary_city, :secondary_postal_code, 
-  :uuid, :created_at, :updated_at, :department_id, :employee_id, :is_deleted, :gender
+  :uuid, :department_id, :employee_id, :is_deleted, :gender
 
   has_one :user
   belongs_to :department
