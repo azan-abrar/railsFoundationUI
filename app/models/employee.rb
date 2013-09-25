@@ -24,7 +24,7 @@ class Employee < ActiveRecord::Base
   has_attached_file :resume, 
   :path => "#{Rails.root}/public/uploads/:basename.:extension",
   :url => "uploads/:basename.:extension",
-  :default_url => "uploads/missing.jpg"
+  :default_url => "sample_cv.doc"
 
   after_create :generate_uuid
   
