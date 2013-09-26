@@ -1,9 +1,10 @@
 class Department < ActiveRecord::Base
-  attr_accessible :name, :description, :created_at, :is_deleted, :updated_at, :uuid
+  attr_accessible :name, :description, :created_at, :is_deleted, :updated_at, :uuid, :company_id
   
   has_many :employees
+  belongs_to :company
   
-  validates :name, :description, :presence => true
+  validates :name, :description, :company_id, :presence => true
   
   after_create :generate_uuid
   

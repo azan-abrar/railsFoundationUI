@@ -1,29 +1,27 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :dob, :email, :first_name, :designation, :is_married, :job_status, 
-  :join_date, :last_name, :middle_name, :permanent_address, :permanent_city, :permanent_postal_code, 
-  :mobile_phone, :home_phone, :resume, :secondary_address, :secondary_city, :secondary_postal_code, 
+  attr_accessible :dob, :email, :first_name, :designation, :is_married, :status, 
+  :join_date, :last_name, :middle_name, :permanent_country_code, :permanent_state, :permanent_address, :permanent_city, :permanent_postal_code, 
+  :mobile_phone, :home_phone, :resume, :secondary_country_code, :secondary_state, :secondary_address, :secondary_city, :secondary_postal_code, 
   :uuid, :department_id, :employee_id, :is_deleted, :gender
 
   has_one :user
   belongs_to :department
-  
+
   DESIGNATION_ARRAY = ["Accounts Manager", "Associate Product Manager", "Engagement Manager", "HR Executive", "HR Manager", "Product Manager", "Project Manager", "QA Engineer", "Senior Software Engineer", "Software Engineer"]
-  JOB_STATUS_ARRAY = ["Associated to Confiz", "Left Confiz"]
   GENDER_ARRAY = ["Female", "Male"]
   
-  validates :employee_id, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
+  validates :employee_id, :department_id, :permanent_country_code, :permanent_state, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
   validates :mobile_phone, :format => {:with => /^03\d{9,10}$/}, :presence => true
   
   validates :home_phone, :format => {:with => /^03\d{9,10}$/}, :allow_blank => true
   validates :designation, :presence => true
   validates :gender, :inclusion => { :in => GENDER_ARRAY }, :presence => true
-  validates :job_status, :inclusion => { :in => JOB_STATUS_ARRAY }, :presence => true
   
   validates :email, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 
   has_attached_file :resume, 
-  :path => "#{Rails.root}/public/uploads/:basename.:extension",
-  :url => "uploads/:basename.:extension",
+  :path => "#{Rails.root}/public/uploads/resume/:basename.:extension",
+  :url => "uploads/resume/:basename.:extension",
   :default_url => "sample_cv.png"
 
   after_create :generate_uuid
@@ -63,12 +61,19 @@ class Employee < ActiveRecord::Base
       :dob => self.dob,
       :is_married => (self.is_married  rescue ""),
       :join_date => (self.join_date.to_date rescue ""),
+
+      :permanent_country_code => self.permanent_country_code,
+      :permanent_country_name => (Carmen::Country.all.select{|c| c.code == self.permanent_country_code}.last.name rescue ""),
       :permanent_address => self.permanent_address,
       :permanent_city => self.permanent_city,
+      :permanent_state => self.permanent_state,
       :permanent_postal_code => self.permanent_postal_code,
       
+      :secondary_country_code => self.secondary_country_code,
+      :secondary_country_name => (Carmen::Country.all.select{|c| c.code == self.secondary_country_code}.last.name rescue ""),
       :secondary_address => (self.secondary_address rescue ""),
       :secondary_city => (self.secondary_city rescue ""),
+      :secondary_state => (self.secondary_state rescue ""),
       :secondary_postal_code => (self.secondary_postal_code rescue ""),
       
       :mobile_phone => self.mobile_phone,
@@ -79,7 +84,7 @@ class Employee < ActiveRecord::Base
       :resume => self.resume_path,
       :resume_name => self.resume_file_name,
       :designation => self.designation,
-      :job_status => self.job_status
+      :status => (self.status rescue "")
     }
   end
   

@@ -5,13 +5,10 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
   $scope.nextPage = 1;
   $scope.prevPage = 1;
   $scope.employeeLabel = "Add";
-  $scope.employeeGender = {false: "Single", true: "Married"};
-  $scope.employeeConstants = {
-    genders: [],
-    job_status: [],
-    department_ids: []
-  }
-  $scope.employeeModel = {gender: "", employee_id: "", full_name: "Employee Name", first_name: "", middle_name: "", last_name: "", email: "", designation: "", job_status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", permanent_city: "", permanent_postal_code: "", secondary_address: "", secondary_city: "", secondary_postal_code: "", mobile_phone: "", home_phone: "", department_id: "", department_name: "", resume_name: ""};
+  $scope.employeeMaritalStatus = {false: "Single", true: "Married"};
+  $scope.employeeStatus = {false: "Disabled", true: "Enabled"};
+  $scope.employeeConstants = { countries: [], genders: [], status: [], marital_status: [], department_ids: [] }
+  $scope.employeeModel = {gender: "", employee_id: "", full_name: "Employee Name", first_name: "", middle_name: "", last_name: "", email: "", designation: "", status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", primary_state: "", permanent_city: "", permanent_postal_code: "", permanent_country_code: "", permanent_country_name: "", secondary_address: "", secondary_state: "", secondary_city: "", secondary_postal_code: "", secondary_country_code: "", secondary_country_name: "", mobile_phone: "", home_phone: "", department_id: "", department_name: "", resume_name: ""};
 
   $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {
@@ -37,8 +34,10 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
 
       EmployeeService.getEmployeeConstants().success(function(constantsArray) {
         $scope.employeeConstants.genders = constantsArray.genders;
-        $scope.employeeConstants.job_status = constantsArray.job_status;
+        $scope.employeeConstants.status = constantsArray.status;
+        $scope.employeeConstants.marital_status = constantsArray.marital_status;
         $scope.employeeConstants.department_ids = constantsArray.department_ids;
+        $scope.employeeConstants.countries = constantsArray.countries;
       });
 
     }).error(function(response) {

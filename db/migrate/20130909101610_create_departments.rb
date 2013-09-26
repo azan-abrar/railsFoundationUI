@@ -5,6 +5,7 @@ class CreateDepartments < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.boolean :is_deleted, :default => false
+      t.belongs_to :company
       
       t.timestamps
     end

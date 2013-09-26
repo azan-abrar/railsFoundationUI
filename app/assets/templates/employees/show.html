@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <td>Marital Status</td>
-          <td><strong>{{ employeeGender[employeeModel.is_married] }}</strong></td>
+          <td><strong>{{ employeeMaritalStatus[employeeModel.is_married] }}</strong></td>
         </tr>
         <tr>
           <td>Gender</td>
@@ -54,7 +54,7 @@
         </tr>
         <tr>
           <td>Employee Status</td>
-          <td><strong>{{ employeeModel.job_status }}</strong></td>
+          <td><strong>{{ employeeStatus[employeeModel.status] }}</strong></td>
         </tr>
         <tr>
           <td>Join Date</td>
@@ -72,13 +72,21 @@
     <div class="large-6 radius columns">
       <h3 class="subheader">Permanent Address Details</h3>
       <table>
+      <tr>
+          <td>Country</td>
+          <td><strong>{{ employeeModel.permanent_country_name }}</strong></td>
+        </tr>
         <tr>
-          <td>Address</td>
-          <td><strong>{{ employeeModel.permanent_address }}</strong></td>
+          <td>State</td>
+          <td><strong>{{ employeeModel.permanent_state }}</strong></td>
         </tr>
         <tr>
           <td>City</td>
           <td><strong>{{ employeeModel.permanent_city }}</strong></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><strong>{{ employeeModel.permanent_address }}</strong></td>
         </tr>
         <tr>
           <td>Postal Code</td>
@@ -91,12 +99,20 @@
       <h3 class="subheader">Secondary Address Details</h3>
       <table>
         <tr>
-          <td>Address</td>
-          <td><strong>{{ employeeModel.secondary_address }}</strong></td>
+          <td>Country</td>
+          <td><strong>{{ employeeModel.secondary_country_name }}</strong></td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td><strong>{{ employeeModel.secondary_state }}</strong></td>
         </tr>
         <tr>
           <td>City</td>
           <td><strong>{{ employeeModel.secondary_city }}</strong></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><strong>{{ employeeModel.secondary_address }}</strong></td>
         </tr>
         <tr>
           <td>Postal Code</td>

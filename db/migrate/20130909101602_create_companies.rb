@@ -3,6 +3,7 @@ class CreateCompanies < ActiveRecord::Migration
     create_table :companies do |t|
       t.string :name
       t.string :website
+      t.attachment :logo
 
       t.timestamps
     end

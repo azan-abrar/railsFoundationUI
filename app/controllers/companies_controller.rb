@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+
+  before_filter :has_admin_rights?
+
   # GET /companies
   # GET /companies.json
   def index

@@ -52,6 +52,9 @@
           </li>
         </ul>
         <ul class="right">
+          <% if current_user && current_user.is_admin? %>
+          <li class=""><a href="/companies">Companies</a></li>
+          <% end %>
           <li class=""><a href="#/employees">Employees</a></li>
           <li class=""><a href="#/departments">Departments</a></li>
           <li class="dark" ng-controller="LoginController">
@@ -75,7 +78,11 @@
         </div>
       </div>
     </div>
+    <% if current_user && current_user.is_admin? && params[:controller] =~ /companies/i %>
+    <%= yield %>
+    <% else %>
     <div id="view" ng-view></div>
+    <% end %>
   </div>
 
 </body>

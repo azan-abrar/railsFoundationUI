@@ -44,6 +44,8 @@ group :development do
   gem 'puma'
 end
 
+gem 'simple_roles' 
+gem 'carmen-rails', '~> 1.0.0'
 gem "sorcery"
 gem "paperclip", "~> 3.0"
 gem 'will_paginate', '~> 3.0'

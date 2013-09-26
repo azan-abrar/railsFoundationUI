@@ -12,27 +12,27 @@
   )
 
 @dept = Department.find_or_create_by_name(
-  :name => "Engineering", :description => "This is Engineering Department"
+  :name => "Engineering", :description => "This is Engineering Department", :company_id => @company.id
   )
 
 100.times do |t|
   @employee = Employee.find_or_create_by_first_name_and_last_name(
     :employee_id => "CNE-#{(t+1)}", :first_name => "Admin#{(t+1)}", :last_name => "Dummy#{(t+1)}",
     :email => "admin#{(t+1)}@example.com", :designation => Employee::DESIGNATION_ARRAY[rand(Employee::DESIGNATION_ARRAY.count)], 
-    :department_id => @dept.uuid, :job_status => Employee::JOB_STATUS_ARRAY[rand(Employee::JOB_STATUS_ARRAY.count)],
-    :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - (rand(5)).years), 
+    :department_id => @dept.id, :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - (rand(5)).years), 
     :permanent_address => "Abc test-1", :permanent_city => "Lahore",
     :permanent_postal_code => "54000", :mobile_phone => "03451234567",
     :gender => Employee::GENDER_ARRAY[rand(Employee::GENDER_ARRAY.count)],
+    :permanent_country_code => "PK", :permanent_state => "Punjab"
     )
 
-  if t == 0
-    @user = User.find_or_create_by_username_and_email(
-      :username => "admin", :email => "admin1@example.com",
-      :password => "admin", :employee_id => @employee.uuid
-      )
-    puts "User #{@user.username} created."
-  end
-  
   puts "Employee #{@employee.full_name} created."
 end
+
+@user = User.find_or_initialize_by_username(
+  :username => "admin", :password => "admin", :employee_id => Employee.first.id
+  )
+@user.roles = [:company_administrator, :admin]
+@user.save
+puts "User #{@user.username} created."
+

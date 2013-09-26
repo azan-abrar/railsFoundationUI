@@ -10,18 +10,23 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :gender
       t.string :designation
       t.belongs_to :department
-      t.string :job_status
+      t.belongs_to :company
+      t.boolean :status, :default => false;
       t.attachment :resume
       t.date :dob
       t.boolean :is_married, :default => false
       t.datetime :join_date
       
+      t.string :permanent_country_code
       t.string :permanent_address
       t.string :permanent_city
+      t.string :permanent_state
       t.string :permanent_postal_code
       
+      t.string :secondary_country_code
       t.string :secondary_address
       t.string :secondary_city
+      t.string :secondary_state
       t.string :secondary_postal_code
       
       t.string :mobile_phone

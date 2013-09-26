@@ -66,8 +66,8 @@
       </div>
       <div class="row">
         <div class="large-6 columns">
-          <label for="employee_job_status">Employee Status <span class='required'>*</span></label>
-          <select ng-model="employeeModel.job_status" required ng-options="obj.value as obj.name for obj in employeeConstants.job_status">
+          <label for="employee_status">Employee Status <span class='required'>*</span></label>
+          <select ng-model="employeeModel.status" required ng-options="obj.value as obj.name for obj in employeeConstants.status">
             <option value="">- Select Employee Status -</option>
           </select>
         </div>
@@ -85,12 +85,14 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="row">
         <div class="large-6 columns">
-          <label>&nbsp;</label><br/>
-          <label for="employee_is_married">
-            <input ng-model="employeeModel.is_married" type="hidden" value="0"><input id="employee_is_married" ng-model="employeeModel.is_married" type="checkbox" value="1">
-            Is married
-          </label>
+          <label for="employee_status">Marital Status <span class='required'>*</span></label>
+          <select ng-model="employeeModel.is_married" required ng-options="obj.value as obj.name for obj in employeeConstants.marital_status">
+            <option value="">- Select Marital Status -</option>
+          </select>
         </div>
       </div>
 
@@ -111,14 +113,28 @@
 
       <fieldset>
         <h4 class='subheader'>Permanent Address <span class='required'>*</span></h4>
+
         <div class="row">
-          <div class="large-12">
-            <input id="employee_permanent_address" placeholder='Address' required ng-model="employeeModel.permanent_address" size="30" type="text">
+          <div class="large-6">
+            <select required ng-model="employeeModel.permanent_country_code" ng-options="obj.value as obj.name for obj in employeeConstants.countries">
+              <option value="">- Select Country -</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-6">
+            <input id="employee_permanent_state" placeholder='State' required ng-model="employeeModel.permanent_state" size="30" type="text">
           </div>
         </div>
         <div class="row">
           <div class="large-6">
             <input id="employee_permanent_city" placeholder='City' required ng-model="employeeModel.permanent_city" size="30" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12">
+            <input id="employee_permanent_address" placeholder='Address' required ng-model="employeeModel.permanent_address" size="30" type="text">
           </div>
         </div>
         <div class="row">
@@ -130,14 +146,27 @@
 
       <fieldset>
         <h4 class='subheader'>Secondary Address <small>(optional)</small></h4>
+
         <div class="row">
-          <div class="large-12">
-            <input id="employee_secondary_address" placeholder='Address' ng-model="employeeModel.secondary_address" size="30" type="text">
+          <div class="large-6">
+            <select ng-model="employeeModel.secondary_country_code" ng-options="obj.value as obj.name for obj in employeeConstants.countries">
+              <option value="">- Select Country -</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6">
+            <input id="employee_secondary_state" placeholder='State' ng-model="employeeModel.secondary_state" size="30" type="text">
           </div>
         </div>
         <div class="row">
           <div class="large-6">
             <input id="employee_secondary_city" placeholder='City' ng-model="employeeModel.secondary_city" size="30" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12">
+            <input id="employee_secondary_address" placeholder='Address' ng-model="employeeModel.secondary_address" size="30" type="text">
           </div>
         </div>
         <div class="row">

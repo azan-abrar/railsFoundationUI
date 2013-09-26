@@ -66,12 +66,14 @@ class EmployeesController < ApplicationController
   def get_employee_constants
     employee_constants = {
       genders: [],
-      job_status: [],
-      department_ids: []
+      status: [{name: "Disabled", value: false}, {name: "Enabled", value: true}],
+      marital_status: [{name: "Single", value: false}, {name: "Married", value: true}],
+      department_ids: [],
+      countries: []
     }
     Employee::GENDER_ARRAY.each{|des| employee_constants[:genders] << {name: des, value: des} }
     Department.all.each{|dep| employee_constants[:department_ids] << {name: dep.name, value: dep.id} }
-    Employee::JOB_STATUS_ARRAY.each{|job| employee_constants[:job_status] << {name: job, value: job} }
+    Carmen::Country.all.each{|country| employee_constants[:countries] << {name: country.name, value: country.code} }
     render json: employee_constants.to_json, status: 200 and return
   end
   
@@ -86,6 +88,8 @@ class EmployeesController < ApplicationController
     params[:employee].delete(:id)
     params[:employee].delete(:full_name)
     params[:employee].delete(:department_name)
+    params[:employee].delete(:permanent_country_name)
+    params[:employee].delete(:secondary_country_name)
     params[:employee].delete(:resume)
     params[:employee].delete(:resume_name)
     params[:employee].delete(:created_at)

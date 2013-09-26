@@ -1,0 +1,28 @@
+<%= form_for @company, :html => {:multipart => true} do |f| %>
+<div class="row">
+	<div class="large-6 columns">
+		<label for="company_name">Company Name <span class='required'>*</span></label>
+		<%= f.text_field :name, :placeholder => "Company Name", :required => true %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<label for="company_website">Website URL <span class='required'>*</span></label>
+		<%= f.text_field :website, :placeholder => "Website URL", :required => true %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<label for="company_logo">Company Logo <span class='required'>*</span></label>
+		<%= f.file_field :logo, :required => true %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-6 columns">
+		<input name="commit" type="submit" class="button" value="Save">
+	</div>
+</div>
+<% end %>
