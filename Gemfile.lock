@@ -90,6 +90,8 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     foundation-will_paginate (0.0.1)
+    friendly_id (4.0.10.1)
+      activerecord (>= 3.0, < 4.0)
     fssm (0.2.10)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   foundation-icons-sass-rails
   foundation-will_paginate
+  friendly_id
   jquery-rails
   jquery-ui-rails
   mysql2

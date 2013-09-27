@@ -44,6 +44,7 @@ group :development do
   gem 'puma'
 end
 
+gem "friendly_id"
 gem 'simple_roles' 
 gem 'carmen-rails', '~> 1.0.0'
 gem "sorcery"

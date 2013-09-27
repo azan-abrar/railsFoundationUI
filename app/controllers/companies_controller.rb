@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @company = Company.find(params[:id])
+    @company = Company.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
-    @company = Company.find(params[:id])
+    @company = Company.find_by_slug(params[:id])
   end
 
   # POST /companies
@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
   # PUT /companies/1
   # PUT /companies/1.json
   def update
-    @company = Company.find(params[:id])
+    @company = Company.find_by_slug(params[:id])
 
     respond_to do |format|
       if @company.update_attributes(params[:company])

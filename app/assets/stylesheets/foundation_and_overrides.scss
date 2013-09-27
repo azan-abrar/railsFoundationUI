@@ -1458,6 +1458,13 @@ table {
   }
 }
 
+.logo-image {
+  background: darken($top-nav-bg, 5%);
+  min-height: 80px;
+  text-align: center;
+  padding: 15px 0;
+}
+
 form {
   select {
     font-size: 15px;

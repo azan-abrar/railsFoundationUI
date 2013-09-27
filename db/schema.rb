@@ -20,9 +20,12 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "slug"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "companies", ["slug"], :name => "index_companies_on_slug", :unique => true
 
   create_table "departments", :force => true do |t|
     t.string   "uuid"
