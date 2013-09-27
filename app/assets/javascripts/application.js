@@ -22,6 +22,17 @@
 
 $(function() {
   $(document).foundation();
+
+  if ( $('li.has-dropdown').length > 0 ) {
+  	$('li.has-dropdown ul li').on('mouseover', function() {
+  		$(this).parent().parent().find('a.parent').addClass('active');
+  	});
+
+  	$('li.has-dropdown ul li').on('mouseout', function() {
+  		$(this).parent().parent().find('a.parent').removeClass('active');
+  	});
+  }
+
 });
 
 

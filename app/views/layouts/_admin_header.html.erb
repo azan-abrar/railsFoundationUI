@@ -1,0 +1,29 @@
+<nav class="top-bar hide-for-small">
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+        <a href="/#/employees">
+          <%= image_tag("/assets/confiz-logo.png") %> HRM
+        </a>
+      </h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+
+      <li class="has-dropdown not-click">
+        <a href="/companies" class="parent">Companies</a>
+        <ul class="dropdown">
+          <li class=""><a href="/companies/new">New Company</a></li>
+        </ul>
+      </li>
+
+
+      <li class=""><a href="/#/employees">Employees</a></li>
+      <li class=""><a href="/#/departments">Departments</a></li>
+      <li class="dark" ng-controller="LoginController">
+        <a href="/signout">Log Out</a>
+      </li>
+    </ul>
+  </section>
+</nav>

@@ -1386,13 +1386,26 @@ h3 span {
           transition: all .2s ease-in;
           -moz-transition: all .2s ease-in;
           -webkit-transition: all .2s ease-in;
-          &:hover {
+          &:hover, &.active {
             color: lighten($top-nav-fg, 20%);
+            background: darken($top-nav-bg, 5%);
           }
         }
         &.dark {
           a {
             background: darken($top-nav-bg, 5%);
+          }
+        }
+      }
+      ul.dropdown {
+        margin: 0;
+        li {
+          > a {
+            background: darken($top-nav-bg, 5%);
+            &:hover {
+              background: darken($top-nav-bg, 5%);
+              color: lighten($top-nav-fg, 30%);
+            }
           }
         }
       }

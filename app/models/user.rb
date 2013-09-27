@@ -7,14 +7,6 @@ class User < ActiveRecord::Base
   
   belongs_to :employee
 
-  def is_admin?
-  	self.has_role?(:admin)
-  end
-
-  def is_company_administrator?
-  	self.has_role?(:company_administrator)
-  end
-
   def is_active?
   	self.employee && self.employee.status == true
   end
