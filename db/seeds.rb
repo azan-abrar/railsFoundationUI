@@ -8,15 +8,23 @@
 
 @company = Company.find_or_create_by_name(
   :name => "Confiz Solutions",
-  :website => "http://www.confiz.com"
+  :website => "http://www.confiz.com",
+  :email => "azan.abrar@confiz.com"
   )
 
 @dept = Department.find_or_create_by_name(
   :name => "Engineering", :description => "This is Engineering Department", :company_id => @company.id
   )
 
+@user = User.find_or_initialize_by_username(
+  :username => "admin", :password => "admin"
+  )
+@user.roles = [:company_administrator, :admin]
+@user.save
+puts "User #{@user.username} created."
+
 100.times do |t|
-  @employee = Employee.find_or_create_by_first_name_and_last_name(
+  @employee = Employee.find_or_initialize_by_first_name_and_last_name(
     :employee_id => "CNE-#{(t+1)}", :first_name => "Admin#{(t+1)}", :last_name => "Dummy#{(t+1)}",
     :email => "admin#{(t+1)}@example.com", :designation => Employee::DESIGNATION_ARRAY[rand(Employee::DESIGNATION_ARRAY.count)], 
     :department_id => @dept.id, :dob => (Time.now - 25.years).to_date, :join_date => (Time.now - (rand(5)).years), 
@@ -25,14 +33,10 @@
     :gender => Employee::GENDER_ARRAY[rand(Employee::GENDER_ARRAY.count)],
     :permanent_country_code => "PK", :permanent_state => "Punjab"
     )
-
+  @employee.company_id = @company.id
+  @employee.user_id = @user.id if t == 0
+  @employee.save
   puts "Employee #{@employee.full_name} created."
 end
 
-@user = User.find_or_initialize_by_username(
-  :username => "admin", :password => "admin", :employee_id => Employee.first.id
-  )
-@user.roles = [:company_administrator, :admin]
-@user.save
-puts "User #{@user.username} created."
 

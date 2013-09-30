@@ -20,11 +20,14 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "email"
+    t.string   "access_token"
     t.string   "slug"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
 
+  add_index "companies", ["access_token"], :name => "index_companies_on_access_token"
   add_index "companies", ["slug"], :name => "index_companies_on_slug", :unique => true
 
   create_table "departments", :force => true do |t|
@@ -50,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "designation"
     t.integer  "department_id"
     t.integer  "company_id"
+    t.integer  "user_id"
     t.boolean  "status",                 :default => false
     t.string   "resume_file_name"
     t.string   "resume_content_type"
@@ -104,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "username",         :null => false
     t.string   "crypted_password"
     t.string   "salt"
-    t.integer  "employee_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

@@ -28,6 +28,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new.json
   def new
     @company = Company.new
+    @company.deparments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,18 +41,13 @@ class CompaniesController < ApplicationController
     @company = Company.find_by_slug(params[:id])
   end
 
-  # POST /companies
-  # POST /companies.json
   def create
     @company = Company.new(params[:company])
-
     respond_to do |format|
       if @company.save
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render json: @company, status: :created, location: @company }
       else
         format.html { render action: "new" }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,8 +71,8 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
-    @company = Company.find(params[:id])
-    @company.destroy
+    @company = Company.find_by_slug(params[:id])
+    #@company.destroy
 
     respond_to do |format|
       format.html { redirect_to companies_url }

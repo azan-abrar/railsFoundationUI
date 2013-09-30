@@ -4,11 +4,14 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :name
       t.string :website
       t.attachment :logo
+      t.string :email
+      t.string :access_token
       t.string :slug
 
       t.timestamps
     end
 
     add_index :companies, :slug, unique: true
+    add_index :companies, :access_token
   end
 end

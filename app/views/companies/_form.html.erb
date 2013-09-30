@@ -20,6 +20,24 @@
 	</div>
 </div>
 
+<% if @company.new_record? %>
+  <%= f.fields_for :departments do |dept| %>
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="company_logo">Department Name <span class='required'>*</span></label>
+      <%= dept.file_field :name, :required => true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <label for="company_logo">Department Description <span class='required'>*</span></label>
+      <%= dept.file_field :description, :required => true %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
 <div class="row">
 	<div class="large-6 columns">
 		<input name="commit" type="submit" class="button" value="Save">

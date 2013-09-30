@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
   before_filter :refine_department_hash, :only => [:create, :update]
   
   def index
-    @departments_hash, @departments = Department.get_departments(params)
+    @departments_hash, @departments = Department.get_departments(params, current_user.employee.company)
     if @departments_hash.blank?
       render json: {error: "No records found."}.to_json, status: 500 and return
     else

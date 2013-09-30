@@ -1,10 +1,12 @@
 class Company < ActiveRecord::Base
-	attr_accessible :name, :website, :logo
+	attr_accessible :name, :website, :logo, :email, :departments_attributes
 
-	validates :name, :slug, :presence => true, :uniqueness => true
+	validates :email, :name, :slug, :presence => true, :uniqueness => true
 	validates :website, :presence => true, :format => { :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix }
+	validates :email, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 
 	has_many :departments
+  has_many :employees
 
 	has_attached_file :logo, 
 	:styles => { :medium => "350x100>", :thumb => "175x50>" }, 
@@ -14,5 +16,16 @@ class Company < ActiveRecord::Base
 
 	extend FriendlyId
 	friendly_id :name, use: :slugged
+
+  after_create :notify_signup
+
+  accepts_nested_attributes_for :departments
+
+
+  def notify_signup
+    self.access_token = Digest::MD5.hexdigest(self.slug)
+    self.save
+    NotificationsMailer.company_signup_notification(self).deliver
+  end
 
 end

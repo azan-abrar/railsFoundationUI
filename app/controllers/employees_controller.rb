@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_filter :refine_employee_hash, :only => [:create, :update]
   
   def index
-    @employees_hash, @employees = Employee.get_employees(params)
+    @employees_hash, @employees = Employee.get_employees(params, current_user.employee.company)
     if @employees_hash.blank?
       render json: {error: "No records found."}.to_json, status: 500 and return
     else
@@ -28,6 +28,7 @@ class EmployeesController < ApplicationController
   def create
     begin
       @employee = Employee.new(params[:employee])
+      @employee.comapny_id = current_user.employee.company.id
       if @employee.save
         render json: @employee.employee_hash, status: :created and return
       else
@@ -72,7 +73,7 @@ class EmployeesController < ApplicationController
       countries: []
     }
     Employee::GENDER_ARRAY.each{|des| employee_constants[:genders] << {name: des, value: des} }
-    Department.all.each{|dep| employee_constants[:department_ids] << {name: dep.name, value: dep.id} }
+    current_user.employee.company.departments.each{|dep| employee_constants[:department_ids] << {name: dep.name, value: dep.id} }
     Carmen::Country.all.each{|country| employee_constants[:countries] << {name: country.name, value: country.code} }
     render json: employee_constants.to_json, status: 200 and return
   end

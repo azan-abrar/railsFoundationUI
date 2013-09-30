@@ -71,6 +71,17 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
       }
     }).success(function() {
       Navigation.showNav();
+      setTimeout(function() {
+        $('li.has-dropdown ul li').on('mouseover', function() {
+         $(this).parent().parent().find('a.parent').addClass('active');
+        });
+
+        $('li.has-dropdown ul li').on('mouseout', function() {
+          $(this).parent().parent().find('a.parent').removeClass('active');
+        });
+
+      }, 1000);
+
       if (_(routesIfNotLogin).contains($location.path())) {
         $location.path('/employees');
       }

@@ -11,6 +11,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :designation
       t.belongs_to :department
       t.belongs_to :company
+      t.belongs_to :user
       t.boolean :status, :default => false;
       t.attachment :resume
       t.date :dob

@@ -1383,9 +1383,9 @@ h3 span {
           line-height: 40px;
           color: $top-nav-fg;
           background: $top-nav-bg;
-          transition: all .2s ease-in;
-          -moz-transition: all .2s ease-in;
-          -webkit-transition: all .2s ease-in;
+          transition: all .1s ease-in;
+          -moz-transition: all .1s ease-in;
+          -webkit-transition: all .1s ease-in;
           &:hover, &.active {
             color: lighten($top-nav-fg, 20%);
             background: darken($top-nav-bg, 5%);
@@ -1396,15 +1396,23 @@ h3 span {
             background: darken($top-nav-bg, 5%);
           }
         }
-      }
-      ul.dropdown {
-        margin: 0;
-        li {
-          > a {
-            background: darken($top-nav-bg, 5%);
-            &:hover {
+        &.welcome {
+          a {
+            cursor: default;
+            color: lighten($top-nav-fg, 20%);
+            &:hover { background: $top-nav-bg; }
+          }
+        }
+
+        ul.dropdown {
+          margin: 0;
+          li {
+            > a {
               background: darken($top-nav-bg, 5%);
-              color: lighten($top-nav-fg, 30%);
+              &:hover {
+                background: darken($top-nav-bg, 5%);
+                color: lighten($top-nav-fg, 30%);
+              }
             }
           }
         }

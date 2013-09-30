@@ -8,16 +8,17 @@
       </h1>
     </li>
   </ul>
+  <% unless current_user.blank? %>
   <section class="top-bar-section">
     <ul class="right">
-
+      <li class="">Welcome <%= current_user.employee.full_name %>!</li>
+      
       <li class="has-dropdown not-click">
         <a href="/companies" class="parent">Companies</a>
         <ul class="dropdown">
           <li class=""><a href="/companies/new">New Company</a></li>
         </ul>
       </li>
-
 
       <li class=""><a href="/#/employees">Employees</a></li>
       <li class=""><a href="/#/departments">Departments</a></li>
@@ -26,4 +27,5 @@
       </li>
     </ul>
   </section>
+  <% end %>
 </nav>

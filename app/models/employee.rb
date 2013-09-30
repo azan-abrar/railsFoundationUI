@@ -2,21 +2,23 @@ class Employee < ActiveRecord::Base
   attr_accessible :dob, :email, :first_name, :designation, :is_married, :status, 
   :join_date, :last_name, :middle_name, :permanent_country_code, :permanent_state, :permanent_address, :permanent_city, :permanent_postal_code, 
   :mobile_phone, :home_phone, :resume, :secondary_country_code, :secondary_state, :secondary_address, :secondary_city, :secondary_postal_code, 
-  :uuid, :department_id, :employee_id, :is_deleted, :gender
+  :uuid, :department_id, :employee_id, :is_deleted, :gender, :user_id
 
   has_one :user
   belongs_to :department
+  belongs_to :user
+  belongs_to :company
 
   DESIGNATION_ARRAY = ["Accounts Manager", "Associate Product Manager", "Engagement Manager", "HR Executive", "HR Manager", "Product Manager", "Project Manager", "QA Engineer", "Senior Software Engineer", "Software Engineer"]
   GENDER_ARRAY = ["Female", "Male"]
   
-  validates :employee_id, :department_id, :permanent_country_code, :permanent_state, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
+  validates :employee_id, :company_id, :department_id, :permanent_country_code, :permanent_state, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
   validates :mobile_phone, :format => {:with => /^03\d{9,10}$/}, :presence => true
   
   validates :home_phone, :format => {:with => /^03\d{9,10}$/}, :allow_blank => true
   validates :designation, :presence => true
   validates :gender, :inclusion => { :in => GENDER_ARRAY }, :presence => true
-  
+  validates :employee_id, :uniqueness => true
   validates :email, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 
   has_attached_file :resume, 
@@ -37,10 +39,10 @@ class Employee < ActiveRecord::Base
     "#{self.first_name}#{" #{self.middle_name}"} #{self.last_name}"
   end
   
-  def self.get_employees(params)
+  def self.get_employees(params, company)
     query_string = params[:query].gsub("?query=", "") rescue ""
     page = (params[:page] || 1)
-    emps = (!query_string.blank?) ? Employee.get_filtered_employees(query_string) : Employee.scoped
+    emps = (!query_string.blank?) ? Employee.get_filtered_employees(query_string) : company.employees.scoped
     emps = emps.includes(:department).paginate(:page => page, :per_page => PAGE_LIMIT)
     employees = []
     emps.each do |emp|
@@ -98,7 +100,7 @@ class Employee < ActiveRecord::Base
   end
   
   def self.get_filtered_employees(query_string)
-    Employee.where("first_name like ? or middle_name like ? or last_name like ? or mobile_phone like ? or email like ? or designation like ?", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%")
+    company.employees.where("first_name like ? or middle_name like ? or last_name like ? or mobile_phone like ? or email like ? or designation like ?", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%")
   end
   
 end
