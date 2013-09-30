@@ -27,8 +27,13 @@ class Employee < ActiveRecord::Base
   :default_url => "sample_cv.png"
 
   after_create :generate_uuid
+  after_update :notify_employee_signup
   
   default_scope where("is_deleted = false")
+
+  def active?
+    self.status == true
+  end
   
   def delete!
     self.is_deleted = true
@@ -39,19 +44,19 @@ class Employee < ActiveRecord::Base
     "#{self.first_name}#{" #{self.middle_name}"} #{self.last_name}"
   end
   
-  def self.get_employees(params, company)
+  def self.get_employees(params, company, user)
     query_string = params[:query].gsub("?query=", "") rescue ""
     page = (params[:page] || 1)
     emps = (!query_string.blank?) ? Employee.get_filtered_employees(query_string) : company.employees.scoped
     emps = emps.includes(:department).paginate(:page => page, :per_page => PAGE_LIMIT)
     employees = []
     emps.each do |emp|
-      employees << emp.employee_hash
+      employees << emp.employee_hash(user)
     end
     return employees.flatten, emps
   end
   
-  def employee_hash
+  def employee_hash(user)
     {
       :employee_id => self.employee_id,
       :full_name => self.full_name,
@@ -86,7 +91,9 @@ class Employee < ActiveRecord::Base
       :resume => self.resume_path,
       :resume_name => self.resume_file_name,
       :designation => self.designation,
-      :status => (self.status rescue "")
+      :status => (self.status rescue ""),
+      :is_admin => (user.company_administrator? rescue false),
+      :is_owner => (((user.employee.uuid == self.uuid) ? true : false) rescue false)
     }
   end
   
@@ -97,6 +104,15 @@ class Employee < ActiveRecord::Base
   def generate_uuid
     self.uuid = SecureRandom.hex(4)
     self.save
+    self.notify_employee_signup
+  end
+
+  def notify_employee_signup
+    if self.active? && self.access_token.blank? && self.user.blank?
+      self.access_token = Digest::MD5.hexdigest("#{self.uuid}#{SecureRandom.hex(2)}")
+      self.save
+      NotificationsMailer.employee_signup_notification(self).deliver 
+    end
   end
   
   def self.get_filtered_employees(query_string)

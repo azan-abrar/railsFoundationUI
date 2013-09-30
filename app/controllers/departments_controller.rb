@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
   before_filter :refine_department_hash, :only => [:create, :update]
   
   def index
-    @departments_hash, @departments = Department.get_departments(params, current_user.employee.company)
+    @departments_hash, @departments = Department.get_departments(params, current_user.employee.company, current_user)
     if @departments_hash.blank?
       render json: {error: "No records found."}.to_json, status: 500 and return
     else
@@ -13,7 +13,7 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    render json: @department.department_hash, status: 200 and return
+    render json: @department.department_hash(current_user), status: 200 and return
   end
 
   def new
@@ -22,13 +22,13 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
-    render json: @department.department_hash, status: 200 and return
+    render json: @department.department_hash(current_user), status: 200 and return
   end
 
   def create
     @department = Department.new(params[:department])
     if @department.save
-      render json: @department.department_hash, status: :created and return
+      render json: @department.department_hash(current_user), status: :created and return
     else
       render json: @department.errors.full_messages.to_json, status: :unprocessable_entity and return
     end
@@ -36,7 +36,7 @@ class DepartmentsController < ApplicationController
 
   def update
     if @department.update_attributes(params[:department])
-      render json: @department.department_hash, status: 200 and return
+      render json: @department.department_hash(current_user), status: 200 and return
     else
       render json: @department.errors.full_messages.to_json, status: :unprocessable_entity and return
     end
@@ -56,6 +56,7 @@ class DepartmentsController < ApplicationController
   
   def refine_department_hash
     params[:department].delete(:id)
+    params[:department].delete(:is_admin)
   end
   
 end

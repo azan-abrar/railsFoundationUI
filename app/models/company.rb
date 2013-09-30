@@ -23,7 +23,7 @@ class Company < ActiveRecord::Base
 
 
   def notify_signup
-    self.access_token = Digest::MD5.hexdigest(self.slug)
+    self.access_token = Digest::MD5.hexdigest("#{self.slug}#{SecureRandom.hex(2)}")
     self.save
     NotificationsMailer.company_signup_notification(self).deliver
   end

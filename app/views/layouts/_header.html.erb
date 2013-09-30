@@ -39,8 +39,13 @@
         <% end %>
         <li class=""><a href="#/employees">Employees</a></li>
         <li class=""><a href="#/departments">Departments</a></li>
-        <li class="dark" ng-controller="LoginController">
-          <a href="#" ng-click="logout()">Log Out</a>
+
+        <li class="dark has-dropdown not-click">
+          <a href="javascript:void(0);" class="parent">Account Settings</a>
+          <ul class="dropdown">
+            <li class=""><a href="/#/employee/<%= current_user.employee.uuid %>">My Profile</a></li>
+            <li ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
+          </ul>
         </li>
       </ul>
     </section>

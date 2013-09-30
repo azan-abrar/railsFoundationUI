@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "mobile_phone"
     t.string   "home_phone"
     t.boolean  "is_deleted",             :default => false
+    t.string   "access_token"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end

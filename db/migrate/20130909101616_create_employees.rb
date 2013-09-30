@@ -33,6 +33,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :mobile_phone
       t.string :home_phone
       t.boolean :is_deleted, :default => false
+      t.string :access_token
 
       t.timestamps
     end
@@ -44,5 +45,6 @@ class CreateEmployees < ActiveRecord::Migration
     add_index :employees, :last_name
     add_index :employees, :email
     add_index :employees, :mobile_phone
+    add_index :companies, :access_token
   end
 end

@@ -44,6 +44,7 @@ app.controller("DepartmentsController", function($scope, $location, DepartmentSe
       $scope.departments = departments_list.departments;
       $scope.nextPage = departments_list.next_page;
       $scope.prevPage = departments_list.prev_page;
+      $scope.isAdmin = departments_list.is_admin;
     }).error(function(response) {
       FlashService.show(response.error);
     });

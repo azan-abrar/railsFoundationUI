@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => { :case_sensitive => false }
   validates :username, :format => { :with => /^[a-z0-9]+[\.\_\-]?[a-z0-9]+([\.\_\-]?[a-z0-9]+)*$/i }
   validates :username, :length => { :minimum => 3, :maximum => 50 }
-  validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long", :if => :password
-  validates_confirmation_of :password, :message => "should match confirmation", :if => :password
+  validates_length_of :password, :minimum => 5, :message => "must be at least 5 characters long", :if => :password
+  validates_confirmation_of :password, :message => " and Confirm Password do not match", :if => :password
 
   has_one :employee
   accepts_nested_attributes_for :employee

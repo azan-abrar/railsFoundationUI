@@ -2,6 +2,7 @@
 <%= raw({
     employees: @employees_hash, 
     next_page: @employees.next_page, 
-    prev_page: @employees.previous_page
+    prev_page: @employees.previous_page,
+    is_admin: (current_user.company_administrator? rescue false)
   }.to_json)
 %>

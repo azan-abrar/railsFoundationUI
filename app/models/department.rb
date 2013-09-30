@@ -15,22 +15,23 @@ class Department < ActiveRecord::Base
     self.save
   end
   
-  def self.get_departments(params)
+  def self.get_departments(params, company, user)
     page = (params[:page] || 1)
-    deps = Department.scoped
+    deps = company.departments
     deps = deps.paginate(:page => page, :per_page => PAGE_LIMIT)
     departments = []
     deps.each do |dep|
-      departments << dep.department_hash
+      departments << dep.department_hash(user)
     end
     return departments.flatten, deps
   end
   
-  def department_hash
+  def department_hash(user)
     {
       :name => self.name,
       :description => self.description,
       :id => self.uuid,
+      :is_admin => (user.company_administrator? rescue false)
     }
   end
   

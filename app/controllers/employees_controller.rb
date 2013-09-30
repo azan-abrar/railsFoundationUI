@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_filter :refine_employee_hash, :only => [:create, :update]
   
   def index
-    @employees_hash, @employees = Employee.get_employees(params, current_user.employee.company)
+    @employees_hash, @employees = Employee.get_employees(params, current_user.employee.company, current_user)
     if @employees_hash.blank?
       render json: {error: "No records found."}.to_json, status: 500 and return
     else
@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    render json: @employee.employee_hash, status: 200 and return
+    render json: @employee.employee_hash(current_user), status: 200 and return
   end
 
   def new
@@ -22,7 +22,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    render json: @employee.employee_hash, status: 200 and return
+    render json: @employee.employee_hash(current_user), status: 200 and return
   end
 
   def create
@@ -30,7 +30,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.new(params[:employee])
       @employee.comapny_id = current_user.employee.company.id
       if @employee.save
-        render json: @employee.employee_hash, status: :created and return
+        render json: @employee.employee_hash(current_user), status: :created and return
       else
         render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
       end
@@ -41,8 +41,10 @@ class EmployeesController < ApplicationController
 
   def update
     begin
+      debugger
+
       if @employee.update_attributes(params[:employee])
-        render json: @employee.employee_hash, status: 200 and return
+        render json: @employee.employee_hash(current_user), status: 200 and return
       else
         render json: @employee.errors.full_messages.to_json, status: :unprocessable_entity and return
       end
@@ -99,6 +101,8 @@ class EmployeesController < ApplicationController
     params[:employee].delete(:resume_file_size)
     params[:employee].delete(:resume_updated_at)
     params[:employee].delete(:updated_at)
+    params[:employee].delete(:is_admin)
+    params[:employee].delete(:is_owner)
   end
   
 end

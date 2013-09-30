@@ -7,4 +7,12 @@ class NotificationsMailer < ActionMailer::Base
     
     mail to: @company.email, subject: "Company Signup Notification"
   end
+
+  def employee_signup_notification(employee)
+    @host = $site_url
+    @employee = employee
+    
+    mail to: @employee.email, subject: "Employee Signup Notification"
+  end
+
 end

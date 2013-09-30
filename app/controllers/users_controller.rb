@@ -4,9 +4,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.build_employee
-    @departments = @company.departments
-
+    if @employee_register.blank?
+      @user.build_employee
+      @departments = @company.departments
+    end 
     respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }
@@ -15,18 +16,26 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(params[:user])
-      @user.employee.company_id = @company.id
-      @user.roles = [:company_administrator]
+      if @employee_register.blank?
+        @user.employee.company_id = @company.id
+        @user.roles = [:company_administrator]
+      end
 
       respond_to do |format|
         if @user.save
-          @company.access_token = nil
-          @company.save
+          if @employee_register.blank?
+            @company.access_token = nil
+            @company.save
+          else
+            @user.employee = @employee_register
+            @user.employee.access_token = nil
+            @user.save
+          end
           logout
           login(@user.username, params[:user][:password], true)
           redirect_to "/#/employees" and return
         else
-          @departments = @company.departments
+          @departments = @company.departments unless @company.blank?
           render action: "new" and return
         end
       end
@@ -36,7 +45,8 @@ class UsersController < ApplicationController
 
     def get_company
       @company = Company.find_by_access_token(params[:access_token])
-      redirect_to "/#/login" and return if @company.blank?
+      @employee_register = Employee.find_by_access_token(params[:access_token]) if @company.blank?
+      redirect_to "/#/login" and return if @company.blank? && @employee_register.blank?
     end
 
   end

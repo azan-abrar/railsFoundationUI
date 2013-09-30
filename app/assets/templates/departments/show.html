@@ -1,7 +1,7 @@
 <h1 class="subheader" ng-init="getDepartment()">
   Department Details
-  <span class="right">
-    <a href="#/department/{{ departmentModel.id }}/edit" class="button">Edit Department</a>
+  <span class="right" ng-switch="departmentModel.is_admin">
+    <a ng-switch-when="true" href="#/department/{{ departmentModel.id }}/edit" class="button">Edit Department</a>
   </span>
 </h1>
 <div class="inner-container">

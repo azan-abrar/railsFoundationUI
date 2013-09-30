@@ -2,8 +2,8 @@
   <div class="header">
     <h3>
       Employees List
-      <span class="right">
-        <a href="#/employee/new" class="button secondary">New Employee</a>
+      <span class="right" ng-switch="isAdmin">
+        <a ng-switch-when="true" href="#/employee/new" class="button secondary">New Employee</a>
       </span>
     </h3>
   </div>

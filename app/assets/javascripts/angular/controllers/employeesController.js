@@ -57,6 +57,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
       $scope.employees = employees_list.employees;
       $scope.nextPage = employees_list.next_page;
       $scope.prevPage = employees_list.prev_page;
+      $scope.isAdmin = employees_list.is_admin;
     }).error(function(response) {
       FlashService.show(response.error);
     });

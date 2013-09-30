@@ -1,8 +1,10 @@
 <h1 class="subheader" ng-init="getEmployee()">
   {{ employeeModel.full_name }}
-  <span class="right">
-    <a href="javascript:void(0);" onclick="$('.reveal-modal').foundation('reveal', 'open');" class="button success">Upload Resume</a> &nbsp;
-    <a href="#/employee/{{ employeeModel.id }}/edit" class="button">Edit Employee</a>
+  <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
+    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button">Edit Employee</a> &nbsp;
+  </span>
+  <span class="right" ng-switch="employeeModel.is_admin">
+    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('.reveal-modal').foundation('reveal', 'open');" class="button success">Upload Resume</a>
   </span>
 </h1>
 <div class="inner-container">
@@ -72,7 +74,7 @@
     <div class="large-6 radius columns">
       <h3 class="subheader">Permanent Address Details</h3>
       <table>
-      <tr>
+        <tr>
           <td>Country</td>
           <td><strong>{{ employeeModel.permanent_country_name }}</strong></td>
         </tr>
@@ -124,8 +126,8 @@
 
 </div>
 
-<div>
-  <a href="javascript:void(0);" class="button alert right" ng-click="removeEmployee(employeeModel.id)">Delete Employee</a>
+<div ng-switch="employeeModel.is_admin">
+  <a ng-switch-when="true" href="javascript:void(0);" class="button alert right" ng-click="removeEmployee(employeeModel.id)">Delete Employee</a>
 </div>
 
 

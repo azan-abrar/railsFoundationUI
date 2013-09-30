@@ -20,10 +20,10 @@
   :username => "admin", :password => "admin"
   )
 @user.roles = [:company_administrator, :admin]
-@user.save
+@user.save!
 puts "User #{@user.username} created."
 
-100.times do |t|
+10.times do |t|
   @employee = Employee.find_or_initialize_by_first_name_and_last_name(
     :employee_id => "CNE-#{(t+1)}", :first_name => "Admin#{(t+1)}", :last_name => "Dummy#{(t+1)}",
     :email => "admin#{(t+1)}@example.com", :designation => Employee::DESIGNATION_ARRAY[rand(Employee::DESIGNATION_ARRAY.count)], 
@@ -35,7 +35,7 @@ puts "User #{@user.username} created."
     )
   @employee.company_id = @company.id
   @employee.user_id = @user.id if t == 0
-  @employee.save
+  @employee.save!
   puts "Employee #{@employee.full_name} created."
 end
 

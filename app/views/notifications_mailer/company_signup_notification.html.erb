@@ -2,7 +2,7 @@ Dear <%= @company.name %>,<br/><br/>
 
 Your company has been registered for HRM Portal. <br/><br/>
 
-You would need to signup to start using your own Company HRM Portal. To SignUp kindly click <%= link_to("Sign Up", new_user_url(:host => @host, :params => {:access_token => @company.access_token}) ) %>. <br/><br/>
+You would need to signup to start using your own Company HRM Portal. To Sign Up kindly visit <%= link_to("Sign Up", new_user_url(:host => @host, :params => {:access_token => @company.access_token}) ) %>. <br/><br/>
 
 Thanks
 

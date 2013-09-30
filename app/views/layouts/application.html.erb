@@ -25,7 +25,7 @@
 
 <body>
 
-  <% if (current_user && current_user.admin? && params[:controller] =~ /companies/i) || !@company.blank? %>
+  <% if (current_user && current_user.admin? && params[:controller] =~ /companies/i) || !@company.blank? || !@employee_register.blank? %>
   <%= render partial: "/layouts/admin_header" %>
   <div class="container">
     <%= yield %>
