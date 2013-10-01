@@ -4,7 +4,7 @@ class Department < ActiveRecord::Base
   has_many :employees
   belongs_to :company
   
-  validates :name, :description, :company_id, :presence => true
+  validates :name, :description, :presence => true
   
   after_create :generate_uuid
   

@@ -27,6 +27,7 @@ class DepartmentsController < ApplicationController
 
   def create
     @department = Department.new(params[:department])
+    @department.company_id = current_user.employee.company_id rescue nil
     if @department.save
       render json: @department.department_hash(current_user), status: :created and return
     else

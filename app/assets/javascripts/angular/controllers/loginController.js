@@ -3,7 +3,8 @@ app.controller("LoginController", function($scope, $location, AuthenticationServ
 
   $scope.login = function() {
     AuthenticationService.login($scope.credentials).success(function() {
-      $location.path('/employees');
+      //$location.path('/employees');
+      location.href = "/";
     });
   };
 

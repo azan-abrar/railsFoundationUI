@@ -16,7 +16,7 @@
 		<% @companies.each do |company| %>
 		<tr>
 			<td><a href="/companies/<%= company.slug %>"><%= company.name %></a></td>
-			<td><%= company.website %></td>
+			<td><%= link_to(company.website, company.website) %></td>
 		</tr>
 		<% end %>
 	</table>

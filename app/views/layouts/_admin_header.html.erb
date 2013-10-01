@@ -3,7 +3,7 @@
     <li class="name">
       <h1>
         <a href="/#/employees">
-          <%= image_tag("/assets/confiz-logo.png") %> HRM
+          <%= image_tag( (current_user.employee.company.logo.url rescue "/assets/confiz-logo.png") ) %> HRM
         </a>
       </h1>
     </li>
@@ -11,7 +11,7 @@
   <% unless current_user.blank? %>
   <section class="top-bar-section">
     <ul class="right">
-      <li class="">Welcome <%= current_user.employee.full_name %>!</li>
+      <li class="welcome"><a href="javascript:void(0);">Welcome <%= current_user.employee.full_name %>!</a></li>
       
       <li class="has-dropdown not-click">
         <a href="/companies" class="parent">Companies</a>

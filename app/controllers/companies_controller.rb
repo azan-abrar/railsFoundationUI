@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new.json
   def new
     @company = Company.new
-    @company.deparments.build
+    @company.departments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +42,11 @@ class CompaniesController < ApplicationController
   end
 
   def create
+    debugger
     @company = Company.new(params[:company])
+
+    debugger
+    
     respond_to do |format|
       if @company.save
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
