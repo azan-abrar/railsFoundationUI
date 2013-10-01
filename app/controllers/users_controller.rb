@@ -26,6 +26,7 @@ class UsersController < ApplicationController
           if @employee_register.blank?
             @user.employee.status = true
             @user.save
+            
             @company.access_token = nil
             @company.save
           else
