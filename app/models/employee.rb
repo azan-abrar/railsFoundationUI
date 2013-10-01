@@ -47,7 +47,7 @@ class Employee < ActiveRecord::Base
   def self.get_employees(params, company, user)
     query_string = params[:query].gsub("?query=", "") rescue ""
     page = (params[:page] || 1)
-    emps = (!query_string.blank?) ? Employee.get_filtered_employees(query_string) : company.employees.scoped
+    emps = (!query_string.blank?) ? Employee.get_filtered_employees(query_string, company) : company.employees.scoped
     emps = emps.includes(:department).paginate(:page => page, :per_page => PAGE_LIMIT)
     employees = []
     emps.each do |emp|
@@ -115,7 +115,7 @@ class Employee < ActiveRecord::Base
     end
   end
   
-  def self.get_filtered_employees(query_string)
+  def self.get_filtered_employees(query_string, company)
     company.employees.where("first_name like ? or middle_name like ? or last_name like ? or mobile_phone like ? or email like ? or designation like ?", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%")
   end
   
