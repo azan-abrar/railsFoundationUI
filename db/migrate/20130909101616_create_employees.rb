@@ -14,6 +14,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.belongs_to :user
       t.boolean :status, :default => false;
       t.attachment :resume
+      t.attachment :profile_picture
       t.date :dob
       t.boolean :is_married, :default => false
       t.datetime :join_date

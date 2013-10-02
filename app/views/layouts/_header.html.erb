@@ -1,54 +1,75 @@
 <div ng-switch="showNavigationBar">
-  <nav class="top-bar hide-for-small" ng-switch-when="true">
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <a href="#/employees">
-            <%= image_tag( (current_user.employee.company.logo.url rescue "/assets/confiz-logo.png") ) %> HRM
-          </a>
-        </h1>
-      </li>
-    </ul>
-
-    <% unless current_user.blank? %>
-    <section class="top-bar-section">
-      <ul class="left">
-        <li ng-controller="EmployeesController">
-          <form id="searchEmployees">
-            <div class="row collapse">
-              <div class="small-8 columns">
-                <input type="text" placeholder="Search Here" name="searchField" ng-model="searchField" ui-keydown="{13:'searchEmployees()'}">
-              </div>
-              <div class="small-4 columns">
-                <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>
-              </div>
-            </div>
-          </form>
+  <div class="navigation-header" ng-switch-when="true">
+    <nav class="top-bar hide-for-small">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="#/">
+              <%= image_tag( (current_user.employee.company.logo.url rescue "/assets/confiz-logo.png") ) %>
+            </a>
+          </h1>
         </li>
       </ul>
+
       
-      <ul class="right">
-        <li class="welcome"><a href="javascript:void(0);">Welcome <%= current_user.employee.full_name %>!</a></li>
-        <% if current_user && current_user.admin? %>
-        <li class="has-dropdown not-click">
-          <a href="/companies" class="parent">Companies</a>
-          <ul class="dropdown">
-            <li class=""><a href="/companies/new">New Company</a></li>
-          </ul>
-        </li>
-        <% end %>
-        <li class=""><a href="#/employees">Employees</a></li>
-        <li class=""><a href="#/departments">Departments</a></li>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class=""><a href="#/">Home</a></li>
+          <li class=""><a href="#">Company</a></li>
+          <li class=""><a href="#">Blog</a></li>
 
-        <li class="dark has-dropdown not-click">
-          <a href="javascript:void(0);" class="parent">Account Settings</a>
-          <ul class="dropdown">
-            <li class=""><a href="/#/employee/<%= current_user.employee.uuid %>">My Profile</a></li>
-            <li ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    <% end %>
-  </nav>
+          <li class="dark"><a href="#">Sign In</a></li>
+          <li class="green"><a href="#">Sign Up</a></li>
+        </ul>
+
+        <% if false %>
+        <% unless current_user.blank? %>
+        <ul class="left">
+          <li ng-controller="EmployeesController">
+            <form id="searchEmployees">
+              <div class="row collapse">
+                <div class="small-8 columns">
+                  <input type="text" placeholder="Search Here" name="searchField" ng-model="searchField" ui-keydown="{13:'searchEmployees()'}">
+                </div>
+                <div class="small-4 columns">
+                  <a href="javascript:void(0);" class="button" ng-click="searchEmployees()">Search</a>
+                </div>
+              </div>
+            </form>
+          </li>
+        </ul>
+        <% end %>
+
+        <ul class="right">
+          <% unless current_user.blank? %>
+          <li class="welcome"><a href="javascript:void(0);">Welcome <%= current_user.employee.full_name %>!</a></li>
+          <% end %>
+
+          <% if current_user && current_user.admin? %>
+          <li class="has-dropdown not-click">
+            <a href="/companies" class="parent">Companies</a>
+            <ul class="dropdown">
+              <li class=""><a href="/companies/new">New Company</a></li>
+            </ul>
+          </li>
+          <% end %>
+          <li class=""><a href="#/employees">Employees</a></li>
+          <li class=""><a href="#/departments">Departments</a></li>
+
+          <% unless current_user.blank? %>
+          <li class="dark has-dropdown not-click">
+            <a href="javascript:void(0);" class="parent">Account Settings</a>
+            <ul class="dropdown">
+              <li class=""><a href="/#/employee/<%= current_user.employee.uuid %>">My Profile</a></li>
+              <li ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
+            </ul>
+          </li>
+          <% end %>
+
+        </ul>
+        <% end %>
+      </section>
+      
+    </nav>
+  </div>
 </div>

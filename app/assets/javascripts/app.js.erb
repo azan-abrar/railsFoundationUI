@@ -3,6 +3,13 @@ var app = angular.module("confizHRM", ['ngSanitize', 'ngCookies', 'ui.utils']);
 
 app.config(function($routeProvider) {
 
+  // HomeController Routes
+
+  $routeProvider.when('/', {
+    templateUrl: '<%= asset_path("index.html") %>',
+    controller: 'HomeController'
+  });
+
   // LoginController Routes
 
   $routeProvider.when('/login', {
@@ -55,38 +62,36 @@ app.config(function($routeProvider) {
 
   // Redirect to index page of employees in case of route does no match
 
-  $routeProvider.otherwise({redirectTo: '/employees'});
+  $routeProvider.otherwise({redirectTo: '/'});
 
 });
 
 app.run(function($rootScope, $location, AuthenticationService, FlashService, Navigation) {
-  var routesIfNotLogin = ['/login'];
+  var routesIfNotLogin = ['/employees', '/departments'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    AuthenticationService.isLoggedIn().error(function() {
+    if (_(['/login']).contains($location.path())) {
       Navigation.hideNav();
-      if (!_(routesIfNotLogin).contains($location.path())) {
-        $location.path('/login');
-        FlashService.show("Please log in to continue.");
-      }
-    }).success(function() {
+    } else {
       Navigation.showNav();
-      setTimeout(function() {
-        $('li.has-dropdown ul li').on('mouseover', function() {
-         $(this).parent().parent().find('a.parent').addClass('active');
-        });
-
-        $('li.has-dropdown ul li').on('mouseout', function() {
-          $(this).parent().parent().find('a.parent').removeClass('active');
-        });
-
-      }, 1000);
 
       if (_(routesIfNotLogin).contains($location.path())) {
-        $location.path('/employees');
+        AuthenticationService.isLoggedIn().success(function() {
+          setTimeout(function() {
+            $('li.has-dropdown ul li').on('mouseover', function() {
+             $(this).parent().parent().find('a.parent').addClass('active');
+           });
+
+            $('li.has-dropdown ul li').on('mouseout', function() {
+              $(this).parent().parent().find('a.parent').removeClass('active');
+            });
+
+          }, 1000);
+        }).error(function() {
+          Navigation.hideNav();
+          $location.path('/login');
+        });
       }
-    });
+    }
   });
-
 });
-
