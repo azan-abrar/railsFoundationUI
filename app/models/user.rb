@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   	self.employee && self.employee.status == true
   end
 
+  def name
+    (self.employee.blank?) ? self.username : self.employee.full_name
+  end
+
 end
