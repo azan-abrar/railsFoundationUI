@@ -1,40 +1,55 @@
-<div id="login" class="row">
-  <div class="large-4 large-offset-4 login-container">
-    <div class="header">
-      <img src="/assets/confiz-logo.png" >
+<div class="inner-container">
+<h1 class="subheader">Sign Up</h1>
+  
+  <form ng-submit="signup()" class="custom">
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_name">Company Name <span class="required">*</span></label>
+        <input id="company_name" name="company[name]" ng-model="company.name" placeholder="Company Name" required="required" size="30" type="text">
+      </div>
     </div>
-    <form ng-submit="login()" class="custom">
-      <fieldset class="radius inner-container">
-        <!-- <h1 class="subheader">Login</h1> -->
 
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Username" ng-model="credentials.username" required/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Password" ng-model="credentials.password" required/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <label for="remember_me">
-            <input type="checkbox" name="remember_me" style="display: none;" class="hidden-field">
-              <span class="custom checkbox"></span> &nbsp;Keep me logged in
-            </label>
-          </div>
-        </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_website">Website URL <span class="required">*</span></label>
+        <input id="company_website" name="company[website]" ng-model="company.website" placeholder="Website URL" required="required" size="30" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_email">Company Email <span class="required">*</span></label>
+        <input id="company_email" name="company[email]" ng-model="company.email" placeholder="Company Email" required="required" size="30" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_logo">Company Logo <span class="required">*</span></label>
+        <input id="company_logo" name="company[logo]" ng-model="company.username" required="required" type="file">
+      </div>
+    </div>
 
 
-        <div class="row">
-          <div class="large-6 columns">
-            <button type="submit" class="button success radius small">Login</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_logo">Department Name <span class="required">*</span></label>
+        <input id="company_departments_attributes_0_name" ng-model="company.username" name="company[departments_attributes][0][name]" required="required" size="30" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label for="company_logo">Department Description <span class="required">*</span></label>
+        <input id="company_departments_attributes_0_description" ng-model="company.username" name="company[departments_attributes][0][description]" required="required" size="30" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <input name="commit" type="submit" class="button" value="Save">
+      </div>
+    </div>
+  </form> 
 </div>

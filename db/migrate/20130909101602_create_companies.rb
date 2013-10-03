@@ -5,6 +5,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :website
       t.attachment :logo
       t.string :email
+      t.string :phone
       t.string :access_token
       t.string :slug
 

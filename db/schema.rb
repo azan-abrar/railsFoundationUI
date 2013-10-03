@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "email"
+    t.string   "phone"
     t.string   "access_token"
     t.string   "slug"
     t.datetime "created_at",        :null => false
@@ -54,13 +55,17 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.integer  "department_id"
     t.integer  "company_id"
     t.integer  "user_id"
-    t.boolean  "status",                 :default => false
+    t.boolean  "status",                       :default => false
     t.string   "resume_file_name"
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
     t.date     "dob"
-    t.boolean  "is_married",             :default => false
+    t.boolean  "is_married",                   :default => false
     t.datetime "join_date"
     t.string   "permanent_country_code"
     t.string   "permanent_address"
@@ -74,12 +79,13 @@ ActiveRecord::Schema.define(:version => 20130926113334) do
     t.string   "secondary_postal_code"
     t.string   "mobile_phone"
     t.string   "home_phone"
-    t.boolean  "is_deleted",             :default => false
+    t.boolean  "is_deleted",                   :default => false
     t.string   "access_token"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
+  add_index "employees", ["access_token"], :name => "index_employees_on_access_token"
   add_index "employees", ["designation"], :name => "index_employees_on_designation"
   add_index "employees", ["email"], :name => "index_employees_on_email"
   add_index "employees", ["first_name"], :name => "index_employees_on_first_name"

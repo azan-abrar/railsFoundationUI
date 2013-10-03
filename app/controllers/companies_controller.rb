@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
 
-  before_filter :has_admin_rights?
+  before_filter :has_admin_rights?, :except => [:new, :create]
 
   # GET /companies
   # GET /companies.json
@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new.json
   def new
     @company = Company.new
-    @company.departments.build
+    #@company.departments.build
 
     respond_to do |format|
       format.html # new.html.erb

@@ -46,6 +46,6 @@ class CreateEmployees < ActiveRecord::Migration
     add_index :employees, :last_name
     add_index :employees, :email
     add_index :employees, :mobile_phone
-    add_index :companies, :access_token
+    add_index :employees, :access_token
   end
 end

@@ -9,7 +9,8 @@
 @company = Company.find_or_create_by_name(
   :name => "Confiz Solutions",
   :website => "http://www.confiz.com",
-  :email => "azan.abrar@confiz.com"
+  :email => "azan.abrar@confiz.com",
+  :phone => "03211234567"
   )
 
 @dept = Department.find_or_create_by_name(

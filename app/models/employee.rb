@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
   attr_accessible :dob, :email, :first_name, :designation, :is_married, :status, 
   :join_date, :last_name, :middle_name, :permanent_country_code, :permanent_state, :permanent_address, :permanent_city, :permanent_postal_code, 
   :mobile_phone, :home_phone, :resume, :secondary_country_code, :secondary_state, :secondary_address, :secondary_city, :secondary_postal_code, 
-  :uuid, :department_id, :employee_id, :is_deleted, :gender, :user_id#, :profile_picture
+  :uuid, :department_id, :employee_id, :is_deleted, :gender, :user_id, :profile_picture
 
   has_one :user
   belongs_to :department
@@ -26,14 +26,14 @@ class Employee < ActiveRecord::Base
   :url => "uploads/resume/:basename.:extension",
   :default_url => "sample_cv.png"
 
-  # has_attached_file :logo, 
-  # :styles => { :medium => "350x100>", :thumb => "175x50>" }, 
-  # :path => "#{Rails.root}/public/uploads/employee_pictures/:id.:extension",
-  # :url => "/uploads/employee_pictures/:id.:extension",
-  # :default_url => "confiz-logo.png"
+  has_attached_file :profile_picture, 
+  :styles => { :medium => "350x350>", :thumb => "175x175>" }, 
+  :path => "#{Rails.root}/public/uploads/employee_pictures/:id.:extension",
+  :url => "/uploads/employee_pictures/:id.:extension",
+  :default_url => "profile-picture.png"
 
-  # validates_attachment_content_type :profile_picture,
-  #   :content_type => ["image/bmp","image/jpg", "image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png", "application/octet-stream"]
+  validates_attachment_content_type :profile_picture,
+    :content_type => ["image/bmp","image/jpg", "image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png", "application/octet-stream"]
 
 
   after_create :generate_uuid

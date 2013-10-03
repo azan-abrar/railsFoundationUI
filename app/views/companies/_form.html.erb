@@ -1,61 +1,56 @@
 <% unless @company.errors.blank? %>
 <div class="alert-box alert">
-  <% @company.errors.full_messages.each do |error| %>
-  <p><%= error %></p>
-  <% end %>
+	<% @company.errors.full_messages.each do |error| %>
+	<p><%= error %></p>
+	<% end %>
 </div>
 <% end %>
 
-<%= form_for @company, :html => {:multipart => true} do |f| %>
-<div class="row">
-	<div class="large-6 columns">
-		<label for="company_name">Company Name <span class='required'>*</span></label>
-		<%= f.text_field :name, :placeholder => "Company Name", :required => true %>
+<div id="login" class="row signup">
+	<div class="header text-center">
+		<h1 class="subheader default-fg-color">Let's begin with your Company info</h1>
+	</div>
+	<div class="large-4 large-offset-4 login-container" style="padding-top: 0;">
+		<%= form_for @company, :html => {:multipart => true, :class => "custom"} do |f| %>
+		<fieldset class="radius inner-container">
+			<div class="row">
+				<div class="large-12 columns">
+					<%= f.text_field :name, :placeholder => "Company Name", :required => true %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<%= f.text_field :website, :placeholder => "Website URL", :required => true %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<%= f.text_field :email, :placeholder => "Email", :required => true %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<%= f.text_field :phone, :placeholder => "Phone", :required => true %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<%= f.file_field :logo, :required => true %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<input name="commit" type="submit" class="button expand radius" value="Next">
+				</div>
+			</div>
+		</fieldset>
+
+		<% end %>
 	</div>
 </div>
-
-<div class="row">
-	<div class="large-6 columns">
-		<label for="company_website">Website URL <span class='required'>*</span></label>
-		<%= f.text_field :website, :placeholder => "Website URL", :required => true %>
-	</div>
 </div>
-
-<div class="row">
-	<div class="large-6 columns">
-		<label for="company_email">Company Email <span class='required'>*</span></label>
-		<%= f.text_field :email, :placeholder => "Company Email", :required => true %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="large-6 columns">
-		<label for="company_logo">Company Logo <span class='required'>*</span></label>
-		<%= f.file_field :logo, :required => true %>
-	</div>
-</div>
-
-<% if @company.new_record? %>
-<%= f.fields_for :departments do |dept| %>
-<div class="row">
-  <div class="large-6 columns">
-    <label for="company_logo">Department Name <span class='required'>*</span></label>
-    <%= dept.text_field :name, :required => true %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="large-6 columns">
-    <label for="company_logo">Department Description <span class='required'>*</span></label>
-    <%= dept.text_field :description, :required => true %>
-  </div>
-</div>
-<% end %>
-<% end %>
-
-<div class="row">
-	<div class="large-6 columns">
-		<input name="commit" type="submit" class="button" value="Save">
-	</div>
-</div>
-<% end %>
