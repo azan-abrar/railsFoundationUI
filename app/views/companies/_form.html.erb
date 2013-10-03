@@ -1,16 +1,16 @@
-<% unless @company.errors.blank? %>
-<div class="alert-box alert">
-	<% @company.errors.full_messages.each do |error| %>
-	<p><%= error %></p>
-	<% end %>
-</div>
-<% end %>
-
 <div id="login" class="row signup">
 	<div class="header text-center">
 		<h1 class="subheader default-fg-color">Let's begin with your Company info</h1>
 	</div>
 	<div class="large-4 large-offset-4 login-container" style="padding-top: 0;">
+		<% unless @company.errors.blank? %>
+		<div class="alert-box alert">
+			<% @company.errors.full_messages.each do |error| %>
+			<p><%= error %></p>
+			<% end %>
+		</div>
+		<% end %>
+
 		<%= form_for @company, :html => {:multipart => true, :class => "custom"} do |f| %>
 		<fieldset class="radius inner-container">
 			<div class="row">
@@ -39,6 +39,7 @@
 
 			<div class="row">
 				<div class="large-12 columns">
+					<label>Company Logo <span class="required">*</span></label>
 					<%= f.file_field :logo, :required => true %>
 				</div>
 			</div>
@@ -52,5 +53,4 @@
 
 		<% end %>
 	</div>
-</div>
 </div>

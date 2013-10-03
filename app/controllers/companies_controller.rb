@@ -45,7 +45,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(params[:company])
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to "/#/confirmation", notice: 'Company was successfully created.' }
       else
         format.html { render action: "new" }
       end
