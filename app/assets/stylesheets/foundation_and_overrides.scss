@@ -1356,137 +1356,136 @@ h3 span {
   @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   width: 100%;
 //  background: url(/assets/header-background.png) repeat-x;
-  border-top: 6px solid $blue;
-  height: 76px;
-  color: $top-nav-fg;
-  position: fixed;
-  z-index: 90;
-  top: 0px;
-  .top-bar {
-    background: 0;
-    width: 1134px;
-    margin: 0 auto;
-    transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    height: inherit;
-    .title-area {
-      margin: 7px 5px 9px;
-      font-size: 30px;
-      li {
-        transition: all .2s ease-in;
-        -moz-transition: all .2s ease-in;
-        -webkit-transition: all .2s ease-in;
-        &:hover {
-          color: $top-nav-fg;
+border-top: 6px solid $blue;
+height: 76px;
+color: $top-nav-fg;
+position: fixed;
+z-index: 90;
+top: 0px;
+.top-bar {
+  background: 0;
+  width: 1134px;
+  margin: 0 auto;
+  transition: all .2s ease-in;
+  -moz-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  height: inherit;
+  .title-area {
+    margin: 7px 5px 9px;
+    font-size: 30px;
+    li {
+      transition: all .2s ease-in;
+      -moz-transition: all .2s ease-in;
+      -webkit-transition: all .2s ease-in;
+      &:hover {
+        color: $top-nav-fg;
+      }
+      h1 {
+        margin-top: 5px;
+        img {
+          margin-top: -5px;
+          max-height: 40px;
         }
-        h1 {
-          margin-top: 5px;
-          img {
-            margin-top: -5px;
-            max-height: 40px;
-          }
-          a { color: #f5f5f5; }
-        }
+        a { color: #f5f5f5; }
       }
     }
-    .top-bar-section {
-      ul {
-        margin: 16px 5px 10px;
-        background: 0;
-        li {
-          margin-left: 10px;
-          > a {
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 40px;
-            color: $top-nav-fg;
-            background: 0;
-            text-transform: uppercase;
-            transition: all .1s ease-in;
-            -moz-transition: all .1s ease-in;
-            -webkit-transition: all .1s ease-in;
-            border-radius: 4px;
-            &:hover, &.active {
-              color: darken($top-nav-fg, 20%);
+  }
+  .top-bar-section {
+    ul {
+      margin: 16px 5px 10px;
+      background: 0;
+      li {
+        margin-left: 10px;
+        > a {
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 40px;
+          color: $top-nav-fg;
+          background: 0;
+          text-transform: uppercase;
+          transition: all .1s ease-in;
+          -moz-transition: all .1s ease-in;
+          -webkit-transition: all .1s ease-in;
+          border-radius: 4px;
+          &:hover, &.active {
+            color: darken($top-nav-fg, 20%);
+          }
+        }
+        &.dark {
+          a {
+            color: darken($top-nav-fg, 20%);
+            background: lighten($top-nav-bg, 25%);
+            &:hover {
+              color: darken($top-nav-fg, 25%);
+              background: lighten($top-nav-bg, 20%);
             }
           }
-          &.dark {
-            a {
-              color: darken($top-nav-fg, 20%);
-              background: lighten($top-nav-bg, 25%);
-              &:hover {
-                color: darken($top-nav-fg, 25%);
-                background: lighten($top-nav-bg, 20%);
-              }
+        }
+        &.highlighted {
+          a {
+            color: #fff;
+            background: $blue;
+            &:hover {
+              color: lighten(#fff, 10%);
+              background: lighten($blue, 2%);
             }
           }
-          &.highlighted {
-            a {
-              color: #fff;
-              background: $blue;
-              &:hover {
-                color: lighten(#fff, 10%);
-                background: lighten($blue, 2%);
-              }
-            }
-          }
+        }
 
-          &.has-dropdown {
-            > a {
-              padding: 5px 25px 0 5px !important;
-              line-height: 25px;
-              color: darken($top-nav-fg, 20%);
-              background: lighten($top-nav-bg, 25%);
-              &:after {
-                border-color: darken($top-nav-fg, 20%) transparent transparent transparent;
-                &:hover {
-                  border-color: darken($top-nav-fg, 25%) transparent transparent transparent;
-                }
-              }
+        &.has-dropdown {
+          > a {
+            padding: 5px 25px 0 5px !important;
+            line-height: 25px;
+            color: darken($top-nav-fg, 20%);
+            background: lighten($top-nav-bg, 25%);
+            &:after {
+              border-color: darken($top-nav-fg, 20%) transparent transparent transparent;
               &:hover {
-                color: darken($top-nav-fg, 25%);
-                background: lighten($top-nav-bg, 20%);
+                border-color: darken($top-nav-fg, 25%) transparent transparent transparent;
               }
             }
-            ul.dropdown {
-              border-radius: 3px;
-              -webkit-box-shadow: 0 0 3px 1px #e1e1e1;
-              -moz-box-shadow: 0 0 3px 1px #e1e1e1;
-              box-shadow: 0 0 3px 1px #e1e1e1;
-              margin: 0 0 0 8px;
-              border: 1px solid #e7e7e7;
-              min-width: 120px;
-              background: #fff;
-              li {
-                margin: 0;
-                > a {
-                  font-size: 14px;
-                  line-height: 18px;
-                  color: #555;
-                  background: 0;
-                  transition: all 0s ease-in;
-                  -moz-transition: all 0s ease-in;
-                  -webkit-transition: all 0s ease-in;
+            &:hover {
+              color: darken($top-nav-fg, 25%);
+              background: lighten($top-nav-bg, 20%);
+            }
+          }
+          ul.dropdown {
+            border-radius: 3px;
+            -webkit-box-shadow: 0 0 3px 1px #e1e1e1;
+            -moz-box-shadow: 0 0 3px 1px #e1e1e1;
+            box-shadow: 0 0 3px 1px #e1e1e1;
+            margin: 0 0 0 8px;
+            border: 1px solid #e7e7e7;
+            min-width: 120px;
+            background: #fff;
+            li {
+              margin: 0;
+              > a {
+                font-size: 14px;
+                line-height: 18px;
+                color: #555;
+                background: 0;
+                transition: all 0s ease-in;
+                -moz-transition: all 0s ease-in;
+                -webkit-transition: all 0s ease-in;
+                &:hover {
+                  background: #f5f5f5;  
+                  color: $blue;
+                }
+              }
+              &.welcome {
+                a {
+                  font-weight: bold;
+                  cursor: default;
+                  color: darken($top-nav-fg, 20%);
                   &:hover {
-                    background: #f5f5f5;  
-                    color: $blue;
+                    background: 0;
                   }
                 }
-                &.welcome {
-                  a {
-                    font-weight: bold;
-                    cursor: default;
-                    color: darken($top-nav-fg, 20%);
-                    &:hover {
-                      background: 0;
-                    }
-                  }
-                }
-                &.divider {
-                  border-bottom: solid 1px #ebebeb;
-                  border-top: solid 1px #ffffff;
-                }
+              }
+              &.divider {
+                border-bottom: solid 1px #ebebeb;
+                border-top: solid 1px #ffffff;
               }
             }
           }
@@ -1494,6 +1493,7 @@ h3 span {
       }
     }
   }
+}
 }
 
 .container {
@@ -1515,6 +1515,35 @@ h3 span {
     background: #666666 none;
     padding: 5px 10px;
     h3 { color: #fbfbfb; margin: 0; }
+  }
+}
+
+.upload-pic {
+  @include gradient-vertical(#f9f9fa, #f0f0f0);
+  @include box-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+  padding: 10px;
+  text-align: center;
+  height: 287px;
+  overflow: hidden;
+  position: relative;
+  img {
+    max-height: 267px;
+  }
+  a.button {
+    display: none;
+    position: absolute;
+    z-index: 25;
+    margin: 0;
+    bottom: 5px;
+    left: 5px;
+    transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+  }
+  &:hover {
+    a.button {
+      display: block;
+    }
   }
 }
 
@@ -1594,6 +1623,20 @@ form {
     }
   }
 }
+
+.main-container {
+  .headlines {
+    background: #f5f5f5; 
+    height: 400px;
+    padding-right: 20px;
+  }
+
+  .content {
+    background: lighten($blue, 5%);
+    height: 400px;
+  }
+}
+
 
 .reveal-modal {
   padding: 0px;

@@ -6,17 +6,13 @@
   </span>
   <span class="right" ng-switch="employeeModel.is_admin">
     <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#resume').foundation('reveal', 'open');" class="button success">Upload Resume</a>
-    &nbsp;
-  </span>
-  <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
-    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#profile_picture').foundation('reveal', 'open');" class="button">Upload Picture</a>
   </span>
 </h1>
 <div class="inner-container">
   <div class="row">
     <div class="large-4 radius columns">
-      <h3 class="subheader">Profile Picture</h3>
-      <div style="background: #fafafa;">
+      <div class="upload-pic" onclick="$('#profile_picture').foundation('reveal', 'open');">
+        <a class="button secondary radius small">Upload Profile Picture</a>
         <img src="{{ employeeModel.profile_picture_thumb }}">
       </div>
     </div>

@@ -18,7 +18,7 @@
     </tr>
 
     <tr ng-repeat="employee in employees">
-      <td><img src="/assets/profile-picture-mini.jpg"></td>
+      <td><img src="{{ employee.profile_picture_mini }}"></td>
       <td><a href="#/employee/{{ employee.id }}">{{ employee.full_name }}</a></td>
       <td>{{ employee.email }}</td>
       <td>{{ employee.designation }}</td>

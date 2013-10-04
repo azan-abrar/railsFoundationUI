@@ -13,10 +13,10 @@
     <section class="top-bar-section">
       <ul class="right">
         <% unless current_user.blank? %>
-        <li class=""><a href="#/">Home</a></li>
-        <li class=""><a href="#">About Us</a></li>
-        <li class=""><a href="#/employees">Employees</a></li>
-        <li class=""><a href="#/departments">Departments</a></li>
+        <li class=""><a href="/#/">Home</a></li>
+        <li class=""><a href="/#">About Us</a></li>
+        <li class=""><a href="/#/employees">Employees</a></li>
+        <li class=""><a href="/#/departments">Departments</a></li>
         <li ng-controller="EmployeesController">
           <form id="searchEmployees">
             <div class="row collapse">
@@ -35,6 +35,7 @@
             <li class="welcome"><a href="javascript:void(0);"><%= current_user.name %>!</a></li>
             <li class="divider hide-for-small"></li>
             <li class=""><a href="#">Admin Settings</a></li>
+            <li class=""><a href="/companies">Companies</a></li>
             <li class=""><a href="/#/employee/<%= current_user.employee.uuid %>">Account Settings</a></li>
             <li class="divider hide-for-small"></li>
             <li ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
@@ -43,11 +44,11 @@
 
         <li class="highlighted"><a href="#/employee/new">Add Employee</a></li>
         <% else %>
-        <li class=""><a href="#/">Home</a></li>
+        <li class=""><a href="/#/">Home</a></li>
         <li class=""><a href="#">About Us</a></li>
         <li class=""><a href="#">Blog</a></li>
 
-        <li class="dark"><a href="#/login">Sign In</a></li>
+        <li class="dark"><a href="/#/login">Sign In</a></li>
         <li class="highlighted"><a href="/companies/new">Sign Up</a></li>
         <% end %>
       </ul>
