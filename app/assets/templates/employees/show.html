@@ -1,15 +1,27 @@
 <h1 class="subheader" ng-init="getEmployee()">
   {{ employeeModel.full_name }}
+
   <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
-    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button">Edit Employee</a> &nbsp;
+    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button alert">Edit Employee</a> &nbsp;
   </span>
   <span class="right" ng-switch="employeeModel.is_admin">
-    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('.reveal-modal').foundation('reveal', 'open');" class="button success">Upload Resume</a>
+    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#resume').foundation('reveal', 'open');" class="button success">Upload Resume</a>
+    &nbsp;
+  </span>
+  <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
+    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#profile_picture').foundation('reveal', 'open');" class="button">Upload Picture</a>
   </span>
 </h1>
 <div class="inner-container">
   <div class="row">
-    <div class="large-6 radius columns">
+    <div class="large-4 radius columns">
+      <h3 class="subheader">Profile Picture</h3>
+      <div style="background: #fafafa;">
+        <img src="{{ employeeModel.profile_picture_thumb }}">
+      </div>
+    </div>
+
+    <div class="large-4 radius columns">
       <h3 class="subheader">Personal Details</h3>
       <table>
         <tr>
@@ -39,7 +51,7 @@
       </table>
     </div>
 
-    <div class="large-6 radius columns">
+    <div class="large-4 radius columns">
       <h3 class="subheader">Professional Details</h3>
       <table>
         <tr>
@@ -47,7 +59,7 @@
           <td><strong>{{ employeeModel.email }}</strong></td>
         </tr>
         <tr>
-          <td>Employee Designation</td>
+          <td>Designation</td>
           <td><strong>{{ employeeModel.designation }}</strong></td>
         </tr>
         <tr>
@@ -132,7 +144,7 @@
 
 
 
-<div class="reveal-modal small">
+<div class="reveal-modal small" id="resume">
   <form action="/employees/{{ employeeModel.id }}/upload_resume" method="post" enctype="multipart/form-data">
     <div class="modal-header">
       <a class="close-reveal-modal">×</a>
@@ -147,6 +159,30 @@
       <div class="row">
         <div class="large-6">
           <input id="employee_resume" required name="employee[resume]" type="file">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="button small">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="reveal-modal small" id="profile_picture">
+  <form action="/employees/{{ employeeModel.id }}/upload_profile_picture" method="post" enctype="multipart/form-data">
+    <div class="modal-header">
+      <a class="close-reveal-modal">×</a>
+      <h3 class="nomargin">Upload Profile Picture</h3>
+    </div>
+    <div class="modal-body">
+
+      <p>
+        <a href="{{ employeeModel.profile_picture }}" target="_blank">{{ employeeModel.profile_picture }}</a>
+      </p>
+
+      <div class="row">
+        <div class="large-6">
+          <input id="employee_profile_picture" required name="employee[profile_picture]" type="file">
         </div>
       </div>
     </div>

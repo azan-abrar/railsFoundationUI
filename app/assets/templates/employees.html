@@ -9,6 +9,7 @@
   </div>
   <table class="employee-list">
     <tr>
+      <th style="width: 50px;"></th>
       <th>Employee Name</th>
       <th>Email</th>
       <th>Employee Designation</th>
@@ -17,6 +18,7 @@
     </tr>
 
     <tr ng-repeat="employee in employees">
+      <td><img src="/assets/profile-picture-mini.jpg"></td>
       <td><a href="#/employee/{{ employee.id }}">{{ employee.full_name }}</a></td>
       <td>{{ employee.email }}</td>
       <td>{{ employee.designation }}</td>

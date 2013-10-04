@@ -44,6 +44,7 @@ group :development do
   gem 'puma'
 end
 
+gem 'delayed_job_active_record'
 gem "friendly_id"
 gem 'simple_roles' 
 gem 'carmen-rails', '~> 1.0.0'

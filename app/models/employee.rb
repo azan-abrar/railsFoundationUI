@@ -27,10 +27,10 @@ class Employee < ActiveRecord::Base
   :default_url => "sample_cv.png"
 
   has_attached_file :profile_picture, 
-  :styles => { :medium => "350x350>", :thumb => "175x175>" }, 
-  :path => "#{Rails.root}/public/uploads/employee_pictures/:id.:extension",
-  :url => "/uploads/employee_pictures/:id.:extension",
-  :default_url => "profile-picture.png"
+  :styles => { :thumb => "300x300>", :mini => "30x30>" }, 
+  :path => "#{Rails.root}/public/uploads/employee_pictures/:style/:id.:extension",
+  :url => "/uploads/employee_pictures/:style/:id.:extension",
+  :default_url => "/assets/profile-picture-:style.jpg"
 
   validates_attachment_content_type :profile_picture,
     :content_type => ["image/bmp","image/jpg", "image/jpeg", "image/png", "image/gif", "image/pjpeg", "image/x-png", "application/octet-stream"]
@@ -103,7 +103,10 @@ class Employee < ActiveRecord::Base
       :designation => self.designation,
       :status => (self.status rescue ""),
       :is_admin => (user.company_administrator? rescue false),
-      :is_owner => (((user.employee.uuid == self.uuid) ? true : false) rescue false)
+      :is_owner => (((user.employee.uuid == self.uuid) ? true : false) rescue false),
+
+      :profile_picture_mini => self.profile_picture_mini,
+      :profile_picture_thumb => self.profile_picture_thumb
     }
   end
   
@@ -128,5 +131,13 @@ class Employee < ActiveRecord::Base
   def self.get_filtered_employees(query_string, company)
     company.employees.where("first_name like ? or middle_name like ? or last_name like ? or mobile_phone like ? or email like ? or designation like ?", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%", "%#{query_string}%")
   end
-  
+
+  def profile_picture_mini
+    self.profile_picture.blank? ? "/assets/profile-picture-mini.jpg" : self.profile_picture(:mini)
+  end
+
+  def profile_picture_thumb
+    self.profile_picture.blank? ? "/assets/profile-picture-thumb.jpg" : self.profile_picture(:thumb)
+  end
+
 end

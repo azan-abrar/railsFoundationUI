@@ -7,6 +7,7 @@ ConfizHRM::Application.routes.draw do
   resources :employees do
     member do
       post :upload_resume
+      post :upload_profile_picture
     end
   end
 

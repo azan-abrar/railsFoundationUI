@@ -8,7 +8,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
   $scope.employeeMaritalStatus = {false: "Single", true: "Married"};
   $scope.employeeStatus = {false: "Disabled", true: "Enabled"};
   $scope.employeeConstants = { countries: [], genders: [], status: [], marital_status: [], department_ids: [] }
-  $scope.employeeModel = {gender: "", employee_id: "", full_name: "Employee Name", first_name: "", middle_name: "", last_name: "", email: "", designation: "", status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", primary_state: "", permanent_city: "", permanent_postal_code: "", permanent_country_code: "", permanent_country_name: "", secondary_address: "", secondary_state: "", secondary_city: "", secondary_postal_code: "", secondary_country_code: "", secondary_country_name: "", mobile_phone: "", home_phone: "", department_id: "", department_name: "", resume_name: ""};
+  $scope.employeeModel = {gender: "", employee_id: "", full_name: "Employee Name", first_name: "", middle_name: "", last_name: "", email: "", designation: "", status: "", resume: "", dob: "", is_married: "", join_date: "", permanent_address: "", primary_state: "", permanent_city: "", permanent_postal_code: "", permanent_country_code: "", permanent_country_name: "", secondary_address: "", secondary_state: "", secondary_city: "", secondary_postal_code: "", secondary_country_code: "", secondary_country_name: "", mobile_phone: "", home_phone: "", department_id: "", department_name: "", resume_name: "", profile_picture_thumb: "", profile_picture_mini: ""};
 
   $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {

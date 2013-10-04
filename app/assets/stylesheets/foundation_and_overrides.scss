@@ -1328,6 +1328,8 @@ h1, h2, h3, h4 {
 
 h1 span, h2 span {
   font-size: 16px;
+  line-height: 60px;
+  a.button { margin: 0; }
 }
 
 h3 span {
@@ -1358,7 +1360,7 @@ h3 span {
   height: 76px;
   color: $top-nav-fg;
   position: fixed;
-  z-index: 1000;
+  z-index: 90;
   top: 0px;
   .top-bar {
     background: 0;
@@ -1510,7 +1512,7 @@ h3 span {
   border: 1px solid #dedede;
   margin: 20px 0;
   .header {
-    background: #999;
+    background: #666666 none;
     padding: 5px 10px;
     h3 { color: #fbfbfb; margin: 0; }
   }
@@ -1617,6 +1619,10 @@ form {
   }
 }
 
+
+.nomargin {
+  margin: 0;
+}
 
 
 

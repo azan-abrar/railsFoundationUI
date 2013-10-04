@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  before_filter :get_employee, :only => [:show, :edit, :update, :destroy, :upload_resume]
+  before_filter :get_employee, :only => [:show, :edit, :update, :destroy, :upload_resume, :upload_profile_picture]
   before_filter :refine_employee_hash, :only => [:create, :update]
   
   def index
@@ -41,8 +41,6 @@ class EmployeesController < ApplicationController
 
   def update
     begin
-      debugger
-
       if @employee.update_attributes(params[:employee])
         render json: @employee.employee_hash(current_user), status: 200 and return
       else
@@ -56,6 +54,14 @@ class EmployeesController < ApplicationController
   def upload_resume
     if !params[:employee].blank? && !params[:employee][:resume].blank?
       @employee.resume = params[:employee][:resume]
+      @employee.save
+    end
+    redirect_to "/#/employee/#{@employee.uuid}" and return
+  end
+
+  def upload_profile_picture
+    if !params[:employee].blank? && !params[:employee][:profile_picture].blank?
+      @employee.profile_picture = params[:employee][:profile_picture]
       @employee.save
     end
     redirect_to "/#/employee/#{@employee.uuid}" and return
@@ -103,6 +109,8 @@ class EmployeesController < ApplicationController
     params[:employee].delete(:updated_at)
     params[:employee].delete(:is_admin)
     params[:employee].delete(:is_owner)
+    params[:employee].delete(:profile_picture_mini)
+    params[:employee].delete(:profile_picture_thumb)
   end
   
 end
