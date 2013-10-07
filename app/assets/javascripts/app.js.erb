@@ -75,10 +75,15 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
   var routesIfNotLogin = ['/employees', '/departments'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    if (_(['/']).contains($location.path())) {
+      FlashService.clear();
+    }
+
     if (_(['/login']).contains($location.path())) {
       Navigation.hideNav();
     } else {
       Navigation.showNav();
+      $rootScope.isLogin = true;
 
       if (_(routesIfNotLogin).contains($location.path())) {
         AuthenticationService.isLoggedIn().success(function() {

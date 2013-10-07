@@ -8,6 +8,7 @@ app.controller("DepartmentsController", function($scope, $location, DepartmentSe
 
   $scope.getDepartment = function() {
     DepartmentService.getDepartment().success(function(department) {
+      FlashService.clear();
       $scope.departmentModel = department;
     }).error(function(response) {
       $location.path('/departments');

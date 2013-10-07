@@ -25,9 +25,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         if @user.save
           if @employee_register.blank?
-            @user.employee.status = true
-            @user.employee.save(:validate => false)
-
+            @user.employee.activate!
             @company.access_token = nil
             @company.save
           else

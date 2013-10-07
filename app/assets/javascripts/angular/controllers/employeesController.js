@@ -12,6 +12,7 @@ app.controller("EmployeesController", function($scope, $location, EmployeeServic
 
   $scope.getEmployee = function() {
     EmployeeService.getEmployee().success(function(employee) {
+      FlashService.clear();
       $scope.employeeModel = employee;
     }).error(function(response) {
       $location.path('/employees');

@@ -49,6 +49,11 @@ class Employee < ActiveRecord::Base
     self.is_deleted = true
     self.save
   end
+
+  def activate!
+    self.status = true
+    self.save(:validate => false)
+  end
   
   def full_name
     "#{self.first_name}#{" #{self.middle_name}"} #{self.last_name}"
