@@ -6,7 +6,7 @@ class DepartmentsController < ApplicationController
   def index
     @departments_hash, @departments = Department.get_departments(params, current_user.employee.company, current_user)
     if @departments_hash.blank?
-      render json: {error: "No records found."}.to_json, status: 500 and return
+      render json: {error: "No records found.", is_admin: (current_user.company_administrator? rescue false)}.to_json, status: 500 and return
     else
       render partial: 'index', formats: [:json], layout: false, status: 200 and return
     end
@@ -52,7 +52,7 @@ class DepartmentsController < ApplicationController
   
   def get_department
     @department = Department.find_by_uuid(params[:id])
-    render json: {error: "Department not found."}, status: 400 and return if @department.blank?
+    render json: {error: "Department not found."}, status: 400 and return if @department.blank? || !(current_user && current_user.owns_company?(@department))
   end
   
   def refine_department_hash

@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
   def index
     @employees_hash, @employees = Employee.get_employees(params, current_user.employee.company, current_user)
     if @employees_hash.blank?
-      render json: {error: "No records found."}.to_json, status: 500 and return
+      render json: {error: "No records found.", is_admin: (current_user.company_administrator? rescue false)}.to_json, status: 500 and return
     else
       render partial: 'index', formats: [:json], layout: false, status: 200 and return
     end
@@ -90,9 +90,9 @@ class EmployeesController < ApplicationController
   
   def get_employee
     @employee = Employee.find_by_uuid(params[:id]) || Employee.find_by_employee_id(params[:id])
-    render json: {error: "Employee not found."}, status: 400 and return if @employee.blank?
+    render json: {error: "Employee not found."}, status: 400 and return if @employee.blank? || !(current_user && current_user.owns_company?(@employee))
   end
-  
+
   def refine_employee_hash
     params[:employee].delete(:id)
     params[:employee].delete(:full_name)

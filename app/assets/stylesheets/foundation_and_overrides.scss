@@ -1315,6 +1315,18 @@ $table-row-font-size: emCalc(16);
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
+@mixin gradient-vertical-image($image, $startColor: #555, $endColor: #333, $position: left, $repeat: repeat-x) {
+  background-color: $startColor;
+  background-image: url($image), -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+  background-image: url($image), -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+  background-image: url($image), -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+  background-image: url($image), -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+  background-image: url($image), linear-gradient(to bottom, $startColor, $endColor); // Standard, IE10
+  background-repeat: $repeat;
+  background-position: $position;
+  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{argb($startColor)}', endColorstr='#{argb($endColor)}', GradientType=0)"; // IE9 and down
+}
+
 body {
   //background: #e6e7e8 url(/assets/bg-body.png) repeat;
   background-image: url(data:image/gif;base64,R0lGODlhCAAGAKIAAPHx8fDw8Ozs7O7u7u3t7e/v7wAAAAAAACH5BAAAAAAALAAAAAAIAAYAAAMXSDIlpKGUR6IkTM4yCPcFgGViIDhPkAAAOw==);
@@ -1625,15 +1637,32 @@ form {
 }
 
 .main-container {
+  @include gradient-vertical-image('/assets/bg-home.jpg', #fafafb, #f0f0f1, right, no-repeat);
+  @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  background-image: url(/assets/bg-home.jpg);
   .headlines {
-    background: #f5f5f5; 
-    height: 400px;
-    padding-right: 20px;
+    @include gradient-vertical(lighten($blue, 13%), lighten($blue, 5%));
+    @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    height: 500px;
+
   }
 
   .content {
-    background: lighten($blue, 5%);
-    height: 400px;
+    width: 1134px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    height: 500px;
+    h1 {
+      color: #4B4949;
+    }
+    p {
+      color: #6b6b6b;
+    }
+    a.button {
+      position: absolute;
+      bottom: 20px;
+      text-transform: uppercase;
+    }
   }
 }
 

@@ -1,9 +1,9 @@
 class Company < ActiveRecord::Base
 	attr_accessible :name, :website, :logo, :email, :departments_attributes, :phone
 
-	validates :email, :name, :phone, :presence => true, :uniqueness => true
+	validates :name, :phone, :presence => true, :uniqueness => true
 	validates :website, :presence => true, :format => { :with => /^((http|https):\/\/)*[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix }
-	validates :email, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+	validates :email, :presence => true, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 	validates :phone, :format => { :with => /(^(03|3)\d{9}$)|(^\d{8,16}$)/ }
 
 	has_many :departments

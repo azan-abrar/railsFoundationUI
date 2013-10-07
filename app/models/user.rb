@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
     (self.employee.blank?) ? self.username : self.employee.full_name
   end
 
+  def owns_company?(resource)
+    (self.company_administrator? && self.employee.company == resource.company)
+  end
+
 end

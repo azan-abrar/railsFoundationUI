@@ -17,12 +17,6 @@
       <%= f.fields_for :employee do |emp| %>
       <div class="row">
         <div class="large-6 columns">
-          <label>Employee ID:</label>
-          <%= emp.text_field :employee_id, :placeholder => "Employee ID", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
           <label>First Name:</label>
           <%= emp.text_field :first_name, :placeholder => "First Name", :required => true %>
         </div>
@@ -43,18 +37,6 @@
         <div class="large-6 columns">
           <label>Mobile Number:</label>
           <%= emp.text_field :mobile_phone, :placeholder => "Mobile Number", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Designation:</label>
-          <%= emp.text_field :designation, :placeholder => "Designation", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Gender:</label>
-          <%= emp.select :gender, options_for_select(["Male", "Female"], f.object.employee.gender), {:include_blank=>"- Select Gender -"}, :required => true %>
         </div>
       </div>
       <div class="row">
@@ -85,12 +67,6 @@
         <div class="large-6 columns">
           <label>Postal Code:</label>
           <%= emp.text_field :permanent_postal_code, :placeholder => "Postal Code", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Country:</label>
-          <%= emp.select :department_id, options_for_select(@departments.map {|m| [m.name,m.id]}, f.object.employee.department_id), {:include_blank=>"- Select Department -"}, :required => true %>
         </div>
       </div>
       <% end %>

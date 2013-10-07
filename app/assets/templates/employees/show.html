@@ -13,7 +13,7 @@
     <div class="large-4 radius columns">
       <div class="upload-pic" onclick="$('#profile_picture').foundation('reveal', 'open');">
         <a class="button secondary radius small">Upload Profile Picture</a>
-        <img src="{{ employeeModel.profile_picture_thumb }}">
+        <img ng-src="{{ employeeModel.profile_picture_thumb }}">
       </div>
     </div>
 
@@ -63,7 +63,7 @@
           <td><strong>{{ employeeModel.department_name }}</strong></td>
         </tr>
         <tr>
-          <td>Employee Status</td>
+          <td>Status</td>
           <td><strong>{{ employeeStatus[employeeModel.status] }}</strong></td>
         </tr>
         <tr>

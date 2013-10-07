@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     @user = User.new
     if @employee_register.blank?
       @user.build_employee
-      @departments = @company.departments
+      @user.employee.email = @company.email
+      @user.employee.mobile_phone = @company.phone
     end 
     respond_to do |format|
         format.html # new.html.erb
@@ -25,8 +26,8 @@ class UsersController < ApplicationController
         if @user.save
           if @employee_register.blank?
             @user.employee.status = true
-            @user.save
-            
+            @user.employee.save(:validate => false)
+
             @company.access_token = nil
             @company.save
           else
@@ -38,7 +39,6 @@ class UsersController < ApplicationController
           login(@user.username, params[:user][:password], true)
           redirect_to "/#/employees" and return
         else
-          @departments = @company.departments unless @company.blank?
           render action: "new" and return
         end
       end

@@ -12,13 +12,13 @@ class Employee < ActiveRecord::Base
   DESIGNATION_ARRAY = ["Accounts Manager", "Associate Product Manager", "Engagement Manager", "HR Executive", "HR Manager", "Product Manager", "Project Manager", "QA Engineer", "Senior Software Engineer", "Software Engineer"]
   GENDER_ARRAY = ["Female", "Male"]
   
-  validates :employee_id, :company_id, :department_id, :permanent_country_code, :permanent_state, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
+  validates :company_id, :permanent_country_code, :permanent_state, :first_name, :last_name, :permanent_address, :email, :permanent_city, :permanent_postal_code, :presence => true
   validates :mobile_phone, :format => {:with => /^03\d{9,10}$/}, :presence => true
+  validates :designation, :employee_id, :department_id, :presence => {:on => :update}
+  validates :gender, :inclusion => { :in => GENDER_ARRAY, :on => :update }, :presence => {:on => :update}
   
   validates :home_phone, :format => {:with => /^03\d{9,10}$/}, :allow_blank => true
-  validates :designation, :presence => true
-  validates :gender, :inclusion => { :in => GENDER_ARRAY }, :presence => true
-  validates :employee_id, :uniqueness => true
+  validates :employee_id, :uniqueness => true, :allow_blank => true
   validates :email, :uniqueness => true, :length => {:minimum => 6, :maximum => 100}, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
 
   has_attached_file :resume, 
@@ -116,7 +116,7 @@ class Employee < ActiveRecord::Base
   
   def generate_uuid
     self.uuid = SecureRandom.hex(4)
-    self.save
+    self.save(:validate => false)
     self.notify_employee_signup
   end
 
