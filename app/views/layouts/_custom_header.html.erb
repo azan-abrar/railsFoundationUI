@@ -3,7 +3,7 @@
     <ul class="title-area">
       <li class="name">
         <h1>
-          <a href="/#/">
+          <a href="<%= (logged_in?) ? "/#/home" : "/#/" %>">
             <%= image_tag("/assets/confiz-logo.png") %>
           </a>
         </h1>
@@ -13,8 +13,6 @@
     <section class="top-bar-section">
       <ul class="right">
         <% unless current_user.blank? %>
-        <li class=""><a href="/#/">Home</a></li>
-        <li class=""><a href="/#">About Us</a></li>
         <li class=""><a href="/#/employees">Employees</a></li>
         <li class=""><a href="/#/departments">Departments</a></li>
         <li ng-controller="EmployeesController">

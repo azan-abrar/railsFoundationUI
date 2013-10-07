@@ -10,6 +10,11 @@ app.config(function($routeProvider) {
     controller: 'HomeController'
   });
 
+  $routeProvider.when('/home', {
+    templateUrl: '<%= asset_path("home.html") %>',
+    controller: 'HomeController'
+  });
+
   // LoginController Routes
 
   $routeProvider.when('/login', {
@@ -72,21 +77,18 @@ app.config(function($routeProvider) {
 });
 
 app.run(function($rootScope, $location, AuthenticationService, FlashService, Navigation) {
-  var routesIfNotLogin = ['/employees', '/departments'];
+  var routesIfNotLogin = ['/employees', '/departments', '/home'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    if (_(['/']).contains($location.path())) {
-      FlashService.clear();
-    }
 
     if (_(['/login']).contains($location.path())) {
       Navigation.hideNav();
     } else {
       Navigation.showNav();
-      $rootScope.isLogin = true;
-
-      if (_(routesIfNotLogin).contains($location.path())) {
-        AuthenticationService.isLoggedIn().success(function() {
+      
+      AuthenticationService.isLoggedIn().success(function() {
+        // debugger
+        if (_(routesIfNotLogin).contains($location.path()) || $location.$$absUrl.match("/companies") != null) {
           setTimeout(function() {
             $('li.has-dropdown ul li').on('mouseover', function() {
              $(this).parent().parent().find('a.parent').addClass('active');
@@ -95,13 +97,17 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
             $('li.has-dropdown ul li').on('mouseout', function() {
               $(this).parent().parent().find('a.parent').removeClass('active');
             });
-
           }, 1000);
-        }).error(function() {
+        } else if (_(['/']).contains($location.path())) {
+          FlashService.clear();
+          $location.path('/home');
+        } 
+      }).error(function() {
+        if (_(routesIfNotLogin).contains($location.path())) {
           Navigation.hideNav();
           $location.path('/login');
-        });
-      }
+        }
+      });
     }
   });
 });
