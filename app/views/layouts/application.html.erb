@@ -27,7 +27,7 @@
 
 	<% if params[:controller] =~ /^companies$/i || (params[:controller] =~ /^users$/i && params[:action] =~ /^new$|^create$/i ) %>
 	<% if params[:action] =~ /^new$|^create$/i %>
-	<div class="container" style="margin-top: 0;">
+	<div class="container" style="padding-top: 0;">
 		<%= yield %>
 	</div>
 	<% else %>

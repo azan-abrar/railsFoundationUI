@@ -54,7 +54,7 @@ class EmployeesController < ApplicationController
   def upload_resume
     if !params[:employee].blank? && !params[:employee][:resume].blank?
       @employee.resume = params[:employee][:resume]
-      @employee.save
+      @employee.save(:validate => false)
     end
     redirect_to "/#/employee/#{@employee.uuid}" and return
   end
@@ -62,7 +62,7 @@ class EmployeesController < ApplicationController
   def upload_profile_picture
     if !params[:employee].blank? && !params[:employee][:profile_picture].blank?
       @employee.profile_picture = params[:employee][:profile_picture]
-      @employee.save
+      @employee.save(:validate => false)
     end
     redirect_to "/#/employee/#{@employee.uuid}" and return
   end

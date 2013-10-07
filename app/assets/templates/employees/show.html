@@ -2,7 +2,7 @@
   {{ employeeModel.full_name }}
 
   <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
-    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button alert">Edit Employee</a> &nbsp;
+    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button alert">Update Profile</a> &nbsp;
   </span>
   <span class="right" ng-switch="employeeModel.is_admin">
     <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#resume').foundation('reveal', 'open');" class="button success">Upload Resume</a>
