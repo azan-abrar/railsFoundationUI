@@ -1,27 +1,29 @@
-<h1 class="subheader">
-  Company Details
-  <span class="right">
-    <%= link_to("Edit Company", edit_company_path(id: @company.slug), :class => "button") %>
-  </span>
-</h1>
-<div class="inner-container">
-  <div class="row">
-    <div class="large-2 columns" style="padding: 0;">
-      <div class="logo-image">
-        <%= image_tag(@company.logo.url) %>
+<div class="container">
+  <h1 class="subheader">
+    Company Details
+    <span class="right">
+      <%= link_to("Edit Company", edit_company_path(id: @company.slug), :class => "button") %>
+    </span>
+  </h1>
+  <div class="inner-container">
+    <div class="row">
+      <div class="large-2 columns" style="padding: 0;">
+        <div class="logo-image">
+          <%= image_tag(@company.logo.url) %>
+        </div>
       </div>
-    </div>
-    <div class="large-10 columns" style="padding: 0;">
-      <table>
-        <tr>
-          <td>Name</td>
-          <td><strong><%= @company.name %></strong></td>
-        </tr>
-        <tr>
-          <td>Website URL</td>
-          <td><strong><%= link_to @company.website, @company.website %></strong></td>
-        </tr>
-      </table>
+      <div class="large-10 columns" style="padding: 0;">
+        <table>
+          <tr>
+            <td>Name</td>
+            <td><strong><%= @company.name %></strong></td>
+          </tr>
+          <tr>
+            <td>Website URL</td>
+            <td><strong><%= link_to @company.website, @company.website %></strong></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

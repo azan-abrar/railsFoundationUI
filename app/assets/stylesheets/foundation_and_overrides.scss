@@ -2,7 +2,7 @@
 
 $top-nav-bg: #aaaaaa;
 $top-nav-fg: #9a9a9a;
-$blue: #0ba6ab;
+$blue: #3f729b;
 $gray: #888;
 $gray-dark: darken($gray, 10%);
 $gray-darker: darken($gray, 20%);
@@ -1509,7 +1509,7 @@ h3 span {
 
 .container {
   margin: 0 auto 20px;
-  padding-top: 110px;
+  padding-top: 75px;
 }
 
 .signup {
@@ -1522,7 +1522,7 @@ h3 span {
   background: #f9f8f8;
   padding: 15px;
   border: 1px solid #dedede;
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
   .header {
     background: #666666 none;
@@ -1590,7 +1590,7 @@ table {
 }
 
 .logo-image {
-  background: darken($top-nav-bg, 5%);
+  @include gradient-vertical(#f9f9fa, #f0f0f0);
   min-height: 80px;
   text-align: center;
   padding: 15px 0;
@@ -1638,14 +1638,13 @@ form {
 }
 
 .main-container {
-  @include gradient-vertical-image('/assets/bg-home.jpg', #fafafb, #f0f0f1, right, no-repeat);
+  @include gradient-vertical-image('/assets/bg-home.jpg', #f8f8f9, #D0DDE7, right, no-repeat);
   @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  background-image: url(/assets/bg-home.jpg);
   .content {
     position: relative;
     width: 1134px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 40px 0px;
     height: 500px;
     h1 {
       color: #4B4949;

@@ -27,32 +27,14 @@
 
 	<% if params[:controller] =~ /^companies$/i || (params[:controller] =~ /^users$/i && params[:action] =~ /^new$|^create$/i ) %>
 	<% if params[:action] =~ /^new$|^create$/i %>
-	<div class="container" style="padding-top: 0;">
-		<%= yield %>
-	</div>
+	<%= yield %>
 	<% else %>
 	<%= render partial: "/layouts/custom_header" %>
-	<div class="container">
-		<%= yield %>
-	</div>
+	<%= yield %>
 	<% end %>
 	<% else %>
 	<%= render partial: "/layouts/header" %>
-	<div class="container">
-		<div class="row" ng-switch="showNavigationBar">
-			<div class="large-12"  ng-switch-when="true">
-				<div id="flash" class="alert-box alert" ng-show="flash">
-					{{ flash }}
-				</div>
-			</div>
-			<div class="large-6 large-offset-3"  ng-switch-when="false">
-				<div id="flash" class="alert-box alert" ng-show="flash">
-					{{ flash }}
-				</div>
-			</div>
-		</div>
-		<div id="view" ng-view></div>
-	</div>
+	<div id="view" ng-view></div>
 	<% end %>
 
 </body>

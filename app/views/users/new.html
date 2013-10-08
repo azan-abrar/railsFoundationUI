@@ -1,105 +1,107 @@
-<div id="login" class="row">
-  <div class="header text-center">
-    <h1 class="subheader default-fg-color">Let's finish with your details</h1>
-  </div>
-  <div class="large-8 large-offset-2 login-container" style="padding-top: 0;">
-    <% unless @user.errors.blank? %>
-    <div class="alert-box alert">
-      <% @user.errors.full_messages.each do |error| %>
-      <p><%= error %></p>
+<div class="container" style="padding-top: 0;">
+  <div id="login" class="row">
+    <div class="header text-center">
+      <h1 class="subheader default-fg-color">Let's finish with your details</h1>
+    </div>
+    <div class="large-8 large-offset-2 login-container" style="padding-top: 0;">
+      <% unless @user.errors.blank? %>
+      <div class="alert-box alert">
+        <% @user.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+        <% end %>
+      </div>
+      <% end %>
+
+      <%= form_for @user, :html => {:multipart => true, :class => "custom"} do |f| %>
+      <fieldset class="radius inner-container">
+        <% if @employee_register.blank? %>
+        <%= f.fields_for :employee do |emp| %>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>First Name:</label>
+            <%= emp.text_field :first_name, :placeholder => "First Name", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Last Name:</label>
+            <%= emp.text_field :last_name, :placeholder => "Last Name", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Email:</label>
+            <%= emp.text_field :email, :placeholder => "Email", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Mobile Number:</label>
+            <%= emp.text_field :mobile_phone, :placeholder => "Mobile Number", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Country:</label>
+            <%= emp.select :permanent_country_code, options_for_select(Carmen::Country.all.map {|m| [m.name,m.code]}, (f.object.employee.permanent_country_code.blank?) ? "PK" : f.object.employee.permanent_country_code), {:include_blank=>"- Select Country -"}, :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>State:</label>
+            <%= emp.text_field :permanent_state, :placeholder => "State", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Street Address:</label>
+            <%= emp.text_field :permanent_address, :placeholder => "Street Address", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>City:</label>
+            <%= emp.text_field :permanent_city, :placeholder => "City", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Postal Code:</label>
+            <%= emp.text_field :permanent_postal_code, :placeholder => "Postal Code", :required => true %>
+          </div>
+        </div>
+        <% end %>
+        <hr>
+        <% end %>
+
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Username:</label>
+            <%= f.text_field :username, :placeholder => "Username", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Password:</label>
+            <%= f.password_field :password, :placeholder => "Password", :required => true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Confirm Password:</label>
+            <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", :required => true %>
+          </div>
+        </div>
+
+        <%= hidden_field_tag :access_token, (@company.blank?) ? @employee_register.access_token : @company.access_token %>
+
+        <div class="row">
+          <div class="large-6 columns">
+            <button type="submit" class="button radius">Sign Up</button>
+          </div>
+        </div>
+      </fieldset>
       <% end %>
     </div>
-    <% end %>
-
-    <%= form_for @user, :html => {:multipart => true, :class => "custom"} do |f| %>
-    <fieldset class="radius inner-container">
-      <% if @employee_register.blank? %>
-      <%= f.fields_for :employee do |emp| %>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>First Name:</label>
-          <%= emp.text_field :first_name, :placeholder => "First Name", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Last Name:</label>
-          <%= emp.text_field :last_name, :placeholder => "Last Name", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Email:</label>
-          <%= emp.text_field :email, :placeholder => "Email", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Mobile Number:</label>
-          <%= emp.text_field :mobile_phone, :placeholder => "Mobile Number", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Country:</label>
-          <%= emp.select :permanent_country_code, options_for_select(Carmen::Country.all.map {|m| [m.name,m.code]}, (f.object.employee.permanent_country_code.blank?) ? "PK" : f.object.employee.permanent_country_code), {:include_blank=>"- Select Country -"}, :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>State:</label>
-          <%= emp.text_field :permanent_state, :placeholder => "State", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>Street Address:</label>
-          <%= emp.text_field :permanent_address, :placeholder => "Street Address", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>City:</label>
-          <%= emp.text_field :permanent_city, :placeholder => "City", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Postal Code:</label>
-          <%= emp.text_field :permanent_postal_code, :placeholder => "Postal Code", :required => true %>
-        </div>
-      </div>
-      <% end %>
-      <hr>
-      <% end %>
-
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Username:</label>
-          <%= f.text_field :username, :placeholder => "Username", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Password:</label>
-          <%= f.password_field :password, :placeholder => "Password", :required => true %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Confirm Password:</label>
-          <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", :required => true %>
-        </div>
-      </div>
-
-      <%= hidden_field_tag :access_token, (@company.blank?) ? @employee_register.access_token : @company.access_token %>
-
-      <div class="row">
-        <div class="large-6 columns">
-          <button type="submit" class="button radius">Sign Up</button>
-        </div>
-      </div>
-    </fieldset>
-    <% end %>
   </div>
 </div>

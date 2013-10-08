@@ -2,7 +2,11 @@ ConfizHRM::Application.routes.draw do
   
   match "/employees/get_employee_constants" => "employees#get_employee_constants"
   
-  resources :home, :path => "/", :only => [:index]
+  resources :home, :path => "/", :only => [:index] do
+    collection do
+      get :company_logo
+    end
+  end
   
   resources :employees do
     member do

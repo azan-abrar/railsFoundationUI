@@ -1,22 +1,24 @@
-<h1 class="subheader" ng-init="getDepartment()">
-  Department Details
-  <span class="right" ng-switch="departmentModel.is_admin">
-    <a ng-switch-when="true" href="#/department/{{ departmentModel.id }}/edit" class="button">Edit Department</a>
-  </span>
-</h1>
-<div class="inner-container">
-  <div class="row">
-    <div class="large-12 radius columns">
-      <table>
-        <tr>
-          <td>Name</td>
-          <td><strong>{{ departmentModel.name }}</strong></td>
-        </tr>
-        <tr>
-          <td>Description</td>
-          <td><strong>{{ departmentModel.description }}</strong></td>
-        </tr>
-      </table>
+<div class="container">
+  <h1 class="subheader" ng-init="getDepartment()">
+    Department Details
+    <span class="right" ng-switch="departmentModel.is_admin">
+      <a ng-switch-when="true" href="#/department/{{ departmentModel.id }}/edit" class="button">Edit Department</a>
+    </span>
+  </h1>
+  <div class="inner-container">
+    <div class="row">
+      <div class="large-12 radius columns">
+        <table>
+          <tr>
+            <td>Name</td>
+            <td><strong>{{ departmentModel.name }}</strong></td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td><strong>{{ departmentModel.description }}</strong></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

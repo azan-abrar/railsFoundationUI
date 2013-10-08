@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
     (self.company_administrator? && self.employee.company == resource.company)
   end
 
+  def company
+    self.employee.company rescue nil
+  end
+
 end

@@ -1,37 +1,39 @@
-<div id="login" class="row">
-  <div class="large-4 large-offset-4 login-container">
-    <div class="header">
-      <img src="/assets/confiz-logo.png" >
+<div class="container">
+  <div id="login" class="row">
+    <div class="large-4 large-offset-4 login-container">
+      <div class="header">
+        <img src="/assets/confiz-logo.png" >
+      </div>
+      <form ng-submit="login()" class="custom">
+        <fieldset class="radius inner-container signup">
+
+          <div class="row">
+            <div class="large-12 columns">
+              <input type="text" name="username" placeholder="Username" ng-model="credentials.username" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <input type="password" name="password" placeholder="Password" ng-model="credentials.password" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <label for="remember_me">
+                <input type="checkbox" name="remember_me" style="display: none;" class="hidden-field">
+                <span class="custom checkbox"></span> &nbsp;Keep me logged in
+              </label>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="large-6 columns">
+              <button type="submit" class="button radius small">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
-    <form ng-submit="login()" class="custom">
-      <fieldset class="radius inner-container signup">
-
-        <div class="row">
-          <div class="large-12 columns">
-            <input type="text" name="username" placeholder="Username" ng-model="credentials.username" required/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <input type="password" name="password" placeholder="Password" ng-model="credentials.password" required/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <label for="remember_me">
-            <input type="checkbox" name="remember_me" style="display: none;" class="hidden-field">
-              <span class="custom checkbox"></span> &nbsp;Keep me logged in
-            </label>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="large-6 columns">
-            <button type="submit" class="button radius small">Login</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
   </div>
 </div>

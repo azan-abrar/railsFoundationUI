@@ -1,26 +1,25 @@
-<div class="inner-container">
-	<div class="header">
-		<h3>
-			Companies List
-			<span class="right">
-				<a href="/companies/new" class="button secondary">New Company</a>
-			</span>
-		</h3>
+<div class="container">
+	<div class="inner-container">
+		<div class="header">
+			<h3>
+				Companies List
+				<span class="right">
+					<a href="/companies/new" class="button secondary">New Company</a>
+				</span>
+			</h3>
+		</div>
+		<table class="employee-list">
+			<tr>
+				<th>Company Name</th>
+				<th>Website URL</th>
+			</tr>
+
+			<% @companies.each do |company| %>
+			<tr>
+				<td><a href="/companies/<%= company.slug %>"><%= company.name %></a></td>
+				<td><%= link_to(company.website, company.website) %></td>
+			</tr>
+			<% end %>
+		</table>
 	</div>
-	<table class="employee-list">
-		<tr>
-			<th>Company Name</th>
-			<th>Website URL</th>
-		</tr>
-
-		<% @companies.each do |company| %>
-		<tr>
-			<td><a href="/companies/<%= company.slug %>"><%= company.name %></a></td>
-			<td><%= link_to(company.website, company.website) %></td>
-		</tr>
-		<% end %>
-	</table>
-
-
-
 </div>

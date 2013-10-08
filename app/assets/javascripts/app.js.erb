@@ -82,12 +82,12 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
 
     if (_(['/login']).contains($location.path())) {
+      FlashService.clear();
       Navigation.hideNav();
     } else {
       Navigation.showNav();
       
       AuthenticationService.isLoggedIn().success(function() {
-        // debugger
         if (_(routesIfNotLogin).contains($location.path()) || $location.$$absUrl.match("/companies") != null) {
           setTimeout(function() {
             $('li.has-dropdown ul li').on('mouseover', function() {
@@ -104,6 +104,7 @@ app.run(function($rootScope, $location, AuthenticationService, FlashService, Nav
         } 
       }).error(function() {
         if (_(routesIfNotLogin).contains($location.path())) {
+          FlashService.clear();
           Navigation.hideNav();
           $location.path('/login');
         }

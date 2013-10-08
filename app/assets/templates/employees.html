@@ -1,38 +1,49 @@
-<div class="inner-container" ng-init="getEmployees()">
-  <div class="header">
-    <h3>
-      Employees List
-      <span class="right" ng-switch="isAdmin">
-        <a ng-switch-when="true" href="#/employee/new" class="button secondary">New Employee</a>
-      </span>
-    </h3>
+<div class="container">
+
+  <div class="inner-container" ng-init="getEmployees()">
+    <div class="row" ng-switch="showNavigationBar">
+      <div class="large-12"  ng-switch-when="true">
+        <div id="flash" class="alert-box alert" ng-show="flash">
+          {{ flash }}
+        </div>
+      </div>
+    </div>
+    
+    <div class="header">
+      <h3>
+        Employees List
+        <span class="right" ng-switch="isAdmin">
+          <a ng-switch-when="true" href="#/employee/new" class="button secondary">New Employee</a>
+        </span>
+      </h3>
+    </div>
+    <table class="employee-list">
+      <tr>
+        <th style="width: 50px;"></th>
+        <th>Employee Name</th>
+        <th>Email</th>
+        <th>Employee Designation</th>
+        <th>Join date</th>
+        <th>Mobile Number</th>
+      </tr>
+
+      <tr ng-repeat="employee in employees">
+        <td><img ng-src="{{ employee.profile_picture_mini }}"></td>
+        <td><a href="#/employee/{{ employee.id }}">{{ employee.full_name }}</a></td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.designation }}</td>
+        <td>{{ employee.join_date }}</td>
+        <td>{{ employee.mobile_phone }}</td>
+      </tr>
+
+    </table>
+
+    <div class="pagination-centered">
+      <ul class="pagination">
+        <li class="arrow" ng-click="searchEmployees(prevPage)"><a href="javascript:void(0)">&laquo; previous page</a></li>
+        <li class="arrow" ng-click="searchEmployees(nextPage)"><a href="javascript:void(0)">next page &raquo;</a></li>
+      </ul>
+    </div>
+
   </div>
-  <table class="employee-list">
-    <tr>
-      <th style="width: 50px;"></th>
-      <th>Employee Name</th>
-      <th>Email</th>
-      <th>Employee Designation</th>
-      <th>Join date</th>
-      <th>Mobile Number</th>
-    </tr>
-
-    <tr ng-repeat="employee in employees">
-      <td><img ng-src="{{ employee.profile_picture_mini }}"></td>
-      <td><a href="#/employee/{{ employee.id }}">{{ employee.full_name }}</a></td>
-      <td>{{ employee.email }}</td>
-      <td>{{ employee.designation }}</td>
-      <td>{{ employee.join_date }}</td>
-      <td>{{ employee.mobile_phone }}</td>
-    </tr>
-
-  </table>
-
-  <div class="pagination-centered">
-    <ul class="pagination">
-      <li class="arrow" ng-click="searchEmployees(prevPage)"><a href="javascript:void(0)">&laquo; previous page</a></li>
-      <li class="arrow" ng-click="searchEmployees(nextPage)"><a href="javascript:void(0)">next page &raquo;</a></li>
-    </ul>
-  </div>
-
 </div>

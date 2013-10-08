@@ -1,30 +1,42 @@
-<div class="inner-container" ng-init="getDepartments()">
-  <div class="header">
-    <h3>
-      Departments List
-      <span class="right" ng-switch="isAdmin">
-        <a ng-switch-when="true" href="#/department/new" class="button secondary">New Department</a>
-      </span>
-    </h3>
+<div class="container">
+
+  <div class="inner-container" ng-init="getDepartments()">
+
+    <div class="row" ng-switch="showNavigationBar">
+      <div class="large-12"  ng-switch-when="true">
+        <div id="flash" class="alert-box alert" ng-show="flash">
+          {{ flash }}
+        </div>
+      </div>
+    </div>
+
+    <div class="header">
+      <h3>
+        Departments List
+        <span class="right" ng-switch="isAdmin">
+          <a ng-switch-when="true" href="#/department/new" class="button secondary">New Department</a>
+        </span>
+      </h3>
+    </div>
+    <table class="employee-list">
+      <tr>
+        <th>Department Name</th>
+        <th>Description</th>
+      </tr>
+
+      <tr ng-repeat="department in departments">
+        <td><a href="#/department/{{ department.id }}">{{ department.name }}</a></td>
+        <td>{{ department.description }}</td>
+      </tr>
+
+    </table>
+
+    <div class="pagination-centered">
+      <ul class="pagination">
+        <li class="arrow" ng-click="searchDepartments(prevPage)"><a href="javascript:void(0)">&laquo; previous page</a></li>
+        <li class="arrow" ng-click="searchDepartments(nextPage)"><a href="javascript:void(0)">next page &raquo;</a></li>
+      </ul>
+    </div>
+
   </div>
-  <table class="employee-list">
-    <tr>
-      <th>Department Name</th>
-      <th>Description</th>
-    </tr>
-
-    <tr ng-repeat="department in departments">
-      <td><a href="#/department/{{ department.id }}">{{ department.name }}</a></td>
-      <td>{{ department.description }}</td>
-    </tr>
-
-  </table>
-
-  <div class="pagination-centered">
-    <ul class="pagination">
-      <li class="arrow" ng-click="searchDepartments(prevPage)"><a href="javascript:void(0)">&laquo; previous page</a></li>
-      <li class="arrow" ng-click="searchDepartments(nextPage)"><a href="javascript:void(0)">next page &raquo;</a></li>
-    </ul>
-  </div>
-
 </div>

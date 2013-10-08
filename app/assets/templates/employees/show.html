@@ -1,189 +1,191 @@
-<h1 class="subheader" ng-init="getEmployee()">
-  {{ employeeModel.full_name }}
+<div class="container">
+  <h1 class="subheader" ng-init="getEmployee()">
+    {{ employeeModel.full_name }}
 
-  <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
-    <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button alert">Update Profile</a> &nbsp;
-  </span>
-  <span class="right" ng-switch="employeeModel.is_admin">
-    <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#resume').foundation('reveal', 'open');" class="button success">Upload Resume</a>
-  </span>
-</h1>
-<div class="inner-container">
-  <div class="row">
-    <div class="large-4 radius columns">
-      <div class="upload-pic" onclick="$('#profile_picture').foundation('reveal', 'open');">
-        <a class="button secondary radius small">Upload Profile Picture</a>
-        <img ng-src="{{ employeeModel.profile_picture_thumb }}">
-      </div>
-    </div>
-
-    <div class="large-4 radius columns">
-      <h3 class="subheader">Personal Details</h3>
-      <table>
-        <tr>
-          <td>Employee ID</td>
-          <td><strong>{{ employeeModel.employee_id }}</strong></td>
-        </tr>
-        <tr>
-          <td>Date of Birth</td>
-          <td><strong>{{ employeeModel.dob }}</strong></td>
-        </tr>
-        <tr>
-          <td>Marital Status</td>
-          <td><strong>{{ employeeMaritalStatus[employeeModel.is_married] }}</strong></td>
-        </tr>
-        <tr>
-          <td>Gender</td>
-          <td><strong>{{ employeeModel.gender }}</strong></td>
-        </tr>
-        <tr>
-          <td>Mobile Phone</td>
-          <td><strong>{{ employeeModel.mobile_phone }}</strong></td>
-        </tr>
-        <tr>
-          <td>Home Phone</td>
-          <td><strong>{{ employeeModel.home_phone }}</strong></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="large-4 radius columns">
-      <h3 class="subheader">Professional Details</h3>
-      <table>
-        <tr>
-          <td>Email</td>
-          <td><strong>{{ employeeModel.email }}</strong></td>
-        </tr>
-        <tr>
-          <td>Designation</td>
-          <td><strong>{{ employeeModel.designation }}</strong></td>
-        </tr>
-        <tr>
-          <td>Department</td>
-          <td><strong>{{ employeeModel.department_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>Status</td>
-          <td><strong>{{ employeeStatus[employeeModel.status] }}</strong></td>
-        </tr>
-        <tr>
-          <td>Join Date</td>
-          <td><strong>{{ employeeModel.join_date }}</strong></td>
-        </tr>
-        <tr>
-          <td>Resume</td>
-          <td><a href="{{ employeeModel.resume }}" target="_blank">View Resume</a></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="large-6 radius columns">
-      <h3 class="subheader">Permanent Address Details</h3>
-      <table>
-        <tr>
-          <td>Country</td>
-          <td><strong>{{ employeeModel.permanent_country_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td><strong>{{ employeeModel.permanent_state }}</strong></td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td><strong>{{ employeeModel.permanent_city }}</strong></td>
-        </tr>
-        <tr>
-          <td>Address</td>
-          <td><strong>{{ employeeModel.permanent_address }}</strong></td>
-        </tr>
-        <tr>
-          <td>Postal Code</td>
-          <td><strong>{{ employeeModel.permanent_postal_code }}</strong></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="large-6 radius columns">
-      <h3 class="subheader">Secondary Address Details</h3>
-      <table>
-        <tr>
-          <td>Country</td>
-          <td><strong>{{ employeeModel.secondary_country_name }}</strong></td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td><strong>{{ employeeModel.secondary_state }}</strong></td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td><strong>{{ employeeModel.secondary_city }}</strong></td>
-        </tr>
-        <tr>
-          <td>Address</td>
-          <td><strong>{{ employeeModel.secondary_address }}</strong></td>
-        </tr>
-        <tr>
-          <td>Postal Code</td>
-          <td><strong>{{ employeeModel.secondary_postal_code }}</strong></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-</div>
-
-<div ng-switch="employeeModel.is_admin">
-  <a ng-switch-when="true" href="javascript:void(0);" class="button alert right" ng-click="removeEmployee(employeeModel.id)">Delete Employee</a>
-</div>
-
-
-
-<div class="reveal-modal small" id="resume">
-  <form action="/employees/{{ employeeModel.id }}/upload_resume" method="post" enctype="multipart/form-data">
-    <div class="modal-header">
-      <a class="close-reveal-modal">×</a>
-      <h3 class="nomargin">Upload Resume</h3>
-    </div>
-    <div class="modal-body">
-
-      <p>
-        <a href="{{ employeeModel.resume }}" target="_blank">{{ employeeModel.resume_name }}</a>
-      </p>
-
-      <div class="row">
-        <div class="large-6">
-          <input id="employee_resume" required name="employee[resume]" type="file">
+    <span class="right" ng-switch="employeeModel.is_admin || employeeModel.is_owner">
+      <a ng-switch-when="true" href="#/employee/{{ employeeModel.id }}/edit" class="button alert">Update Profile</a> &nbsp;
+    </span>
+    <span class="right" ng-switch="employeeModel.is_admin">
+      <a ng-switch-when="true" href="javascript:void(0);" onclick="$('#resume').foundation('reveal', 'open');" class="button success">Upload Resume</a>
+    </span>
+  </h1>
+  <div class="inner-container">
+    <div class="row">
+      <div class="large-4 radius columns">
+        <div class="upload-pic" onclick="$('#profile_picture').foundation('reveal', 'open');">
+          <a class="button secondary radius small">Upload Profile Picture</a>
+          <img ng-src="{{ employeeModel.profile_picture_thumb }}">
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button class="button small">Submit</button>
-    </div>
-  </form>
-</div>
 
-<div class="reveal-modal small" id="profile_picture">
-  <form action="/employees/{{ employeeModel.id }}/upload_profile_picture" method="post" enctype="multipart/form-data">
-    <div class="modal-header">
-      <a class="close-reveal-modal">×</a>
-      <h3 class="nomargin">Upload Profile Picture</h3>
-    </div>
-    <div class="modal-body">
+      <div class="large-4 radius columns">
+        <h3 class="subheader">Personal Details</h3>
+        <table>
+          <tr>
+            <td>Employee ID</td>
+            <td><strong>{{ employeeModel.employee_id }}</strong></td>
+          </tr>
+          <tr>
+            <td>Date of Birth</td>
+            <td><strong>{{ employeeModel.dob }}</strong></td>
+          </tr>
+          <tr>
+            <td>Marital Status</td>
+            <td><strong>{{ employeeMaritalStatus[employeeModel.is_married] }}</strong></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td><strong>{{ employeeModel.gender }}</strong></td>
+          </tr>
+          <tr>
+            <td>Mobile Phone</td>
+            <td><strong>{{ employeeModel.mobile_phone }}</strong></td>
+          </tr>
+          <tr>
+            <td>Home Phone</td>
+            <td><strong>{{ employeeModel.home_phone }}</strong></td>
+          </tr>
+        </table>
+      </div>
 
-      <p>
-        <a href="{{ employeeModel.profile_picture }}" target="_blank">{{ employeeModel.profile_picture }}</a>
-      </p>
-
-      <div class="row">
-        <div class="large-6">
-          <input id="employee_profile_picture" required name="employee[profile_picture]" type="file">
-        </div>
+      <div class="large-4 radius columns">
+        <h3 class="subheader">Professional Details</h3>
+        <table>
+          <tr>
+            <td>Email</td>
+            <td><strong>{{ employeeModel.email }}</strong></td>
+          </tr>
+          <tr>
+            <td>Designation</td>
+            <td><strong>{{ employeeModel.designation }}</strong></td>
+          </tr>
+          <tr>
+            <td>Department</td>
+            <td><strong>{{ employeeModel.department_name }}</strong></td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td><strong>{{ employeeStatus[employeeModel.status] }}</strong></td>
+          </tr>
+          <tr>
+            <td>Join Date</td>
+            <td><strong>{{ employeeModel.join_date }}</strong></td>
+          </tr>
+          <tr>
+            <td>Resume</td>
+            <td><a href="{{ employeeModel.resume }}" target="_blank">View Resume</a></td>
+          </tr>
+        </table>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="button small">Submit</button>
+
+    <div class="row">
+      <div class="large-6 radius columns">
+        <h3 class="subheader">Permanent Address Details</h3>
+        <table>
+          <tr>
+            <td>Country</td>
+            <td><strong>{{ employeeModel.permanent_country_name }}</strong></td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td><strong>{{ employeeModel.permanent_state }}</strong></td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td><strong>{{ employeeModel.permanent_city }}</strong></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><strong>{{ employeeModel.permanent_address }}</strong></td>
+          </tr>
+          <tr>
+            <td>Postal Code</td>
+            <td><strong>{{ employeeModel.permanent_postal_code }}</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="large-6 radius columns">
+        <h3 class="subheader">Secondary Address Details</h3>
+        <table>
+          <tr>
+            <td>Country</td>
+            <td><strong>{{ employeeModel.secondary_country_name }}</strong></td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td><strong>{{ employeeModel.secondary_state }}</strong></td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td><strong>{{ employeeModel.secondary_city }}</strong></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><strong>{{ employeeModel.secondary_address }}</strong></td>
+          </tr>
+          <tr>
+            <td>Postal Code</td>
+            <td><strong>{{ employeeModel.secondary_postal_code }}</strong></td>
+          </tr>
+        </table>
+      </div>
     </div>
-  </form>
+
+  </div>
+
+  <div ng-switch="employeeModel.is_admin">
+    <a ng-switch-when="true" href="javascript:void(0);" class="button alert right" ng-click="removeEmployee(employeeModel.id)">Delete Employee</a>
+  </div>
+
+
+
+  <div class="reveal-modal small" id="resume">
+    <form action="/employees/{{ employeeModel.id }}/upload_resume" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <a class="close-reveal-modal">×</a>
+        <h3 class="nomargin">Upload Resume</h3>
+      </div>
+      <div class="modal-body">
+
+        <p>
+          <a href="{{ employeeModel.resume }}" target="_blank">{{ employeeModel.resume_name }}</a>
+        </p>
+
+        <div class="row">
+          <div class="large-6">
+            <input id="employee_resume" required name="employee[resume]" type="file">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="button small">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="reveal-modal small" id="profile_picture">
+    <form action="/employees/{{ employeeModel.id }}/upload_profile_picture" method="post" enctype="multipart/form-data">
+      <div class="modal-header">
+        <a class="close-reveal-modal">×</a>
+        <h3 class="nomargin">Upload Profile Picture</h3>
+      </div>
+      <div class="modal-body">
+
+        <p>
+          <a href="{{ employeeModel.profile_picture }}" target="_blank">{{ employeeModel.profile_picture }}</a>
+        </p>
+
+        <div class="row">
+          <div class="large-6">
+            <input id="employee_profile_picture" required name="employee[profile_picture]" type="file">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="button small">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>

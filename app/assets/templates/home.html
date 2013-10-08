@@ -1,25 +1,32 @@
-<div class="row default-container">
-	<div class="large-8 columns">
-		<div class="inner-container">
-			<h1>Start Hiring Today</h1>
-			<p>
-				Free Recruiting Software. Everything you need to post a job,<br>
-				manage candidates and make the right hire
-			</p>
-			<a href="/#/employee/new" class="button radius">Add Employee</a>
-		</div>
-	</div>
-	<div class="large-4 columns">
-		<div class="inner-container">
-			<h3>What's Next</h3>
-			<ul>
-				<li><a href="/#/department/new">Add Department</a></li>
-				<li><a href="/#/employee/new">Add Employee</li>
-				<li><a href="/#/departments">View Departments</li>
-				<li><a href="/#/employees">View Employees</li>
-			</ul>
-		</div>
-	</div>
+<div class="container" ng-init="initializeHomePage()">
+	<div class="row default-container">
+		<div class="large-8 columns">
+			<div class="inner-container">
+				<h1>
+					Start Hiring Today
+					<img alt="2" ng-src="{{ companyLogo }}" class="right">
+				</h1>
+				<p>
+					Free Recruiting Software. Everything you need to post a job,<br>
+					manage candidates and make the right hire
+				</p>
+				<a href="/#/employee/new" class="button radius">Add Employee</a>
 
+				
+
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="inner-container">
+				<h3>What's Next</h3>
+				<ul>
+					<li><a href="/#/department/new">Add Department</a></li>
+					<li><a href="/#/employee/new">Add Employee</li>
+					<li><a href="/#/departments">View Departments</li>
+					<li><a href="/#/employees">View Employees</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
 </div>
-
