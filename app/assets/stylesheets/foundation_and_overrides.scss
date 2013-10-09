@@ -2,7 +2,7 @@
 
 $top-nav-bg: #aaaaaa;
 $top-nav-fg: #9a9a9a;
-$blue: #3f729b;
+$blue: #e54a4f;
 $gray: #888;
 $gray-dark: darken($gray, 10%);
 $gray-darker: darken($gray, 20%);
@@ -77,9 +77,10 @@ $default-float: left;
 // Colors
 
 $primary-color: $blue;
-// $secondary-color: #e9e9e9;
-// $alert-color: #c60f13;
-// $success-color: #5da423;
+$secondary-color: #ebebeb;
+$danger-color: #2a323a;
+$alert-color: #0c76ab;
+$success-color: #4F9226;
 
 // Make sure border radius matches unless we want it different.
 
@@ -298,7 +299,7 @@ $form-label-font-size: emCalc(18);
 $form-label-bottom-margin: emCalc(5);
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
- $input-font-size: emCalc(18);
+$input-font-size: emCalc(18);
 // $input-bg-color: #fff;
 // $input-focus-bg-color: darken(#fff, 2%);
 // $input-border-color: darken(#fff, 20%);
@@ -1336,6 +1337,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'source sans pro', 'sans-serif';
+  color: #333;
 }
 
 h1 span, h2 span {
@@ -1646,11 +1648,8 @@ form {
     margin: 0 auto;
     padding: 40px 0px;
     height: 500px;
-    h1 {
-      color: #4B4949;
-    }
     p {
-      color: #6b6b6b;
+      color: #555;
     }
     a.button {
       position: absolute;
@@ -1672,6 +1671,10 @@ form {
         font-size: 16px;
         padding: 5px 10px;
         border-bottom: 1px solid #ebebeb;
+        a {
+          color: $blue;
+          &:hover { color: darken($blue, 10%); }
+        }
       }
     }
   }
@@ -1706,7 +1709,13 @@ form {
   margin: 0;
 }
 
-
+.button.danger { 
+  background-color: $danger-color; 
+  border-color: darken($danger-color, 10%);
+  &:hover {
+    background-color: darken($danger-color, 10%);
+  }
+}
 
 @media only screen and (min-width: 768px) {
   .container {
