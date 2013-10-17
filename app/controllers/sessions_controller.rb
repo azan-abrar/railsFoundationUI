@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
 
   def signin
-    user = login(params[:username], params[:password], true)
-    unless user.blank?
-      render json: user.to_json and return
-    else
-      render json: {:flash => "Invalid username or password"}, status: 500 and return
+    if request.post?
+      user = login(params[:username], params[:password], true)
+      unless user.blank?
+        redirect_to "/employees"
+      end
     end
   end
   

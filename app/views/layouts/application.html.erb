@@ -4,7 +4,7 @@
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<html lang="en" ng-app="confizHRM"> <!--<![endif]-->
+<html lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
 
@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href='/assets/favicon.ico' rel='shortcut icon' type='image/ico'/>
 
-	<title><%= content_for?(:title) ? yield(:title) : "Confiz HRM" %></title>
+	<title><%= content_for?(:title) ? yield(:title) : "Rails Foundation UI" %></title>
 
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -25,17 +25,8 @@
 
 <body>
 
-	<% if params[:controller] =~ /^companies$/i || (params[:controller] =~ /^users$/i && params[:action] =~ /^new$|^create$/i ) %>
-	<% if params[:action] =~ /^new$|^create$/i %>
-	<%= yield %>
-	<% else %>
-	<%= render partial: "/layouts/custom_header" %>
-	<%= yield %>
-	<% end %>
-	<% else %>
 	<%= render partial: "/layouts/header" %>
-	<div id="view" ng-view></div>
-	<% end %>
+	<%= yield %>
 
 </body>
 </html>

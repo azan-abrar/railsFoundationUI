@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 @company = Company.find_or_create_by_name(
-  :name => "Confiz Solutions",
-  :website => "http://www.confiz.com",
-  :email => "azan.abrar@confiz.com",
+  :name => "Rails Foundation UI",
+  :website => "http://www.example.com",
+  :email => "dummy@example.com",
   :phone => "03211234567"
   )
 
@@ -24,7 +24,7 @@
 @user.save!
 puts "User #{@user.username} created."
 
-10.times do |t|
+100.times do |t|
   @employee = Employee.find_or_initialize_by_first_name_and_last_name(
     :employee_id => "CNE-#{(t+1)}", :first_name => "Admin#{(t+1)}", :last_name => "Dummy#{(t+1)}",
     :email => "admin#{(t+1)}@example.com", :designation => Employee::DESIGNATION_ARRAY[rand(Employee::DESIGNATION_ARRAY.count)], 

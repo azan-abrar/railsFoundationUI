@@ -2,7 +2,7 @@
 
 $top-nav-bg: #aaaaaa;
 $top-nav-fg: #9a9a9a;
-$blue: #e54a4f;
+$blue: #25a0ca;
 $gray: #888;
 $gray-dark: darken($gray, 10%);
 $gray-darker: darken($gray, 20%);
@@ -1329,7 +1329,6 @@ $table-row-font-size: emCalc(16);
 }
 
 body {
-  //background: #e6e7e8 url(/assets/bg-body.png) repeat;
   background-image: url(data:image/gif;base64,R0lGODlhCAAGAKIAAPHx8fDw8Ozs7O7u7u3t7e/v7wAAAAAAACH5BAAAAAAALAAAAAAIAAYAAAMXSDIlpKGUR6IkTM4yCPcFgGViIDhPkAAAOw==);
   color: #626262;
   font-family: 'source sans pro', 'sans-serif';
@@ -1399,7 +1398,7 @@ h3 span {
             margin-top: -5px;
             max-height: 40px;
           }
-          a { color: #f5f5f5; }
+          a { color: $blue; }
         }
       }
     }
@@ -1640,14 +1639,14 @@ form {
 }
 
 .main-container {
-  @include gradient-vertical-image('/assets/bg-home.jpg', #f8f8f9, #D0DDE7, right, no-repeat);
+  @include gradient-vertical-image('/assets/home-bg.png', #f8f8f9, #D0DDE7, right, no-repeat);
   @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   .content {
     position: relative;
     width: 1134px;
     margin: 0 auto;
     padding: 40px 0px;
-    height: 500px;
+    height: 400px;
     p {
       color: #555;
     }

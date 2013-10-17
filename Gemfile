@@ -13,7 +13,6 @@ gem 'mysql2'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'angular-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
@@ -25,15 +24,6 @@ group :assets do
   gem "parsley-rails"
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
-end
-
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem "factory_girl_rails", "~> 4.0"
-  gem "capybara-webkit"
-
 end
 
 group :development do

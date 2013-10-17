@@ -1,4 +1,4 @@
-ConfizHRM::Application.configure do
+RailsFoundationUI::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -35,19 +35,5 @@ ConfizHRM::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.perform_deliveries = true #try to force sending in development 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => 'gmail.com',
-    :user_name            => 'confizhrmdev@gmail.com',
-    :password             => 'confizhrmdev123',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  
-  }
-
 end
 
-$site_email = "Azan <azan.abrar@confiz.com>"
-$site_url = "127.0.0.1:3000"

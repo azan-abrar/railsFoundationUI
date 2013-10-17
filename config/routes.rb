@@ -1,6 +1,8 @@
-ConfizHRM::Application.routes.draw do
+RailsFoundationUI::Application.routes.draw do
   
   match "/employees/get_employee_constants" => "employees#get_employee_constants"
+  match "/login" => "sessions#signin"
+  match "/logout" => "sessions#signout"
   
   resources :home, :path => "/", :only => [:index] do
     collection do
@@ -22,9 +24,8 @@ ConfizHRM::Application.routes.draw do
 
   resources :companies
   
-  resources :sessions, :only => [] do
+  resources :sessions, :only => [:create] do
     collection do
-      post :signin
       get :signout
       get :is_logged_in
     end

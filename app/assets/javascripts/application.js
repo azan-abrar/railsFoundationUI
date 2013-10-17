@@ -13,25 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require angular.min
-//= require app
-//= require_tree ./angular
 //= require foundation-datepicker
 //= require parsley
 //= require_tree .
 
 $(function() {
 	$(document).foundation();
-});
-
-$(document).ready(function() {
-//  $('li.has-dropdown ul li').on('mouseover', function() {
-//   $(this).parent().parent().find('a.parent').addClass('active');
-// });
-
-//  $('li.has-dropdown ul li').on('mouseout', function() {
-//    $(this).parent().parent().find('a.parent').removeClass('active');
-// });
 });
 
 
